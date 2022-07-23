@@ -1,0 +1,10 @@
+@import "../../global.scss";
+
+.expreience {
+  background-color: #086899;
+}
+.time-item {
+  @include mobile {
+    margin-right: 15px;
+  }
+}
