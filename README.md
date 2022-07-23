@@ -1,4 +1,4 @@
-![](https://img.shields.io/badge/Financial-Metrics-blueviolet)
+![](https://img.shields.io/badge/Omar's-Portfolio-blueviolet)
 
 # My New Portfolio
 ![image](./public/assets/portgif.gif)
