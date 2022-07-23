@@ -8,7 +8,7 @@ import { FaUserGraduate } from "react-icons/fa";
 import { FaLaptopHouse } from "react-icons/fa";
 export default function Works() {
   return (
-    <div className="expreience">
+    <div className="expreience" id="works">
       <VerticalTimeline>
         <VerticalTimelineElement
           contentStyle={{ background: "#f7f0d4", color: "#086899" }}
