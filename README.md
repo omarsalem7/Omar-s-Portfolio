@@ -4,7 +4,7 @@
 ![image](./public/assets/portgif.gif)
 ## Live demo
 
-[portfolio](www.google.com)
+[Omar's Portfolio](https://o-salem.netlify.app/)
 
 ## Built With
 
