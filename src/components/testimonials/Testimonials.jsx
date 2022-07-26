@@ -6,7 +6,7 @@ export default function Testimonials() {
       id: 1,
       name: "Mostafa Ahangarha",
       title: "Full-stack Developer",
-      img: "https://media-exp2.licdn.com/dms/image/D4D35AQEpzRy2DOXjbw/profile-framedphoto-shrink_400_400/0/1657218232693?e=1658790000&v=beta&t=EGAHeh3VtXlHJJYIik7LBNAyIUvvFU_UlqmbPLx3Pvc",
+      img: "https://iili.io/S7S1Mx.jpg",
       icon: "assets/linkedin.png",
       desc: "Omar was a good mentor for me. I was his mentee at Microvese. He provided me with the kind of support I needed during the first few months of the course. He listened and understood my issues carefully and referred me to the right resources and people. He is a valuable asset to any team.",
     },
@@ -14,7 +14,7 @@ export default function Testimonials() {
       id: 2,
       name: "Jos Kalenda",
       title: "Full-stack Developer",
-      img: "https://media-exp2.licdn.com/dms/image/D4D35AQFbME2qJ0FSTg/profile-framedphoto-shrink_100_100/0/1642715751507?e=1658793600&v=beta&t=wFRz6jLPn7pbUS-G6NMgAbfXUP6s1dr_RYoOWj7FPZs",
+      img: "https://iili.io/S7SQVf.jpg",
       icon: "assets/linkedin.png",
       desc: "Omar is a friend and exactly the sort of software developer any company would love. his collaboration skills and his detail-oriented approach made him a pleasure to work with. Definitely knows his way around JavaScript, React and, is always willing to help out anyone that is stuck or facing problems. He's great at what he's doing and I'm sure he would be a great addition to any professional team.",
       featured: true,
@@ -35,9 +35,9 @@ export default function Testimonials() {
         {data.map((d) => (
           <div className={d.featured ? "card featured" : "card"} key={d.id}>
             <div className="top">
-              <img src="assets/right-arrow.png" className="left" alt="" />
-              <img className="user" src={d.img} alt="" />
-              <img className="right" src={d.icon} alt="" />
+              <img src="assets/right-arrow.png" className="left" alt="arrow" />
+              <img className="user" src={d.img} alt={d.name} />
+              <img className="right" src={d.icon} alt="linkedIn" />
             </div>
             <div className="center">{d.desc}</div>
             <div className="bottom">
