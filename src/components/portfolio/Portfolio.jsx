@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import PortfolioList from "../portfolioList/PortfolioList";
+import { FiExternalLink, FiGithub, FiLayers } from "react-icons/fi";
 import "./portfolio.scss";
 import {
   featuredPortfolio,
@@ -9,120 +10,148 @@ import {
   railsPortfolio,
 } from "../../data";
 
+const CATEGORIES = [
+  { id: "featured", title: "All Works", count: featuredPortfolio.length },
+  { id: "react", title: "React & Redux", count: reactPortfolio.length },
+  { id: "rails", title: "Ruby on Rails", count: railsPortfolio.length },
+  { id: "js", title: "JavaScript ES6+", count: jsPortfolio.length },
+  { id: "html", title: "HTML & CSS", count: htmlPortfolio.length },
+];
+
 export default function Portfolio() {
   const [selected, setSelected] = useState("featured");
-  const [data, setData] = useState([]);
-  const list = [
-    {
-      id: "featured",
-      title: "Featured",
-    },
-    {
-      id: "React/Redux",
-      title: "React/Redux",
-    },
-    {
-      id: "Ruby on rails",
-      title: "Ruby/ Ruby on rails",
-    },
-    {
-      id: "JavaScript",
-      title: "JavaScript",
-    },
-    {
-      id: "HTML/CSS",
-      title: "HTML/CSS",
-    },
-  ];
+  const [data, setData] = useState(featuredPortfolio);
 
   useEffect(() => {
     switch (selected) {
       case "featured":
         setData(featuredPortfolio);
         break;
-      case "React/Redux":
+      case "react":
         setData(reactPortfolio);
         break;
-      case "Ruby in rails":
-        setData(jsPortfolio);
-        break;
-      case "JavaScript":
-        setData(jsPortfolio);
-        break;
-      case "HTML/CSS":
-        setData(htmlPortfolio);
-        break;
-      case "Ruby on rails":
+      case "rails":
         setData(railsPortfolio);
+        break;
+      case "js":
+        setData(jsPortfolio);
+        break;
+      case "html":
+        setData(htmlPortfolio);
         break;
       default:
         setData(featuredPortfolio);
     }
   }, [selected]);
 
+  const getTechTags = (item, cat) => {
+    if (cat === "react" || item.title.includes("React") || item.title.includes("Stock") || item.title.includes("Book") || item.title.includes("Space")) {
+      return ["React", "Redux", "REST API"];
+    }
+    if (cat === "rails" || item.title.includes("Budget") || item.title.includes("Recipe") || item.title.includes("Blog") || item.title.includes("Catalog")) {
+      return ["Ruby on Rails", "PostgreSQL", "MVC"];
+    }
+    if (cat === "js" || item.title.includes("Pig") || item.title.includes("Todo") || item.title.includes("Leaderboard") || item.title.includes("Food")) {
+      return ["JavaScript", "Webpack", "ES6+"];
+    }
+    return ["HTML5", "Sass", "Responsive"];
+  };
+
   return (
-    <div className="portfolio" id="portfolio">
-      <h1>Portfolio</h1>
-      <ul>
-        {list.map((item) => (
-          <PortfolioList
-            key={item.id}
-            title={item.title}
-            active={selected === item.id}
-            setSelected={setSelected}
-            id={item.id}
-          />
-        ))}
-      </ul>
-      <div className="container">
-        {data.map((d) => (
-          <div
-            style={{
-              backgroundImage: `url(${d.img})`,
-              backgroundPosition: "center",
-              backgroundSize: "contain",
-              backgroundRepeat: "no-repeat",
-            }}
-            className="item"
-            key={Math.random() * 100}
-          >
-            <div className="itemContainer">
-              <div className="itemContent">
-                <h3>{d.title}</h3>
-                <div className="icons">
-                  {d.demo ? (
-                    <svg
-                      onClick={() => window.open(d.demo, "_blank")}
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="20"
-                      height="20"
-                      fill="currentColor"
-                      className="bi bi-eye"
-                      viewBox="0 0 16 16"
+    <div className="portfolio-section" id="portfolio">
+      {/* Editorial Section Header */}
+      <div className="portfolio-header anim-fade-up d-1">
+        <div className="chapter-badge">
+          <FiLayers className="badge-icon" />
+          <span>Ch. 2 // Selected Works</span>
+        </div>
+        <h2 className="section-title">Architected for Speed &amp; Scale</h2>
+        <p className="section-desc">
+          A curation of production systems, full-stack web applications, 
+          and developer tools engineered with precision.
+        </p>
+
+        {/* Pear Pill Filter Tabs */}
+        <div className="filter-deck" role="tablist">
+          {CATEGORIES.map((cat) => (
+            <PortfolioList
+              key={cat.id}
+              id={cat.id}
+              title={cat.title}
+              count={cat.count}
+              active={selected === cat.id}
+              setSelected={setSelected}
+            />
+          ))}
+        </div>
+      </div>
+
+      {/* Projects Grid Container */}
+      <div className="projects-grid anim-fade-up d-2">
+        {data.map((item, idx) => {
+          const tags = getTechTags(item, selected);
+          const liveUrl = item.demo || item.link;
+
+          return (
+            <article className="project-card" key={`${selected}-${item.id}-${idx}`}>
+              <div className="card-thumb-container">
+                <img 
+                  src={item.img} 
+                  alt={item.title} 
+                  className="card-img"
+                  loading="lazy"
+                  onError={(e) => {
+                    e.target.onerror = null;
+                    e.target.src = "assets/portfolio0.png";
+                  }} 
+                />
+                <span className="card-idx">0{idx + 1}</span>
+                <span className="card-crosshair">✦</span>
+              </div>
+
+              <div className="card-body">
+                <div className="tech-tags">
+                  {tags.map((tag, tIdx) => (
+                    <span className="tag-pill" key={tIdx}>{tag}</span>
+                  ))}
+                </div>
+
+                <h3 className="card-title">{item.title}</h3>
+
+                <div className="card-footer-links">
+                  {liveUrl ? (
+                    <a
+                      href={liveUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="link-live"
                     >
-                      <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z" />
-                      <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z" />
-                    </svg>
+                      <span>Live Demo</span>
+                      <FiExternalLink className="icon" />
+                    </a>
                   ) : (
-                    ""
+                    <span className="link-disabled">Demo in Repo</span>
                   )}
-                  <svg
-                    onClick={() => window.open(d.github, "_blank")}
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="20"
-                    height="20"
-                    fill="currentColor"
-                    className="bi bi-github"
-                    viewBox="0 0 16 16"
-                  >
-                    <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" />
-                  </svg>
+                  {item.github && (
+                    <a
+                      href={item.github}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="link-repo"
+                      title="View GitHub Repository"
+                    >
+                      <FiGithub className="icon" />
+                      <span>Code</span>
+                    </a>
+                  )}
                 </div>
               </div>
-            </div>
-          </div>
-        ))}
+            </article>
+          );
+        })}
       </div>
     </div>
   );
 }
+
+

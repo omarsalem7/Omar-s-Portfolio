@@ -1,109 +1,427 @@
 @import "../../global.scss";
 
-.intro {
-  background-color: white;
+.intro-section {
+  width: 100%;
+  max-width: 1280px;
+  min-height: 100%;
+  margin: 0 auto;
   display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px 24px;
 
-  @include mobile {
-    flex-direction: column;
+  .intro-container {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 48px;
     align-items: center;
-  }
 
-  .left {
-    flex: 0.5;
-    overflow: hidden;
-
-    .imgContainer {
-      width: 700px;
-      height: 700px;
-      border-radius: 50%;
-      display: flex;
-      align-items: flex-end;
-      justify-content: center;
-      float: right;
-
-      @include mobile {
-        align-items: flex-start;
-      }
-
-      img {
-        height: 90%;
-
-        @include mobile {
-          height: 50%;
-        }
-      }
+    @include tablet {
+      grid-template-columns: 1fr;
+      gap: 36px;
+      text-align: center;
     }
-  }
-  .right {
-    flex: 0.5;
-    position: relative;
 
-    .wrapper {
-      width: 100%;
-      height: 100%;
-      padding-left: 50px;
+    // ── Left Column: Editorial Manifesto ──
+    .intro-text-col {
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      gap: 18px;
 
-      @include mobile {
-        padding-left: 0;
+      @include tablet {
         align-items: center;
       }
 
-      h1 {
-        font-size: 60px;
-        margin: 10px 0;
+      .chapter-tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        background: rgba(212, 175, 55, 0.08);
+        border: 1px solid rgba(212, 175, 55, 0.25);
+        padding: 5px 12px;
+        border-radius: $radius-pill;
+        width: fit-content;
 
-        @include mobile {
-          font-size: 40px;
-        }
-      }
-      h2 {
-        font-size: 35px;
-      }
-      h3 {
-        font-size: 30px;
-
-        @include mobile {
-          font-size: 20px;
+        .tag-spark {
+          color: $accent-gold;
+          font-size: 11px;
         }
 
-        span {
-          font-size: inherit;
-          color: #086899;
+        .tag-text {
+          font-size: 11px;
+          font-weight: 700;
+          color: $accent-gold-bright;
+          font-family: $font-mono;
+          letter-spacing: 0.08em;
+          text-transform: uppercase;
+        }
+      }
+
+      .editorial-title {
+        display: flex;
+        flex-direction: column;
+        font-family: $font-serif;
+        font-size: 46px;
+        font-weight: 800;
+        line-height: 1.12;
+        letter-spacing: -0.02em;
+        color: $text-ivory;
+
+        @include tablet {
+          font-size: 34px;
+        }
+
+        @include mobile {
+          font-size: 27px;
+        }
+
+        .title-line {
+          display: block;
+
+          &.italic-gold {
+            font-style: italic;
+            font-weight: 400;
+            background: linear-gradient(135deg, #ffffff 10%, #e5c158 60%, #d4af37 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+          }
+        }
+      }
+
+      .typing-subhead {
+        display: flex;
+        align-items: baseline;
+        gap: 8px;
+        font-family: $font-mono;
+        font-size: 14px;
+        color: $text-sand;
+
+        .subhead-prefix {
+          color: $text-dark;
+          font-size: 12px;
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
+        }
+
+        .typing-text {
+          color: $accent-gold-bright;
+          font-weight: 600;
         }
 
         .ityped-cursor {
+          font-size: 16px;
+          color: $accent-gold;
           animation: blink 1s infinite;
         }
+      }
 
-        @keyframes blink {
-          50% {
-            opacity: 1;
+      .manifesto-paragraph {
+        font-size: 15px;
+        line-height: 1.65;
+        color: $text-muted;
+        max-width: 560px;
+
+        @include mobile {
+          font-size: 13.5px;
+        }
+      }
+
+      // ── Architectural Metric Cards ──
+      .metrics-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+        max-width: 520px;
+        margin-top: 6px;
+
+        @include small-mobile {
+          grid-template-columns: 1fr;
+          width: 100%;
+        }
+
+        .metric-box {
+          background: rgba(235, 235, 235, 0.02);
+          border: 1px solid $border-rule;
+          border-radius: $radius-sm;
+          padding: 12px 14px;
+          position: relative;
+          display: flex;
+          flex-direction: column;
+          gap: 3px;
+          transition: all $transition-fast;
+
+          .metric-crosshair {
+            position: absolute;
+            top: 6px;
+            right: 8px;
+            font-size: 8px;
+            color: $accent-gold;
+            opacity: 0.5;
           }
-          100% {
-            opacity: 0;
+
+          .metric-value {
+            font-family: $font-serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: #ffffff;
+            line-height: 1;
+          }
+
+          .metric-label {
+            font-family: $font-mono;
+            font-size: 10px;
+            color: $text-muted;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+          }
+
+          &:hover {
+            border-color: rgba(212, 175, 55, 0.35);
+            background: rgba(212, 175, 55, 0.05);
+            transform: translateY(-2px);
+
+            .metric-crosshair {
+              opacity: 1;
+              color: $accent-gold-bright;
+            }
+          }
+        }
+      }
+
+      // ── Pear Editorial CTAs ──
+      .cta-row {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        margin-top: 8px;
+
+        @include small-mobile {
+          flex-direction: column;
+          width: 100%;
+        }
+
+        .pear-primary-cta {
+          background: $accent-gold;
+          color: #0b0a09;
+          font-family: $font-mono;
+          font-size: 12px;
+          font-weight: 700;
+          letter-spacing: 0.06em;
+          text-transform: uppercase;
+          padding: 12px 22px;
+          border-radius: $radius-pill;
+          border: 1px solid $accent-gold-bright;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          transition: all $transition-fast;
+
+          .arw {
+            font-size: 15px;
+            transition: transform $transition-fast;
+          }
+
+          &:hover {
+            background: #ffffff;
+            border-color: #ffffff;
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+            transform: translateY(-2px);
+
+            .arw {
+              transform: translateX(4px);
+            }
+          }
+
+          @include small-mobile {
+            width: 100%;
+            justify-content: center;
+          }
+        }
+
+        .pear-secondary-cta {
+          background: transparent;
+          color: $text-secondary;
+          font-family: $font-mono;
+          font-size: 12px;
+          font-weight: 600;
+          letter-spacing: 0.05em;
+          text-transform: uppercase;
+          padding: 12px 20px;
+          border-radius: $radius-pill;
+          border: 1px solid $border-rule-strong;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          transition: all $transition-fast;
+
+          .arw {
+            font-size: 14px;
+            transition: transform $transition-fast;
+          }
+
+          &:hover {
+            color: $text-ivory;
+            border-color: $accent-gold;
+            background: rgba(212, 175, 55, 0.08);
+            transform: translateY(-2px);
+
+            .arw {
+              transform: translateY(2px);
+            }
+          }
+
+          @include small-mobile {
+            width: 100%;
+            justify-content: center;
           }
         }
       }
     }
-    a {
-      position: absolute;
-      bottom: 10px;
-      left: 40%;
 
-      img {
-        width: 30px;
-        animation: arrowBlink 2s infinite;
-      }
+    // ── Right Column: Architectural Stage & Portrait ──
+    .intro-visual-col {
+      display: flex;
+      justify-content: center;
+      align-items: center;
 
-      @keyframes arrowBlink {
-        100% {
-          opacity: 0;
+      .portrait-architectural-stage {
+        position: relative;
+        width: 340px;
+        height: 380px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        @include mobile {
+          width: 270px;
+          height: 300px;
+        }
+
+        .stage-rim {
+          position: absolute;
+          border-radius: 20px;
+          pointer-events: none;
+
+          &-outer {
+            inset: 0;
+            border: 1px solid $border-rule;
+            background: rgba(19, 18, 16, 0.4);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+          }
+
+          &-inner {
+            inset: 12px;
+            border: 1px dashed rgba(212, 175, 55, 0.25);
+          }
+        }
+
+        .corner-node {
+          position: absolute;
+          font-size: 10px;
+          color: $accent-gold;
+          line-height: 1;
+
+          &.c-tl { top: -5px; left: -5px; }
+          &.c-tr { top: -5px; right: -5px; }
+          &.c-bl { bottom: -5px; left: -5px; }
+          &.c-br { bottom: -5px; right: -5px; }
+        }
+
+        .img-frame {
+          width: 250px;
+          height: 290px;
+          border-radius: 14px;
+          overflow: hidden;
+          background: #000000;
+          border: 1px solid rgba(212, 175, 55, 0.3);
+          box-shadow: $shadow-gold;
+          position: relative;
+          z-index: 2;
+
+          @include mobile {
+            width: 200px;
+            height: 230px;
+          }
+
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: contrast(1.05);
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+
+            &:hover {
+              transform: scale(1.04);
+            }
+          }
+        }
+
+        // Floating Architectural Tech Badges
+        .tech-badge {
+          position: absolute;
+          z-index: 10;
+          background: rgba(11, 10, 9, 0.88);
+          backdrop-filter: blur(16px);
+          -webkit-backdrop-filter: blur(16px);
+          border: 1px solid rgba(212, 175, 55, 0.3);
+          border-radius: $radius-pill;
+          padding: 6px 14px;
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          font-family: $font-mono;
+          font-size: 11px;
+          font-weight: 600;
+          color: $text-ivory;
+          box-shadow: $shadow-md;
+          animation: floatSlow 6s infinite alternate ease-in-out;
+
+          .badge-icon {
+            font-size: 14px;
+
+            &.react { color: #61dafb; }
+            &.rails { color: #cc0000; }
+            &.js { color: #f7df1e; }
+          }
+
+          &.badge-top {
+            top: 20px;
+            right: -25px;
+            animation-delay: -1s;
+            @include mobile { right: -10px; }
+          }
+
+          &.badge-bottom {
+            bottom: 24px;
+            left: -25px;
+            animation-delay: -3s;
+            @include mobile { left: -10px; }
+          }
+
+          &.badge-left {
+            top: 50%;
+            left: -35px;
+            transform: translateY(-50%);
+            animation-delay: -4.5s;
+            @include mobile { display: none; }
+          }
         }
       }
     }
   }
 }
+
+@keyframes floatSlow {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-8px); }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+

@@ -1,44 +1,179 @@
 @import "../../global.scss";
 
-.menu {
-  width: 300px;
+.menu-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 95;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity $transition-normal;
+
+  &.active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+.menu-drawer {
+  width: 320px;
+  max-width: 85vw;
   height: 100vh;
-  background-color: $mainColor;
+  background: rgba(11, 10, 9, 0.96);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-left: 1px solid $border-rule;
   position: fixed;
   top: 0;
-  right: -300px;
-  z-index: 2;
+  right: -340px;
+  z-index: 99;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  transition: all 1s ease;
+  justify-content: space-between;
+  padding: 80px 28px 40px;
+  transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: $shadow-lg;
 
   &.active {
     right: 0;
   }
 
-  ul {
-    margin: 0;
+  .menu-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 16px;
+    border-bottom: 1px solid $border-rule;
+
+    .menu-title {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: $accent-gold;
+      font-family: $font-mono;
+    }
+
+    .slide-counter-small {
+      font-size: 12px;
+      font-family: $font-mono;
+      color: $text-muted;
+    }
+  }
+
+  .menu-list {
+    margin: 30px 0;
     padding: 0;
     list-style: none;
-    font-size: 30px;
-    font-weight: 300;
-    color: white;
-    width: 60%;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
 
     li {
-      margin-bottom: 25px;
-      a {
-        font-size: inherit;
-        color: inherit;
-        text-decoration: none;
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      padding: 12px 14px;
+      border-radius: $radius-sm;
+      cursor: pointer;
+      color: $text-muted;
+      border: 1px solid transparent;
+      transition: all $transition-fast;
+
+      .num {
+        font-family: $font-mono;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        color: $text-dark;
+      }
+
+      .label {
+        font-family: $font-serif;
+        font-style: italic;
+        font-size: 18px;
+        font-weight: 500;
+        color: $text-secondary;
+        flex: 1;
+        transition: color $transition-fast;
+      }
+
+      .active-spark {
+        color: $accent-gold;
+        font-size: 11px;
       }
 
       &:hover {
-        font-weight: 500;
-        color: #086899;
+        background: rgba(235, 235, 235, 0.03);
+        border-color: $border-rule;
+        transform: translateX(4px);
+
+        .num {
+          color: $accent-gold;
+        }
+
+        .label {
+          color: $text-ivory;
+        }
+      }
+
+      &.active {
+        background: rgba(212, 175, 55, 0.08);
+        border-color: rgba(212, 175, 55, 0.3);
+
+        .num {
+          color: $accent-gold-bright;
+        }
+
+        .label {
+          color: #ffffff;
+          font-weight: 700;
+        }
+      }
+    }
+  }
+
+  .menu-footer {
+    padding-top: 20px;
+    border-top: 1px solid $border-rule;
+
+    .footer-label {
+      font-size: 10px;
+      color: $text-dark;
+      font-family: $font-mono;
+      letter-spacing: 0.08em;
+      margin-bottom: 12px;
+    }
+
+    .menu-socials {
+      display: flex;
+      gap: 12px;
+
+      a {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: rgba(235, 235, 235, 0.03);
+        border: 1px solid $border-rule;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: $text-muted;
+        font-size: 15px;
+        text-decoration: none;
+        transition: all $transition-fast;
+
+        &:hover {
+          color: $accent-gold-bright;
+          border-color: $accent-gold;
+          background: rgba(212, 175, 55, 0.15);
+          transform: translateY(-2px);
+        }
       }
     }
   }
 }
+
+

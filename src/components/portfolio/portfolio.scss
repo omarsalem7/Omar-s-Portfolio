@@ -1,109 +1,259 @@
 @import "../../global.scss";
 
-.portfolio {
-  background-color: white;
+.portfolio-section {
+  width: 100%;
+  max-width: 1280px;
+  min-height: 100%;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 10px 24px 40px;
 
-  h1 {
-    font-size: 50px;
-
-    @include mobile {
-      font-size: 20px;
-      height: 35px;
-    }
-  }
-
-  ul {
-    margin: 10px;
-    padding: 0;
-    list-style: none;
+  .portfolio-header {
     display: flex;
-
-    @include mobile {
-      margin: 10px 0;
-      flex-wrap: wrap;
-      justify-content: center;
-      height: 85px;
-    }
-  }
-
-  .container {
-    width: 70%;
-    display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
+    text-align: center;
+    margin-bottom: 24px;
+    width: 100%;
 
-    @include mobile {
-      width: 100%;
+    .chapter-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 12px;
+      background: rgba(212, 175, 55, 0.08);
+      border: 1px solid rgba(212, 175, 55, 0.25);
+      border-radius: $radius-pill;
+      color: $accent-gold-bright;
+      font-size: 11px;
+      font-weight: 700;
+      font-family: $font-mono;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+
+      .badge-icon {
+        font-size: 13px;
+        color: $accent-gold;
+      }
     }
 
-    .item {
-      width: 300px;
-      height: 230px;
-      border-radius: 20px;
-      border: 1px solid rgb(240, 239, 239);
-      margin: 10px 20px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      position: relative;
-      transition: all 0.5s ease;
-      overflow-y: hidden;
+    .section-title {
+      font-family: $font-serif;
+      font-size: 38px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+      color: $text-ivory;
 
       @include mobile {
-        width: 150px;
-        height: 120px;
+        font-size: 26px;
+      }
+    }
+
+    .section-desc {
+      font-size: 14.5px;
+      color: $text-muted;
+      max-width: 560px;
+      line-height: 1.5;
+      margin-bottom: 18px;
+
+      @include mobile {
+        font-size: 13px;
+      }
+    }
+  }
+
+  .projects-grid {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 22px;
+
+    @include mobile {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    .project-card {
+      background: rgba(18, 17, 15, 0.7);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid $border-rule;
+      border-radius: $radius-md;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      transition: all $transition-normal;
+      box-shadow: $shadow-sm;
+
+      .card-thumb-container {
+        position: relative;
+        width: 100%;
+        height: 180px;
+        overflow: hidden;
+        background: #000000;
+
+        .card-img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .card-idx {
+          position: absolute;
+          top: 10px;
+          left: 12px;
+          background: rgba(11, 10, 9, 0.85);
+          backdrop-filter: blur(8px);
+          -webkit-backdrop-filter: blur(8px);
+          border: 1px solid $border-rule;
+          color: $accent-gold-bright;
+          font-family: $font-mono;
+          font-size: 11px;
+          font-weight: 700;
+          padding: 2px 8px;
+          border-radius: 4px;
+          z-index: 2;
+        }
+
+        .card-crosshair {
+          position: absolute;
+          top: 10px;
+          right: 12px;
+          font-size: 9px;
+          color: $accent-gold;
+          opacity: 0.6;
+          z-index: 2;
+          transition: opacity $transition-fast;
+        }
       }
 
-      .itemContainer {
+      .card-body {
+        padding: 16px 18px;
         display: flex;
-        justify-content: center;
-        .itemContent {
-          display: none;
+        flex-direction: column;
+        flex: 1;
 
-          .icons {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
-            padding-top: 10px;
+        .tech-tags {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 6px;
+          margin-bottom: 8px;
 
-            svg {
-              cursor: pointer;
+          .tag-pill {
+            font-family: $font-mono;
+            font-size: 10.5px;
+            color: $text-dark;
+            background: rgba(235, 235, 235, 0.03);
+            border: 1px solid $border-rule;
+            padding: 2px 8px;
+            border-radius: 4px;
+            letter-spacing: 0.03em;
+            text-transform: uppercase;
+          }
+        }
+
+        .card-title {
+          font-family: $font-serif;
+          font-size: 18px;
+          font-weight: 700;
+          color: $text-ivory;
+          letter-spacing: -0.01em;
+          margin-bottom: 14px;
+          line-height: 1.3;
+        }
+
+        .card-footer-links {
+          margin-top: auto;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding-top: 12px;
+          border-top: 1px solid $border-rule;
+
+          .link-live {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: $accent-gold-bright;
+            text-decoration: none;
+            font-family: $font-mono;
+            font-size: 11.5px;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            transition: all $transition-fast;
+
+            .icon {
+              font-size: 13px;
+              transition: transform $transition-fast;
+            }
+
+            &:hover {
+              color: #ffffff;
+
+              .icon {
+                transform: translateX(2px) translateY(-2px);
+              }
+            }
+          }
+
+          .link-disabled {
+            font-family: $font-mono;
+            font-size: 11px;
+            color: $text-dark;
+            font-style: italic;
+          }
+
+          .link-repo {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            color: $text-muted;
+            text-decoration: none;
+            font-family: $font-mono;
+            font-size: 11px;
+            font-weight: 600;
+            padding: 4px 10px;
+            background: rgba(235, 235, 235, 0.03);
+            border: 1px solid $border-rule;
+            border-radius: 6px;
+            transition: all $transition-fast;
+
+            .icon {
+              font-size: 13px;
+            }
+
+            &:hover {
+              color: $text-ivory;
+              border-color: rgba(212, 175, 55, 0.35);
+              background: rgba(212, 175, 55, 0.08);
             }
           }
         }
       }
-      h3 {
-        font-size: 20px;
-        @include mobile {
-          font-size: 14px;
-          padding: 0 15px;
-        }
-      }
-
-      img {
-        width: max-content;
-        object-fit: cover;
-        z-index: 1;
-      }
 
       &:hover {
-        background-color: $mainColor;
-        background-image: none !important;
-        color: #fff;
-        img {
-          opacity: 0.2;
-          z-index: 0;
-        }
-      }
+        transform: translateY(-3px);
+        border-color: rgba(212, 175, 55, 0.4);
+        background: rgba(26, 24, 21, 0.85);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
 
-      &:hover .itemContent {
-        display: block;
+        .card-thumb-container {
+          .card-img {
+            transform: scale(1.05);
+          }
+
+          .card-crosshair {
+            opacity: 1;
+            color: $accent-gold-bright;
+          }
+        }
       }
     }
   }

@@ -1,50 +1,201 @@
+import { useState } from "react";
 import { useForm, ValidationError } from "@formspree/react";
+import { 
+  FiMail, 
+  FiPhone, 
+  FiMapPin, 
+  FiArrowRight, 
+  FiCheckCircle, 
+  FiCopy, 
+  FiCheck,
+  FiUser,
+  FiMessageSquare,
+  FiSend
+} from "react-icons/fi";
+import { FaLinkedin, FaGithub } from "react-icons/fa";
 import "./contact.scss";
 
 export default function Contact() {
   const [state, handleSubmit] = useForm("myyogbyl");
+  const [copied, setCopied] = useState(false);
 
-  if (state.succeeded) {
-    return <p className="reply-message">Thanks, I'll reply ASAP :)</p>;
-  }
+  const handleCopyEmail = () => {
+    navigator.clipboard.writeText("omarsalem0721@gmail.com");
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2500);
+  };
+
   return (
-    <div className="contact" id="contact">
-      <div className="left">
-        <img src="assets/shake.svg" alt="" />
+    <div className="inquiry-section" id="contact">
+      {/* Editorial Section Header */}
+      <div className="inquiry-header anim-fade-up d-1">
+        <div className="chapter-badge">
+          <FiSend className="badge-icon" />
+          <span>Ch. 5 // The Inquiry</span>
+        </div>
+        <h2 className="section-title">Let's Build Something Enduring</h2>
+        <p className="section-desc">
+          Tell me about your software roadmap, project inquiry, or open senior role. 
+          Every message is read and answered within 24 hours.
+        </p>
       </div>
-      <div className="right">
-        <h2>Contact.</h2>
-        <form onSubmit={handleSubmit}>
-          <input type="text" placeholder="Name" name="name" />
-          <input
-            id="email"
-            type="email"
-            placeholder="Email"
-            name="email"
-            required
-          />
-          <ValidationError
-            prefix="Email:"
-            className="error-msg"
-            field="email"
-            errors={state.errors}
-          />
-          <textarea
-            id="message"
-            placeholder="Message"
-            name="message"
-            required
-          ></textarea>
-          <ValidationError
-            prefix="Message:"
-            field="message"
-            errors={state.errors}
-          />
-          <button type="submit" disabled={state.submitting}>
-            Send
-          </button>
-        </form>
+
+      <div className="inquiry-container anim-fade-up d-2">
+        {/* Left Column: Direct Info & Channels */}
+        <div className="direct-channels-panel">
+          <div className="channel-card">
+            <div className="card-icon-wrap">
+              <FiMail />
+            </div>
+            <div className="channel-text">
+              <span className="channel-label">Direct Email</span>
+              <a href="mailto:omarsalem0721@gmail.com" className="channel-value">
+                omarsalem0721@gmail.com
+              </a>
+            </div>
+            <button 
+              className={`copy-pill ${copied ? "copied" : ""}`}
+              onClick={handleCopyEmail}
+              title="Copy Email Address"
+              aria-label="Copy Email"
+            >
+              {copied ? <FiCheck /> : <FiCopy />}
+              <span>{copied ? "Copied" : "Copy"}</span>
+            </button>
+          </div>
+
+          <div className="channel-card">
+            <div className="card-icon-wrap">
+              <FiPhone />
+            </div>
+            <div className="channel-text">
+              <span className="channel-label">Phone &bull; WhatsApp</span>
+              <a href="tel:+201099348209" className="channel-value">
+                +20 109 934 8209
+              </a>
+            </div>
+          </div>
+
+          <div className="channel-card">
+            <div className="card-icon-wrap">
+              <FiMapPin />
+            </div>
+            <div className="channel-text">
+              <span className="channel-label">Location &amp; Availability</span>
+              <span className="channel-value static">
+                Cairo, Egypt &bull; Remote Worldwide
+              </span>
+            </div>
+          </div>
+
+          <div className="social-channel-bar">
+            <span className="bar-label">Profiles:</span>
+            <div className="social-pills">
+              <a
+                href="https://www.linkedin.com/in/omarsalem7/"
+                target="_blank"
+                rel="noreferrer"
+                className="social-pill"
+              >
+                <FaLinkedin />
+                <span>LinkedIn</span>
+              </a>
+              <a
+                href="https://github.com/omarsalem7"
+                target="_blank"
+                rel="noreferrer"
+                className="social-pill"
+              >
+                <FaGithub />
+                <span>GitHub</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        {/* Right Column: Pear.no 3D Pill Form */}
+        <div className="form-panel">
+          {state.succeeded ? (
+            <div className="success-state">
+              <div className="success-icon-wrap">
+                <FiCheckCircle className="success-icon" />
+              </div>
+              <h3>Inquiry Received</h3>
+              <p>Thank you for reaching out. Omar will review your message and respond promptly.</p>
+            </div>
+          ) : (
+            <form onSubmit={handleSubmit} className="pear-form">
+              <div className="form-group">
+                <label htmlFor="name">Your Name</label>
+                <div className="pill-input-wrap">
+                  <FiUser className="input-icon" />
+                  <input
+                    id="name"
+                    type="text"
+                    name="name"
+                    placeholder="e.g. Alexander Hamilton"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="email">Work Email</label>
+                <div className="pill-input-wrap">
+                  <FiMail className="input-icon" />
+                  <input
+                    id="email"
+                    type="email"
+                    name="email"
+                    placeholder="alexander@company.com"
+                    required
+                  />
+                </div>
+                <ValidationError
+                  prefix="Email"
+                  field="email"
+                  errors={state.errors}
+                  className="error-msg"
+                />
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="message">What do you want to build?</label>
+                <div className="pill-input-wrap textarea-wrap">
+                  <FiMessageSquare className="input-icon textarea-icon" />
+                  <textarea
+                    id="message"
+                    name="message"
+                    rows="4"
+                    placeholder="Tell me about your product, architecture needs, or open role..."
+                    required
+                  ></textarea>
+                </div>
+                <ValidationError
+                  prefix="Message"
+                  field="message"
+                  errors={state.errors}
+                  className="error-msg"
+                />
+              </div>
+
+              <button
+                type="submit"
+                disabled={state.submitting}
+                className="pear-submit-btn"
+              >
+                <span>{state.submitting ? "Transmitting..." : "Send Inquiry"}</span>
+                <FiArrowRight className="send-icon" />
+              </button>
+            </form>
+          )}
+
+          {/* Corner Crosshair */}
+          <span className="panel-crosshair">✦</span>
+        </div>
       </div>
     </div>
   );
 }
+
+

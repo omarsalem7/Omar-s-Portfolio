@@ -1,10 +1,183 @@
 @import "../../global.scss";
 
-.expreience {
-  background-color: #086899;
-}
-.time-item {
-  @include mobile {
-    margin-right: 15px;
+.journey-section {
+  width: 100%;
+  max-width: 1200px;
+  min-height: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 24px 40px;
+
+  .journey-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 24px;
+    width: 100%;
+
+    .chapter-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 12px;
+      background: rgba(212, 175, 55, 0.08);
+      border: 1px solid rgba(212, 175, 55, 0.25);
+      border-radius: $radius-pill;
+      color: $accent-gold-bright;
+      font-size: 11px;
+      font-weight: 700;
+      font-family: $font-mono;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+
+      .badge-icon {
+        font-size: 13px;
+        color: $accent-gold;
+      }
+    }
+
+    .section-title {
+      font-family: $font-serif;
+      font-size: 38px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+      color: $text-ivory;
+
+      @include mobile {
+        font-size: 26px;
+      }
+    }
+
+    .section-desc {
+      font-size: 14.5px;
+      color: $text-muted;
+      max-width: 560px;
+      line-height: 1.5;
+
+      @include mobile {
+        font-size: 13px;
+      }
+    }
+  }
+
+  .timeline-container {
+    width: 100%;
+
+    .vertical-timeline {
+      padding: 10px 0;
+
+      &::before {
+        background: $border-rule !important;
+        width: 2px !important;
+      }
+
+      .timeline-date {
+        color: $accent-gold-bright !important;
+        font-family: $font-mono;
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        opacity: 0.9;
+        padding: 6px 0;
+      }
+
+      .timeline-card {
+        .timeline-card-header {
+          display: flex;
+          flex-direction: column;
+          gap: 4px;
+          margin-bottom: 14px;
+
+          .role-chip {
+            display: inline-block;
+            width: fit-content;
+            font-family: $font-mono;
+            font-size: 10px;
+            font-weight: 700;
+            color: $accent-gold;
+            background: rgba(212, 175, 55, 0.08);
+            border: 1px solid rgba(212, 175, 55, 0.25);
+            padding: 2px 8px;
+            border-radius: 4px;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+          }
+
+          .timeline-title {
+            font-family: $font-serif;
+            font-size: 20px;
+            font-weight: 700;
+            color: $text-ivory;
+            letter-spacing: -0.01em;
+            margin: 0;
+          }
+
+          .timeline-org {
+            font-family: $font-mono;
+            font-size: 12.5px;
+            color: $text-muted;
+            margin: 0;
+          }
+        }
+
+        .timeline-points {
+          list-style: none;
+          padding: 0;
+          margin: 0 0 16px;
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+
+          li {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 13.5px;
+            line-height: 1.5;
+            color: $text-secondary;
+
+            .point-icon {
+              color: $accent-gold;
+              font-size: 15px;
+              flex-shrink: 0;
+              margin-top: 3px;
+            }
+          }
+        }
+
+        .degree-desc {
+          font-size: 13.5px;
+          line-height: 1.55;
+          color: $text-secondary;
+          margin: 0 0 16px;
+        }
+
+        .timeline-tech-stack {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 6px;
+          padding-top: 12px;
+          border-top: 1px solid $border-rule;
+
+          .tech-pill {
+            font-family: $font-mono;
+            font-size: 10.5px;
+            color: $text-sand;
+            background: rgba(235, 235, 235, 0.03);
+            border: 1px solid $border-rule;
+            padding: 3px 9px;
+            border-radius: 4px;
+            letter-spacing: 0.03em;
+            text-transform: uppercase;
+          }
+        }
+      }
+    }
   }
 }

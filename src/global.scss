@@ -1,9 +1,94 @@
-$mainColor: #15023a;
+// ── PEAR.NO ARCHITECTURAL DESIGN SYSTEM TOKENS ──
+$bg-obsidian: #0b0a09;
+$bg-primary: #0b0a09;
+$bg-secondary: #121110;
+$bg-surface: #161513;
+$bg-card: rgba(18, 17, 15, 0.75);
+$bg-card-hover: rgba(26, 25, 22, 0.9);
+$bg-pill: rgba(235, 235, 235, 0.04);
+$bg-pill-hover: rgba(212, 175, 55, 0.12);
 
-$width: 768px;
+$accent-gold: #d4af37;
+$accent-gold-bright: #e5c158;
+$accent-gold-muted: rgba(212, 175, 55, 0.15);
+$accent-gold-glow: rgba(212, 175, 55, 0.35);
+$accent-bronze: #b8902f;
+$mainColor: #d4af37;
+
+$text-ivory: #ebebeb;
+$text-primary: #ebebeb;
+$text-secondary: #dcd6cd;
+$text-sand: #dcd6cd;
+$text-muted: #9a948c;
+$text-dark: #666057;
+
+
+$border-rule: rgba(235, 235, 235, 0.08);
+$border-rule-strong: rgba(235, 235, 235, 0.16);
+$border-gold: rgba(212, 175, 55, 0.35);
+$border-subtle: rgba(235, 235, 235, 0.08);
+
+$shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.5);
+$shadow-md: 0 10px 30px -5px rgba(0, 0, 0, 0.7);
+$shadow-lg: 0 20px 50px -10px rgba(0, 0, 0, 0.85);
+$shadow-gold: 0 0 30px rgba(212, 175, 55, 0.22);
+
+$radius-sm: 6px;
+$radius-md: 12px;
+$radius-lg: 18px;
+$radius-pill: 9999px;
+
+$font-serif: 'Playfair Display', Georgia, serif;
+$font-cormorant: 'Cormorant Garamond', Georgia, serif;
+$font-sans: 'Plus Jakarta Sans', -apple-system, sans-serif;
+$font-main: 'Plus Jakarta Sans', -apple-system, sans-serif;
+$font-mono: 'JetBrains Mono', monospace;
+
+$transition-fast: 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+$transition-normal: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+$transition-editorial: 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+
+// Breakpoints
+$width-mobile: 768px;
+$width-tablet: 1024px;
+$width-small: 480px;
 
 @mixin mobile {
-  @media (max-width: #{$width}) {
+  @media (max-width: #{$width-mobile}) {
     @content;
   }
 }
+
+@mixin tablet {
+  @media (max-width: #{$width-tablet}) {
+    @content;
+  }
+}
+
+@mixin small-mobile {
+  @media (max-width: #{$width-small}) {
+    @content;
+  }
+}
+
+@mixin pear-card {
+  background: $bg-card;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid $border-rule;
+}
+
+@mixin gold-text-gradient {
+  background: linear-gradient(135deg, #ffffff 10%, #e5c158 70%, #d4af37 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@mixin crosshair-mark {
+  content: "✦";
+  font-size: 10px;
+  color: $accent-gold;
+  opacity: 0.7;
+}
+
+

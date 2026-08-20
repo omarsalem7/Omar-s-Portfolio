@@ -2,96 +2,319 @@
 
 .topbar {
   width: 100%;
-  height: 70px;
-  background-color: white;
-  color: $mainColor;
+  height: 72px;
+  background: rgba(11, 10, 9, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid $border-rule;
   position: fixed;
   top: 0;
-  z-index: 3;
-  transition: all 1s ease;
+  left: 0;
+  z-index: 100;
+  transition: all $transition-normal;
+
+  @include mobile {
+    height: 64px;
+  }
 
   .wrapper {
-    padding: 10px 30px;
+    width: 100%;
+    height: 100%;
+    padding: 0 5%;
     display: flex;
     align-items: center;
     justify-content: space-between;
 
+    @include tablet {
+      padding: 0 16px;
+    }
+
     .left {
       display: flex;
       align-items: center;
+      gap: 20px;
 
-      .logo {
-        font-size: 40px;
+      .logo-btn {
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 0;
+        color: $text-ivory;
+        font-family: $font-serif;
+        font-size: 20px;
         font-weight: 700;
-        text-decoration: none;
-        color: inherit;
-        margin-right: 40px;
+        letter-spacing: -0.01em;
+        transition: transform $transition-fast;
+
+        .logo-spark {
+          color: $accent-gold;
+          font-size: 13px;
+        }
+
+        .logo-name {
+          color: $text-ivory;
+        }
+
+        &:hover {
+          color: $accent-gold-bright;
+        }
       }
 
-      .itemContainer {
+      .status-badge {
         display: flex;
-        gap: 15px;
         align-items: center;
-        margin-left: 30px;
+        gap: 6px;
+        background: rgba(212, 175, 55, 0.08);
+        border: 1px solid rgba(212, 175, 55, 0.25);
+        padding: 4px 10px;
+        border-radius: $radius-pill;
 
         @include mobile {
           display: none;
         }
 
-        a {
-          color: inherit;
+        .status-spark {
+          color: $accent-gold;
+          font-size: 10px;
+          animation: pulseGold 2s infinite;
         }
 
-        .icon {
-          font-size: 18px;
-          margin-right: 5px;
+        .status-text {
+          font-size: 11px;
+          font-weight: 600;
+          color: $accent-gold-bright;
+          font-family: $font-mono;
+          letter-spacing: 0.05em;
+          text-transform: uppercase;
+        }
+      }
+
+      .contact-items {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+
+        @include tablet {
+          display: none;
         }
 
-        span {
-          font-size: 15px;
-          font-weight: 500;
+        .item-pill {
+          display: flex;
+          align-items: center;
+          gap: 6px;
+          color: $text-muted;
+          text-decoration: none;
+          font-size: 12px;
+          font-family: $font-mono;
+          padding: 5px 12px;
+          border-radius: $radius-pill;
+          background: rgba(235, 235, 235, 0.03);
+          border: 1px solid $border-rule;
+          transition: all $transition-fast;
+
+          .icon {
+            color: $accent-gold;
+            font-size: 13px;
+          }
+
+          &:hover {
+            color: $text-ivory;
+            background: rgba(212, 175, 55, 0.1);
+            border-color: rgba(212, 175, 55, 0.3);
+          }
+        }
+
+        .social-links {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+
+          .social-icon {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: $text-muted;
+            background: rgba(235, 235, 235, 0.03);
+            border: 1px solid $border-rule;
+            text-decoration: none;
+            font-size: 13px;
+            transition: all $transition-fast;
+
+            &:hover {
+              color: $accent-gold-bright;
+              border-color: $accent-gold;
+              background: rgba(212, 175, 55, 0.15);
+              transform: translateY(-1px);
+            }
+          }
+        }
+      }
+    }
+
+    .center-nav {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+
+      @include tablet {
+        display: none;
+      }
+
+      .nav-link {
+        position: relative;
+        background: transparent;
+        border: none;
+        color: $text-dark;
+        font-family: $font-mono;
+        font-size: 12px;
+        padding: 6px 14px;
+        cursor: pointer;
+        display: flex;
+        align-items: baseline;
+        gap: 6px;
+        transition: all $transition-fast;
+
+        .nav-num {
+          font-size: 10px;
+          font-weight: 700;
+          letter-spacing: 0.08em;
+          text-transform: uppercase;
+        }
+
+        .nav-text {
+          font-family: $font-serif;
+          font-style: italic;
+          font-size: 13px;
+        }
+
+        &:hover {
+          color: $text-secondary;
+        }
+
+        &.active {
+          color: $accent-gold;
+
+          .nav-text {
+            color: $text-ivory;
+            font-weight: 600;
+          }
+
+          .active-line {
+            position: absolute;
+            bottom: -2px;
+            left: 14px;
+            right: 14px;
+            height: 1px;
+            background: $accent-gold;
+            box-shadow: 0 0 6px rgba(212, 175, 55, 0.8);
+          }
         }
       }
     }
 
     .right {
-      .hamburger {
-        width: 32px;
-        height: 25px;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 14px;
 
-        span {
-          width: 100%;
-          height: 3px;
-          background-color: $mainColor;
-          transform-origin: left;
-          transition: all 2s ease;
+      .pear-cta-btn {
+        background: $accent-gold;
+        color: #0b0a09;
+        font-family: $font-mono;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        padding: 8px 18px;
+        border-radius: $radius-pill;
+        border: 1px solid $accent-gold-bright;
+        cursor: pointer;
+        transition: all $transition-fast;
+        display: inline-flex;
+        align-items: center;
+
+        .btn-face {
+          display: flex;
+          align-items: center;
+          gap: 6px;
+
+          .arw {
+            font-size: 14px;
+            transition: transform $transition-fast;
+          }
+        }
+
+        &:hover {
+          background: #ffffff;
+          border-color: #ffffff;
+          transform: translateY(-1px);
+          box-shadow: 0 4px 15px rgba(212, 175, 55, 0.35);
+
+          .arw {
+            transform: translateX(3px);
+          }
+        }
+
+        @include mobile {
+          display: none;
         }
       }
-    }
-  }
 
-  &.active {
-    background-color: $mainColor;
-    color: white;
+      .hamburger {
+        width: 36px;
+        height: 36px;
+        background: rgba(235, 235, 235, 0.04);
+        border: 1px solid $border-rule;
+        border-radius: 6px;
+        display: none;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+        cursor: pointer;
+        padding: 8px;
+        transition: all $transition-fast;
 
-    .hamburger {
-      span {
-        &:first-child {
-          background-color: white;
-          transform: rotate(45deg);
+        @include tablet {
+          display: flex;
         }
-        &:nth-child(2) {
-          opacity: 0;
+
+        .line {
+          width: 18px;
+          height: 1.5px;
+          background-color: $text-ivory;
+          transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        &:last-child {
-          background-color: white;
-          transform: rotate(-45deg);
+
+        &.open {
+          border-color: $accent-gold;
+
+          .line1 {
+            transform: translateY(6.5px) rotate(45deg);
+            background-color: $accent-gold;
+          }
+          .line2 {
+            opacity: 0;
+          }
+          .line3 {
+            transform: translateY(-6.5px) rotate(-45deg);
+            background-color: $accent-gold;
+          }
         }
       }
     }
   }
 }
+
+@keyframes pulseGold {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.8); }
+}
+
+

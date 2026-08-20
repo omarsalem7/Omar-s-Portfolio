@@ -1,18 +1,65 @@
 @import "../../global.scss";
 
-.portfolioList {
-  font-size: 14px;
-  margin-right: 50px;
-  padding: 7px;
-  border-radius: 10px;
+.pear-filter-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  background: rgba(235, 235, 235, 0.03);
+  border: 1px solid $border-rule;
+  border-radius: $radius-pill;
+  color: $text-muted;
+  font-family: $font-mono;
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
   cursor: pointer;
+  transition: all $transition-fast;
 
-  @include mobile{
-    margin-right: 20px;
+  .pill-title {
+    transition: color $transition-fast;
+  }
+
+  .pill-count {
+    font-family: $font-mono;
+    font-size: 10px;
+    background: rgba(235, 235, 235, 0.06);
+    color: $text-dark;
+    padding: 1px 6px;
+    border-radius: 10px;
+    transition: all $transition-fast;
+  }
+
+  &:hover {
+    color: $text-ivory;
+    background: rgba(212, 175, 55, 0.06);
+    border-color: rgba(212, 175, 55, 0.35);
+    transform: translateY(-1px);
+
+    .pill-count {
+      color: $accent-gold;
+      background: rgba(212, 175, 55, 0.15);
+    }
   }
 
   &.active {
-    background-color: $mainColor;
-    color: white;
+    background: rgba(212, 175, 55, 0.12);
+    border-color: $accent-gold;
+    color: $accent-gold-bright;
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
+
+    .pill-title {
+      color: #ffffff;
+      font-weight: 700;
+    }
+
+    .pill-count {
+      background: $accent-gold;
+      color: #0b0a09;
+      font-weight: 700;
+    }
   }
 }
+
+

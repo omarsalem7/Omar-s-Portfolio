@@ -1,23 +1,444 @@
-.app {
-  height: 100vh;
+@import "./global.scss";
 
-  .sections {
-    width: 100%;
-    height: calc(100vh - 70px);
-    background-color: lightsalmon;
-    position: relative;
-    top: 70px;
-    scroll-behavior: smooth;
-    scroll-snap-type: y mandatory;
-    scrollbar-width: none; //for firefox
-    &::-webkit-scrollbar {
+.app.pear-theme {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  background-color: $bg-obsidian;
+  overflow: hidden;
+  font-family: $font-sans;
+  color: $text-ivory;
+
+  // ── Architectural Background Grid Lines & Crosshairs ──
+  .architectural-grid {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+
+    .grid-line {
+      position: absolute;
+      background: $border-rule;
+
+      &.line-v {
+        width: 1px;
+        top: 0;
+        bottom: 0;
+
+        &-left {
+          left: 5%;
+          @include tablet { left: 16px; }
+        }
+
+        &-right {
+          right: 5%;
+          @include tablet { right: 16px; }
+        }
+      }
+
+      &.line-h {
+        height: 1px;
+        left: 0;
+        right: 0;
+
+        &-top {
+          top: 72px;
+          @include mobile { top: 64px; }
+        }
+
+        &-bottom {
+          bottom: 64px;
+          @include mobile { bottom: 52px; }
+        }
+      }
+    }
+
+    .crosshair-node {
+      position: absolute;
+      font-size: 11px;
+      color: $accent-gold;
+      opacity: 0.65;
+      line-height: 1;
+      transform: translate(-50%, -50%);
+      transition: all $transition-normal;
+
+      &.ch-top-left {
+        left: 5%;
+        top: 72px;
+        @include tablet { left: 16px; }
+        @include mobile { top: 64px; }
+      }
+
+      &.ch-top-right {
+        right: 5%;
+        top: 72px;
+        transform: translate(50%, -50%);
+        @include tablet { right: 16px; }
+        @include mobile { top: 64px; }
+      }
+
+      &.ch-bottom-left {
+        left: 5%;
+        bottom: 64px;
+        transform: translate(-50%, 50%);
+        @include tablet { left: 16px; }
+        @include mobile { bottom: 52px; }
+      }
+
+      &.ch-bottom-right {
+        right: 5%;
+        bottom: 64px;
+        transform: translate(50%, 50%);
+        @include tablet { right: 16px; }
+        @include mobile { bottom: 52px; }
+      }
+    }
+
+    .ambient-sheen {
+      position: absolute;
+      top: -20%;
+      left: 30%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(212, 175, 55, 0.08) 0%, rgba(11, 10, 9, 0) 70%);
+      filter: blur(100px);
+      pointer-events: none;
+      animation: ambientDrift 24s infinite alternate ease-in-out;
+    }
+  }
+
+  // ── Pear.no Chapter Rail Navigation (Right Side) ──
+  .chapter-rail {
+    position: fixed;
+    right: calc(5% + 18px);
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    @include tablet {
       display: none;
     }
 
-    > * {
+    .rail-track {
+      width: 2px;
+      height: 180px;
+      background: rgba(235, 235, 235, 0.1);
+      position: relative;
+      border-radius: 2px;
+
+      .rail-indicator {
+        position: absolute;
+        left: -2px;
+        width: 6px;
+        height: 36px;
+        background: linear-gradient(180deg, $accent-gold-bright 0%, $accent-gold 100%);
+        border-radius: 4px;
+        box-shadow: 0 0 12px rgba(212, 175, 55, 0.5);
+        transition: top 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+    }
+
+    .rail-items {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+
+      .rail-item {
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        align-items: baseline;
+        gap: 8px;
+        padding: 4px 8px;
+        text-align: left;
+        color: $text-dark;
+        font-family: $font-mono;
+        transition: all $transition-fast;
+
+        .ch-num {
+          font-size: 11px;
+          font-weight: 700;
+          letter-spacing: 0.08em;
+          text-transform: uppercase;
+        }
+
+        .ch-label {
+          font-family: $font-serif;
+          font-style: italic;
+          font-size: 13px;
+          opacity: 0.6;
+          transition: all $transition-fast;
+        }
+
+        &:hover {
+          color: $text-secondary;
+          transform: translateX(-3px);
+
+          .ch-label {
+            opacity: 1;
+            color: $text-ivory;
+          }
+        }
+
+        &.on {
+          color: $accent-gold;
+
+          .ch-num {
+            color: $accent-gold-bright;
+          }
+
+          .ch-label {
+            color: $text-ivory;
+            font-weight: 600;
+            opacity: 1;
+          }
+        }
+      }
+    }
+  }
+
+  // ── Slides Viewport Engine ──
+  .slides-container {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+
+    .slide-wrapper {
+      position: absolute;
+      top: 0;
+      left: 0;
       width: 100vw;
-      height: calc(100vh - 70px);
-      scroll-snap-align: start;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-top: 76px;
+      padding-bottom: 68px;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+                  filter 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: transform, opacity, filter;
+
+      @include mobile {
+        padding-top: 66px;
+        padding-bottom: 56px;
+      }
+
+      &.active {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transform: translateY(0) scale(1);
+        filter: blur(0px);
+        z-index: 10;
+      }
+
+      &.exit-to-top {
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-60px) scale(0.97);
+        filter: blur(6px);
+        z-index: 5;
+      }
+
+      &.exit-to-bottom {
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(60px) scale(0.97);
+        filter: blur(6px);
+        z-index: 5;
+      }
+
+      &.enter-from-bottom {
+        opacity: 0;
+        transform: translateY(60px) scale(0.97);
+        filter: blur(6px);
+      }
+
+      &.enter-from-top {
+        opacity: 0;
+        transform: translateY(-60px) scale(0.97);
+        filter: blur(6px);
+      }
+
+      .slide-content-scroll {
+        width: 100%;
+        height: 100%;
+        overflow-y: auto;
+        overflow-x: hidden;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        scrollbar-width: thin;
+        scrollbar-color: rgba(212, 175, 55, 0.3) transparent;
+
+        &::-webkit-scrollbar {
+          width: 3px;
+        }
+        &::-webkit-scrollbar-thumb {
+          background: rgba(212, 175, 55, 0.3);
+        }
+      }
+    }
+  }
+
+  // ── Pear Bottom Architectural Dock ──
+  .bottom-dock {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 64px;
+    background: rgba(11, 10, 9, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-top: 1px solid $border-rule;
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 5%;
+
+    @include tablet {
+      padding: 0 16px;
+      height: 52px;
+    }
+
+    .dock-meta-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: $font-mono;
+      font-size: 12px;
+
+      @include mobile {
+        display: none;
+      }
+
+      .ch-badge {
+        color: $accent-gold;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+      }
+
+      .ch-sep {
+        color: $text-dark;
+      }
+
+      .ch-title {
+        font-family: $font-serif;
+        font-style: italic;
+        color: $text-secondary;
+        font-size: 14px;
+      }
+    }
+
+    .dock-progress-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-family: $font-mono;
+      font-size: 12px;
+
+      .dock-num {
+        color: $accent-gold-bright;
+        font-weight: 700;
+      }
+
+      .dock-total {
+        color: $text-dark;
+      }
+
+      .dock-track {
+        width: 140px;
+        height: 2px;
+        background: rgba(235, 235, 235, 0.1);
+        position: relative;
+        overflow: hidden;
+
+        @include mobile {
+          width: 90px;
+        }
+
+        .dock-fill {
+          height: 100%;
+          background: linear-gradient(90deg, $accent-gold 0%, $accent-gold-bright 100%);
+          box-shadow: 0 0 10px rgba(212, 175, 55, 0.6);
+          transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+      }
+    }
+
+    .dock-controls {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+
+      .dock-arrow-btn {
+        width: 32px;
+        height: 32px;
+        background: rgba(235, 235, 235, 0.04);
+        border: 1px solid $border-rule;
+        border-radius: 6px;
+        color: $text-secondary;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all $transition-fast;
+
+        &:hover:not(:disabled) {
+          background: rgba(212, 175, 55, 0.15);
+          border-color: $accent-gold;
+          color: $accent-gold-bright;
+        }
+
+        &:disabled {
+          opacity: 0.25;
+          cursor: not-allowed;
+        }
+
+        svg {
+          width: 13px;
+          height: 13px;
+        }
+      }
     }
   }
 }
+
+// ── Keyframe Animations ──
+@keyframes ambientDrift {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(60px, 30px) scale(1.15); }
+  100% { transform: translate(-40px, -20px) scale(0.9); }
+}
+
+.anim-fade-up {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+
+  &.d-1 { transition-delay: 0.05s; }
+  &.d-2 { transition-delay: 0.12s; }
+  &.d-3 { transition-delay: 0.20s; }
+  &.d-4 { transition-delay: 0.28s; }
+}
+
+.active .anim-fade-up {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+

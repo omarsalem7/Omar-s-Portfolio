@@ -1,52 +1,109 @@
+import { FaLinkedin, FaStar, FaQuoteLeft } from "react-icons/fa";
+import { FiMessageSquare } from "react-icons/fi";
 import "./testimonials.scss";
 
 export default function Testimonials() {
-  const data = [
+  const testimonials = [
     {
       id: 1,
       name: "Mostafa Ahangarha",
-      title: "Full-stack Developer",
+      title: "Full-Stack Developer",
+      company: "Microverse Mentee",
       img: "https://iili.io/S7S1Mx.jpg",
-      icon: "assets/linkedin.png",
-      desc: "Omar was a good mentor for me. I was his mentee at Microvese. He provided me with the kind of support I needed during the first few months of the course. He listened and understood my issues carefully and referred me to the right resources and people. He is a valuable asset to any team.",
+      linkedin: "https://www.linkedin.com/in/omarsalem7/",
+      desc: "Omar was an exceptional mentor for me during our time at Microverse. He provided clear, actionable support, listened carefully to issues, and guided me with the right technical resources. He is a truly valuable asset to any engineering team.",
     },
     {
       id: 2,
       name: "Jos Kalenda",
-      title: "Full-stack Developer",
+      title: "Full-Stack Software Engineer",
+      company: "Peer Collaborator",
       img: "https://iili.io/S7SQVf.jpg",
-      icon: "assets/linkedin.png",
-      desc: "Omar is a friend and exactly the sort of software developer any company would love. his collaboration skills and his detail-oriented approach made him a pleasure to work with. Definitely knows his way around JavaScript, React and, is always willing to help out anyone that is stuck or facing problems. He's great at what he's doing and I'm sure he would be a great addition to any professional team.",
-      featured: true,
+      linkedin: "https://www.linkedin.com/in/omarsalem7/",
+      desc: "Omar is exactly the sort of software developer any tech company would love. His collaboration skills and detail-oriented approach make him a pleasure to work with. He definitely knows his way around JavaScript, React, and Rails, and is always willing to help.",
     },
     {
       id: 3,
       name: "Selma Belhadj",
       title: "Software Engineer",
+      company: "Team Colleague",
       img: "https://media-exp2.licdn.com/dms/image/C5603AQG5UzwuR0-F2A/profile-displayphoto-shrink_100_100/0/1657899989102?e=1663804800&v=beta&t=0i-KVBgHu5QkHl73t3mXgY8Qvt2welRVX0nzVyLvUDo",
-      icon: "assets/linkedin.png",
-      desc: "Omar Salem is so good of a team player. He has the capacity to revive the mood of the other members of the team. He is a very dedicated developer is highly-technically skilled. He is a strong critical thinker as well and I believe that he'd be an asset to any team that's lucky enough to have him.",
+      linkedin: "https://www.linkedin.com/in/omarsalem7/",
+      desc: "Omar is such a great team player who elevates everyone around him. He is highly technically skilled, possesses strong critical thinking, and is dedicated to engineering excellence. Any company would be lucky to have him.",
     },
   ];
+
   return (
-    <div className="testimonials" id="testimonials">
-      <h1>Testimonials</h1>
-      <div className="container">
-        {data.map((d) => (
-          <div className={d.featured ? "card featured" : "card"} key={d.id}>
-            <div className="top">
-              <img src="assets/right-arrow.png" className="left" alt="arrow" />
-              <img className="user" src={d.img} alt={d.name} />
-              <img className="right" src={d.icon} alt="linkedIn" />
+    <div className="testimonials-section" id="testimonials">
+      {/* Editorial Header */}
+      <div className="testimonials-header anim-fade-up d-1">
+        <div className="chapter-badge">
+          <FiMessageSquare className="badge-icon" />
+          <span>Ch. 4 // The Word</span>
+        </div>
+        <h2 className="section-title">Peer Recommendations &amp; Endorsements</h2>
+        <p className="section-desc">
+          Unfiltered feedback from fellow engineers, mentees, and technical collaborators 
+          on code quality, velocity, and leadership.
+        </p>
+      </div>
+
+      {/* Pear Style 3D Testimonials Grid */}
+      <div className="testimonials-grid anim-fade-up d-2">
+        {testimonials.map((d) => (
+          <div className="testimonial-card" key={d.id}>
+            <div className="card-top">
+              <div className="rating-stars">
+                {[...Array(5)].map((_, i) => (
+                  <FaStar key={i} className="star-icon" />
+                ))}
+              </div>
+              <FaQuoteLeft className="quote-watermark" />
             </div>
-            <div className="center">{d.desc}</div>
-            <div className="bottom">
-              <h3>{d.name}</h3>
-              <h4>{d.title}</h4>
+
+            <p className="quote-text">
+              &ldquo;{d.desc}&rdquo;
+            </p>
+
+            <div className="author-row">
+              <div className="avatar-wrap">
+                <img
+                  src={d.img}
+                  alt={d.name}
+                  onError={(e) => {
+                    e.target.onerror = null;
+                    e.target.src = "assets/man.png";
+                  }}
+                />
+              </div>
+
+              <div className="author-meta">
+                <h4 className="author-name">{d.name}</h4>
+                <span className="author-title">{d.title} &bull; {d.company}</span>
+              </div>
+
+              {d.linkedin && (
+                <a
+                  href={d.linkedin}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="linkedin-badge"
+                  title="Verified Recommendation on LinkedIn"
+                  aria-label="Verified LinkedIn Profile"
+                >
+                  <FaLinkedin />
+                  <span className="verified-spark">✦</span>
+                </a>
+              )}
             </div>
+
+            {/* Corner Crosshair */}
+            <span className="card-crosshair">✦</span>
           </div>
         ))}
       </div>
     </div>
   );
 }
+
+
