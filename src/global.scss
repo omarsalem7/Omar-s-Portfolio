@@ -1,37 +1,53 @@
-// ── PEAR.NO ARCHITECTURAL DESIGN SYSTEM TOKENS ──
-$bg-obsidian: #0b0a09;
-$bg-primary: #0b0a09;
-$bg-secondary: #121110;
-$bg-surface: #161513;
-$bg-card: rgba(18, 17, 15, 0.75);
-$bg-card-hover: rgba(26, 25, 22, 0.9);
-$bg-pill: rgba(235, 235, 235, 0.04);
-$bg-pill-hover: rgba(212, 175, 55, 0.12);
+// ── CUSTOM MODERN PALETTE: #485550 | #C0EB6A | #F4F6F0 | #FFFFFF ──
+$palette-slate: #485550;      // Deep Slate Moss / Charcoal Dark Text
+$palette-lime: #C0EB6A;       // Electric Lime / Vibrant Neon Accent
+$palette-canvas: #F4F6F0;     // Soft Pale Mint Canvas Background
+$palette-white: #FFFFFF;      // Pure Crisp White
 
-$accent-gold: #d4af37;
-$accent-gold-bright: #e5c158;
-$accent-gold-muted: rgba(212, 175, 55, 0.15);
-$accent-gold-glow: rgba(212, 175, 55, 0.35);
-$accent-bronze: #b8902f;
-$mainColor: #d4af37;
+// Background Tokens
+$bg-obsidian: $palette-canvas;
+$bg-primary: $palette-canvas;
+$bg-secondary: #e9ece4;
+$bg-surface: $palette-white;
+$bg-card: rgba(255, 255, 255, 0.92);
+$bg-card-hover: $palette-white;
+$bg-pill: rgba(72, 85, 80, 0.06);
+$bg-pill-hover: rgba(192, 235, 106, 0.25);
 
-$text-ivory: #ebebeb;
-$text-primary: #ebebeb;
-$text-secondary: #dcd6cd;
-$text-sand: #dcd6cd;
-$text-muted: #9a948c;
-$text-dark: #666057;
+// Primary Accent (Vibrant Lime #C0EB6A)
+$accent-lime: $palette-lime;
+$accent-lime-dark: #a8d64d;
+$accent-lime-glow: rgba(192, 235, 106, 0.45);
+$accent-slate: $palette-slate;
+$accent-slate-light: #5d6d67;
 
+// Semantic Aliases
+$accent-gold: $palette-lime;
+$accent-gold-bright: $palette-slate;
+$accent-gold-muted: rgba(192, 235, 106, 0.2);
+$accent-gold-glow: rgba(192, 235, 106, 0.4);
+$accent-bronze: $palette-slate;
+$mainColor: $palette-lime;
 
-$border-rule: rgba(235, 235, 235, 0.08);
-$border-rule-strong: rgba(235, 235, 235, 0.16);
-$border-gold: rgba(212, 175, 55, 0.35);
-$border-subtle: rgba(235, 235, 235, 0.08);
+// High-Contrast Editorial Typography
+$text-ivory: #28322e;         // Extra dark slate for bold headings
+$text-primary: $palette-slate;
+$text-secondary: #50605a;
+$text-sand: #63756e;
+$text-muted: #798b84;
+$text-dark: #9eaea8;
 
-$shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.5);
-$shadow-md: 0 10px 30px -5px rgba(0, 0, 0, 0.7);
-$shadow-lg: 0 20px 50px -10px rgba(0, 0, 0, 0.85);
-$shadow-gold: 0 0 30px rgba(212, 175, 55, 0.22);
+// Architectural Borders & Rules
+$border-rule: rgba(72, 85, 80, 0.1);
+$border-rule-strong: rgba(72, 85, 80, 0.18);
+$border-gold: rgba(192, 235, 106, 0.5);
+$border-subtle: rgba(72, 85, 80, 0.08);
+
+// Crisp Clean Shadows
+$shadow-sm: 0 2px 8px rgba(72, 85, 80, 0.05), 0 1px 2px rgba(0, 0, 0, 0.02);
+$shadow-md: 0 10px 30px -5px rgba(72, 85, 80, 0.09), 0 4px 12px rgba(0, 0, 0, 0.02);
+$shadow-lg: 0 20px 45px -10px rgba(72, 85, 80, 0.14), 0 8px 20px rgba(0, 0, 0, 0.03);
+$shadow-gold: 0 0 30px rgba(192, 235, 106, 0.3);
 
 $radius-sm: 6px;
 $radius-md: 12px;
@@ -79,7 +95,7 @@ $width-small: 480px;
 }
 
 @mixin gold-text-gradient {
-  background: linear-gradient(135deg, #ffffff 10%, #e5c158 70%, #d4af37 100%);
+  background: linear-gradient(135deg, #28322e 10%, #485550 70%, #5d6d67 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -87,8 +103,6 @@ $width-small: 480px;
 @mixin crosshair-mark {
   content: "✦";
   font-size: 10px;
-  color: $accent-gold;
+  color: $palette-slate;
   opacity: 0.7;
 }
-
-

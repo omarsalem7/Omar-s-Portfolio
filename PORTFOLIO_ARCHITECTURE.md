@@ -1,11 +1,23 @@
 # Omar Salem — Portfolio Architecture & Design System Documentation
 
 > **Permanent Project Reference Document**  
-> This file contains the complete documentation of the architecture, design tokens, interactive slide engine, typography, and component hierarchy created for Omar Salem's modern portfolio.
+> This file contains the complete documentation of the architecture, design tokens, interactive slide engine, typography, and component hierarchy for Omar Salem — Senior Frontend Developer.
 
 ---
 
-## 1. Design Philosophy & Aesthetic Identity
+## 1. Professional Profile
+
+- **Name**: Omar Salem
+- **Title**: Senior Frontend Developer
+- **Experience**: 4+ years of experience delivering high-impact enterprise, government, and commercial web applications.
+- **Location**: Riyadh, Saudi Arabia (Available on-site & remote worldwide)
+- **Direct Phone / WhatsApp**: `+966 50 239 7466`
+- **Email**: `omarsalem0721@gmail.com`
+- **Profiles**: [LinkedIn](https://www.linkedin.com/in/omarsalem7/) &bull; [GitHub](https://github.com/omarsalem7)
+
+---
+
+## 2. Design Philosophy & Aesthetic Identity
 
 The portfolio is structured as a **luxury editorial presentation engine** combining neoclassical architectural precision with avant-garde software engineering aesthetics:
 
@@ -16,7 +28,7 @@ The portfolio is structured as a **luxury editorial presentation engine** combin
 
 ---
 
-## 2. Typography Hierarchy
+## 3. Typography Hierarchy
 
 The portfolio uses 4 curated Google Fonts imported in `public/index.html`:
 
@@ -29,7 +41,7 @@ The portfolio uses 4 curated Google Fonts imported in `public/index.html`:
 
 ---
 
-## 3. Five-Chapter Presentation Engine (`src/App.js`)
+## 4. Five-Chapter Presentation Engine (`src/App.js`)
 
 The portfolio is architected as an interactive 5-slide horizontal presentation with smooth in/out animations:
 
@@ -38,33 +50,29 @@ The portfolio is architected as an interactive 5-slide horizontal presentation w
 ```
 
 ### Chapter Index:
-1. **Chapter 1 (`#intro`) — The Discipline**: Neoclassical editorial hero, dynamic typing title, metric cards (`50+`, `100s`, `15+`), and framed portrait with gold rim reflection & corner star nodes (`✦`).
-2. **Chapter 2 (`#portfolio`) — Selected Works**: Project showcase with pill filter buttons (`All`, `Featured`, `Full-Stack`, `Frontend`, `Backend`), numbered index badges (`01`, `02`...), tech stack pills, and live demo / source code links.
-3. **Chapter 3 (`#works`) — The Journey**: Architectural vertical timeline highlighting technical support leadership at Microverse, 1300+ hours full-stack training, and B.Sc. Engineering foundation at Ain Shams University.
+1. **Chapter 1 (`#intro`) — The Discipline**: Neoclassical editorial hero, dynamic typing title, metric cards (`4+ Yrs`, `30%`, `200+`, `6+`), framed portrait with gold rim reflection & corner star nodes (`✦`), and floating tech badges (`Angular/ABP`, `React/Next.js`, `TypeScript/Esri GIS`).
+2. **Chapter 2 (`#portfolio`) — Selected Works**: Enterprise government and commercial project showcase with pill filter buttons (`Featured Works`, `Gov & Enterprise`, `Angular & Esri GIS`, `React & Next.js`), client badges (Ministry of Energy, UN COP16, NCVC, GEOSA), descriptions, and live/internal links.
+3. **Chapter 3 (`#works`) — The Journey**: Multi-view career hub featuring:
+   - **Career Timeline**: Tec Solution Group (Riyadh), Neutral, Microverse (Mentor), Co.Lab (Intern), Microverse 1300+ hrs program, Ain Shams University B.Sc.
+   - **Skills Matrix**: Categorized taxonomy for Frontend, UI/UX, Performance, Geospatial, Backend, Tools & Languages.
+   - **Certifications**: Microverse Full Stack, Co.Lab Product Dev (with verification link), Microverse React/Redux.
 4. **Chapter 4 (`#testimonials`) — The Word**: Peer endorsements and recommendations featuring 5-star gold ratings, serif quotes, avatars, and verified LinkedIn badges.
-5. **Chapter 5 (`#contact`) — The Inquiry**: Direct channel cards (Email with one-click copy, Phone/WhatsApp, Cairo & Remote Worldwide), social profile links, and Formspree 3D pill input form fields.
-
-### Interaction Controls:
-- **Left / Right Architectural Arrows**: Floating directional buttons with gold hover effects.
-- **Side Chapter Rail (Desktop Left)**: Vertical chapter rail with chapter numbers, names, and gold indicator.
-- **Bottom Status Dock**: Bottom bar showing the active chapter name (`CH. 01 / THE DISCIPLINE`) and proportional progress line.
-- **Keyboard Navigation**: ArrowLeft (`←`) and ArrowRight (`→`) keys seamlessly navigate between slides.
-- **Mobile Swipe / Chapter Drawer**: Slide drawer with serif chapter numerals and active indicators.
+5. **Chapter 5 (`#contact`) — The Inquiry**: Direct channel cards (Email with one-click copy, Phone + WhatsApp direct dial for Riyadh `+966 50 239 7466`, Location), social profile links, and Formspree 3D pill input form fields.
 
 ---
 
-## 4. Component Structure & Directory Map
+## 5. Component Structure & Directory Map
 
 ```
 src/
 ├── App.js                         # Root Slide Presentation Controller & Rail Shell
 ├── app.scss                       # Presentation transitions, architectural grid, rail, dock
 ├── global.scss                    # Design tokens, color palette, mixins, responsive breakpoints
-├── data.js                        # Featured project data, filter categories, testimonials
+├── data.js                        # Flagship enterprise projects, filter categories, skills matrix, certs
 │
 ├── components/
 │   ├── topbar/
-│   │   ├── Topbar.jsx             # Minimalist architectural header with monogram & Inquire button
+│   │   ├── Topbar.jsx             # Minimalist architectural header with monogram, phone & Inquire button
 │   │   └── topbar.scss            # Topbar styling & hamburger mechanics
 │   │
 │   ├── menu/
@@ -77,56 +85,23 @@ src/
 │   │
 │   ├── portfolio/
 │   │   ├── Portfolio.jsx          # Projects showcase with live filter state & card deck
-│   │   └── portfolio.scss         # Card grid, index badges, tag pills, hover animations
+│   │   └── portfolio.scss         # Card grid, index badges, client tags, hover animations
 │   │
 │   ├── portfolioList/
 │   │   ├── PortfolioList.jsx      # Filter category pill component with count badges
 │   │   └── portfolioList.scss     # Pill tokens, gold active state, hover glow
 │   │
 │   ├── works/
-│   │   ├── Works.jsx              # Experience & education architectural timeline
-│   │   └── works.scss             # Timeline node styling, gold icons, tech tags
+│   │   ├── Works.jsx              # Experience timeline, interactive skills matrix, and certs deck
+│   │   └── works.scss             # Timeline node styling, gold icons, tab switches
 │   │
 │   ├── testimonials/
 │   │   ├── Testimonials.jsx       # Peer quotes, star ratings, verified badges
 │   │   └── testimonials.scss      # 3D quote cards, watermarks, author meta
 │   │
 │   └── contact/
-│       ├── Contact.jsx            # Direct contact cards, copy email pill, Formspree form
+│       ├── Contact.jsx            # Direct contact cards, copy email pill, WhatsApp badge, Formspree form
 │       └── contact.scss           # 3D pill inputs, send inquiry button, success state
-```
-
----
-
-## 5. Design Tokens (`src/global.scss`)
-
-```scss
-// Backgrounds
-$bg-obsidian: #0b0a09;
-$bg-secondary: #121110;
-$bg-card: rgba(18, 17, 15, 0.75);
-
-// Golden Accents
-$accent-gold: #d4af37;
-$accent-gold-bright: #e5c158;
-$accent-gold-glow: rgba(212, 175, 55, 0.35);
-
-// Text Hierarchy
-$text-ivory: #ebebeb;
-$text-secondary: #dcd6cd;
-$text-sand: #dcd6cd;
-$text-muted: #9a948c;
-$text-dark: #666057;
-
-// Architectural Rules & Borders
-$border-rule: rgba(235, 235, 235, 0.08);
-$border-gold: rgba(212, 175, 55, 0.35);
-
-// Typography
-$font-serif: 'Playfair Display', Georgia, serif;
-$font-cormorant: 'Cormorant Garamond', Georgia, serif;
-$font-sans: 'Plus Jakarta Sans', -apple-system, sans-serif;
-$font-mono: 'JetBrains Mono', monospace;
 ```
 
 ---

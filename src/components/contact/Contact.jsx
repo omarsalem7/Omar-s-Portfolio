@@ -12,7 +12,7 @@ import {
   FiMessageSquare,
   FiSend
 } from "react-icons/fi";
-import { FaLinkedin, FaGithub } from "react-icons/fa";
+import { FaLinkedin, FaGithub, FaWhatsapp } from "react-icons/fa";
 import "./contact.scss";
 
 export default function Contact() {
@@ -35,8 +35,8 @@ export default function Contact() {
         </div>
         <h2 className="section-title">Let's Build Something Enduring</h2>
         <p className="section-desc">
-          Tell me about your software roadmap, project inquiry, or open senior role. 
-          Every message is read and answered within 24 hours.
+          Reach out for high-impact frontend engineering roles, Angular/React architecture, 
+          or geospatial platform consultation.
         </p>
       </div>
 
@@ -69,10 +69,21 @@ export default function Contact() {
               <FiPhone />
             </div>
             <div className="channel-text">
-              <span className="channel-label">Phone &bull; WhatsApp</span>
-              <a href="tel:+201099348209" className="channel-value">
-                +20 109 934 8209
-              </a>
+              <span className="channel-label">Direct Phone &bull; WhatsApp</span>
+              <div className="phone-links">
+                <a href="tel:+966502397466" className="channel-value">
+                  +966 50 239 7466
+                </a>
+                <a 
+                  href="https://wa.me/966502397466" 
+                  target="_blank" 
+                  rel="noreferrer"
+                  className="whatsapp-badge"
+                  title="Chat on WhatsApp"
+                >
+                  <FaWhatsapp /> <span>WhatsApp</span>
+                </a>
+              </div>
             </div>
           </div>
 
@@ -83,7 +94,7 @@ export default function Contact() {
             <div className="channel-text">
               <span className="channel-label">Location &amp; Availability</span>
               <span className="channel-value static">
-                Cairo, Egypt &bull; Remote Worldwide
+                Riyadh, Saudi Arabia &bull; Remote &amp; On-Site
               </span>
             </div>
           </div>
@@ -113,7 +124,7 @@ export default function Contact() {
           </div>
         </div>
 
-        {/* Right Column: Pear.no 3D Pill Form */}
+        {/* Right Column: 3D Pill Form */}
         <div className="form-panel">
           {state.succeeded ? (
             <div className="success-state">
@@ -133,7 +144,7 @@ export default function Contact() {
                     id="name"
                     type="text"
                     name="name"
-                    placeholder="e.g. Alexander Hamilton"
+                    placeholder="e.g. Faisal Al-Mansoor"
                     required
                   />
                 </div>
@@ -147,7 +158,7 @@ export default function Contact() {
                     id="email"
                     type="email"
                     name="email"
-                    placeholder="alexander@company.com"
+                    placeholder="faisal@company.com"
                     required
                   />
                 </div>
@@ -160,14 +171,14 @@ export default function Contact() {
               </div>
 
               <div className="form-group">
-                <label htmlFor="message">What do you want to build?</label>
+                <label htmlFor="message">What would you like to discuss?</label>
                 <div className="pill-input-wrap textarea-wrap">
                   <FiMessageSquare className="input-icon textarea-icon" />
                   <textarea
                     id="message"
                     name="message"
                     rows="4"
-                    placeholder="Tell me about your product, architecture needs, or open role..."
+                    placeholder="Tell me about your product, frontend architecture needs, or open role..."
                     required
                   ></textarea>
                 </div>
@@ -197,5 +208,3 @@ export default function Contact() {
     </div>
   );
 }
-
-

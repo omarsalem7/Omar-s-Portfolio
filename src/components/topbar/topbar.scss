@@ -3,15 +3,35 @@
 .topbar {
   width: 100%;
   height: 72px;
-  background: rgba(11, 10, 9, 0.85);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid $border-rule;
   position: fixed;
   top: 0;
   left: 0;
   z-index: 100;
-  transition: all $transition-normal;
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border-bottom: 1px solid transparent;
+  box-shadow: none;
+  transition: background-color 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              backdrop-filter 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              -webkit-backdrop-filter 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+
+  &.scrolled {
+    background: rgba(244, 246, 240, 0.92);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid $border-rule;
+    box-shadow: 0 4px 20px rgba(72, 85, 80, 0.05);
+  }
+
+  &.active {
+    background: rgba(244, 246, 240, 0.98);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid $border-rule;
+  }
 
   @include mobile {
     height: 64px;
@@ -42,7 +62,7 @@
         align-items: center;
         gap: 8px;
         padding: 0;
-        color: $text-ivory;
+        color: $palette-slate;
         font-family: $font-serif;
         font-size: 20px;
         font-weight: 700;
@@ -50,16 +70,17 @@
         transition: transform $transition-fast;
 
         .logo-spark {
-          color: $accent-gold;
+          color: $palette-slate;
           font-size: 13px;
         }
 
         .logo-name {
-          color: $text-ivory;
+          color: $palette-slate;
         }
 
         &:hover {
-          color: $accent-gold-bright;
+          color: #28322e;
+          transform: translateY(-1px);
         }
       }
 
@@ -67,8 +88,8 @@
         display: flex;
         align-items: center;
         gap: 6px;
-        background: rgba(212, 175, 55, 0.08);
-        border: 1px solid rgba(212, 175, 55, 0.25);
+        background: rgba(192, 235, 106, 0.35);
+        border: 1px solid rgba(72, 85, 80, 0.15);
         padding: 4px 10px;
         border-radius: $radius-pill;
 
@@ -77,15 +98,14 @@
         }
 
         .status-spark {
-          color: $accent-gold;
+          color: $palette-slate;
           font-size: 10px;
-          animation: pulseGold 2s infinite;
         }
 
         .status-text {
           font-size: 11px;
-          font-weight: 600;
-          color: $accent-gold-bright;
+          font-weight: 700;
+          color: $palette-slate;
           font-family: $font-mono;
           letter-spacing: 0.05em;
           text-transform: uppercase;
@@ -105,25 +125,25 @@
           display: flex;
           align-items: center;
           gap: 6px;
-          color: $text-muted;
+          color: $text-secondary;
           text-decoration: none;
           font-size: 12px;
           font-family: $font-mono;
           padding: 5px 12px;
           border-radius: $radius-pill;
-          background: rgba(235, 235, 235, 0.03);
+          background: rgba(255, 255, 255, 0.7);
           border: 1px solid $border-rule;
           transition: all $transition-fast;
 
           .icon {
-            color: $accent-gold;
+            color: $palette-slate;
             font-size: 13px;
           }
 
           &:hover {
-            color: $text-ivory;
-            background: rgba(212, 175, 55, 0.1);
-            border-color: rgba(212, 175, 55, 0.3);
+            color: $palette-slate;
+            background: $palette-lime;
+            border-color: rgba(72, 85, 80, 0.2);
           }
         }
 
@@ -139,17 +159,17 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            color: $text-muted;
-            background: rgba(235, 235, 235, 0.03);
+            color: $text-secondary;
+            background: rgba(255, 255, 255, 0.7);
             border: 1px solid $border-rule;
             text-decoration: none;
             font-size: 13px;
             transition: all $transition-fast;
 
             &:hover {
-              color: $accent-gold-bright;
-              border-color: $accent-gold;
-              background: rgba(212, 175, 55, 0.15);
+              color: $palette-slate;
+              border-color: rgba(72, 85, 80, 0.25);
+              background: $palette-lime;
               transform: translateY(-1px);
             }
           }
@@ -170,7 +190,7 @@
         position: relative;
         background: transparent;
         border: none;
-        color: $text-dark;
+        color: $text-muted;
         font-family: $font-mono;
         font-size: 12px;
         padding: 6px 14px;
@@ -194,15 +214,15 @@
         }
 
         &:hover {
-          color: $text-secondary;
+          color: $palette-slate;
         }
 
         &.active {
-          color: $accent-gold;
+          color: $palette-slate;
 
           .nav-text {
-            color: $text-ivory;
-            font-weight: 600;
+            color: $palette-slate;
+            font-weight: 700;
           }
 
           .active-line {
@@ -210,9 +230,10 @@
             bottom: -2px;
             left: 14px;
             right: 14px;
-            height: 1px;
-            background: $accent-gold;
-            box-shadow: 0 0 6px rgba(212, 175, 55, 0.8);
+            height: 3px;
+            border-radius: 2px;
+            background: $palette-lime;
+            box-shadow: 0 0 8px rgba(192, 235, 106, 0.8);
           }
         }
       }
@@ -224,8 +245,8 @@
       gap: 14px;
 
       .pear-cta-btn {
-        background: $accent-gold;
-        color: #0b0a09;
+        background: $palette-lime;
+        color: $palette-slate;
         font-family: $font-mono;
         font-size: 12px;
         font-weight: 700;
@@ -233,11 +254,12 @@
         text-transform: uppercase;
         padding: 8px 18px;
         border-radius: $radius-pill;
-        border: 1px solid $accent-gold-bright;
+        border: 1px solid rgba(72, 85, 80, 0.15);
         cursor: pointer;
         transition: all $transition-fast;
         display: inline-flex;
         align-items: center;
+        box-shadow: 0 2px 8px rgba(192, 235, 106, 0.4);
 
         .btn-face {
           display: flex;
@@ -251,10 +273,11 @@
         }
 
         &:hover {
-          background: #ffffff;
-          border-color: #ffffff;
+          background: $palette-slate;
+          color: $palette-lime;
+          border-color: $palette-slate;
           transform: translateY(-1px);
-          box-shadow: 0 4px 15px rgba(212, 175, 55, 0.35);
+          box-shadow: 0 4px 14px rgba(72, 85, 80, 0.25);
 
           .arw {
             transform: translateX(3px);
@@ -269,7 +292,7 @@
       .hamburger {
         width: 36px;
         height: 36px;
-        background: rgba(235, 235, 235, 0.04);
+        background: rgba(255, 255, 255, 0.8);
         border: 1px solid $border-rule;
         border-radius: 6px;
         display: none;
@@ -288,33 +311,27 @@
         .line {
           width: 18px;
           height: 1.5px;
-          background-color: $text-ivory;
+          background-color: $palette-slate;
           transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         &.open {
-          border-color: $accent-gold;
+          border-color: $palette-lime;
+          background: $palette-lime;
 
           .line1 {
             transform: translateY(6.5px) rotate(45deg);
-            background-color: $accent-gold;
+            background-color: $palette-slate;
           }
           .line2 {
             opacity: 0;
           }
           .line3 {
             transform: translateY(-6.5px) rotate(-45deg);
-            background-color: $accent-gold;
+            background-color: $palette-slate;
           }
         }
       }
     }
   }
 }
-
-@keyframes pulseGold {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.4; transform: scale(0.8); }
-}
-
-

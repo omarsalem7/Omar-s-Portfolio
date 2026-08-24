@@ -23,10 +23,10 @@
       align-items: center;
       gap: 6px;
       padding: 5px 12px;
-      background: rgba(212, 175, 55, 0.08);
-      border: 1px solid rgba(212, 175, 55, 0.25);
+      background: rgba(192, 235, 106, 0.35);
+      border: 1px solid rgba(72, 85, 80, 0.15);
       border-radius: $radius-pill;
-      color: $accent-gold-bright;
+      color: $palette-slate;
       font-size: 11px;
       font-weight: 700;
       font-family: $font-mono;
@@ -36,7 +36,7 @@
 
       .badge-icon {
         font-size: 13px;
-        color: $accent-gold;
+        color: $palette-slate;
       }
     }
 
@@ -46,7 +46,7 @@
       font-weight: 800;
       letter-spacing: -0.02em;
       margin-bottom: 8px;
-      color: $text-ivory;
+      color: $palette-slate;
 
       @include mobile {
         font-size: 26px;
@@ -55,16 +55,68 @@
 
     .section-desc {
       font-size: 14.5px;
-      color: $text-muted;
-      max-width: 560px;
+      color: $text-secondary;
+      max-width: 600px;
       line-height: 1.5;
+      margin-bottom: 16px;
 
       @include mobile {
         font-size: 13px;
       }
     }
+
+    // ── Interactive Tabs Switcher ──
+    .journey-tabs-deck {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+      margin-top: 4px;
+
+      .journey-tab-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: $palette-white;
+        border: 1px solid $border-rule;
+        color: $text-secondary;
+        font-family: $font-mono;
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        padding: 8px 18px;
+        border-radius: $radius-pill;
+        cursor: pointer;
+        box-shadow: $shadow-sm;
+        transition: all $transition-fast;
+
+        .tab-icon {
+          font-size: 13px;
+        }
+
+        &:hover {
+          color: $palette-slate;
+          background: rgba(192, 235, 106, 0.25);
+          border-color: rgba(72, 85, 80, 0.2);
+        }
+
+        &.active {
+          color: $palette-slate;
+          background: $palette-lime;
+          border-color: rgba(72, 85, 80, 0.2);
+          box-shadow: 0 4px 14px rgba(192, 235, 106, 0.5);
+          font-weight: 700;
+
+          .tab-icon {
+            color: $palette-slate;
+          }
+        }
+      }
+    }
   }
 
+  // ── VIEW 1: TIMELINE ──
   .timeline-container {
     width: 100%;
 
@@ -72,17 +124,27 @@
       padding: 10px 0;
 
       &::before {
-        background: $border-rule !important;
+        background: $border-rule-strong !important;
         width: 2px !important;
       }
 
+      .vertical-timeline-element-content-arrow {
+        border-right-color: $palette-white !important;
+      }
+
+      @media only screen and (min-width: 1170px) {
+        .vertical-timeline-element:nth-child(even):not(.vertical-timeline-element--left) .vertical-timeline-element-content-arrow {
+          border-left-color: $palette-white !important;
+          border-right-color: transparent !important;
+        }
+      }
+
       .timeline-date {
-        color: $accent-gold-bright !important;
+        color: $palette-slate !important;
         font-family: $font-mono;
         font-size: 12px;
-        font-weight: 600;
+        font-weight: 700;
         letter-spacing: 0.04em;
-        opacity: 0.9;
         padding: 6px 0;
       }
 
@@ -93,27 +155,45 @@
           gap: 4px;
           margin-bottom: 14px;
 
-          .role-chip {
-            display: inline-block;
-            width: fit-content;
-            font-family: $font-mono;
-            font-size: 10px;
-            font-weight: 700;
-            color: $accent-gold;
-            background: rgba(212, 175, 55, 0.08);
-            border: 1px solid rgba(212, 175, 55, 0.25);
-            padding: 2px 8px;
-            border-radius: 4px;
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
+          .header-meta-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
             margin-bottom: 4px;
+
+            .role-chip {
+              display: inline-block;
+              font-family: $font-mono;
+              font-size: 10px;
+              font-weight: 700;
+              color: $palette-slate;
+              background: $palette-lime;
+              border: 1px solid rgba(72, 85, 80, 0.15);
+              padding: 2px 8px;
+              border-radius: 4px;
+              letter-spacing: 0.05em;
+              text-transform: uppercase;
+
+              &.active-role {
+                background: $palette-lime;
+                border-color: rgba(72, 85, 80, 0.3);
+                box-shadow: 0 2px 6px rgba(192, 235, 106, 0.4);
+              }
+            }
+
+            .location-chip {
+              font-family: $font-mono;
+              font-size: 11px;
+              color: $text-muted;
+            }
           }
 
           .timeline-title {
             font-family: $font-serif;
             font-size: 20px;
             font-weight: 700;
-            color: $text-ivory;
+            color: $palette-slate;
             letter-spacing: -0.01em;
             margin: 0;
           }
@@ -121,8 +201,9 @@
           .timeline-org {
             font-family: $font-mono;
             font-size: 12.5px;
-            color: $text-muted;
+            color: $text-secondary;
             margin: 0;
+            font-weight: 600;
           }
         }
 
@@ -143,10 +224,15 @@
             color: $text-secondary;
 
             .point-icon {
-              color: $accent-gold;
+              color: $palette-slate;
               font-size: 15px;
               flex-shrink: 0;
               margin-top: 3px;
+            }
+
+            strong {
+              color: $palette-slate;
+              font-weight: 700;
             }
           }
         }
@@ -155,7 +241,37 @@
           font-size: 13.5px;
           line-height: 1.55;
           color: $text-secondary;
-          margin: 0 0 16px;
+          margin: 0 0 14px;
+
+          strong {
+            color: $palette-slate;
+          }
+        }
+
+        .coursework-box {
+          background: rgba(244, 246, 240, 0.85);
+          border: 1px dashed rgba(72, 85, 80, 0.2);
+          border-radius: 6px;
+          padding: 10px 12px;
+          margin-bottom: 14px;
+
+          .cw-label {
+            font-family: $font-mono;
+            font-size: 10.5px;
+            font-weight: 700;
+            color: $palette-slate;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            display: block;
+            margin-bottom: 4px;
+          }
+
+          .cw-list {
+            font-size: 12.5px;
+            line-height: 1.45;
+            color: $text-secondary;
+            margin: 0;
+          }
         }
 
         .timeline-tech-stack {
@@ -168,15 +284,319 @@
           .tech-pill {
             font-family: $font-mono;
             font-size: 10.5px;
-            color: $text-sand;
-            background: rgba(235, 235, 235, 0.03);
+            color: $palette-slate;
+            font-weight: 600;
+            background: rgba(72, 85, 80, 0.05);
             border: 1px solid $border-rule;
             padding: 3px 9px;
             border-radius: 4px;
             letter-spacing: 0.03em;
-            text-transform: uppercase;
           }
         }
+      }
+    }
+  }
+
+  // ── VIEW 2: SKILLS MATRIX ──
+  .skills-matrix-deck {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 20px;
+
+    @include mobile {
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+
+    .skill-category-card {
+      background: $palette-white;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid $border-rule;
+      border-radius: $radius-md;
+      padding: 22px 24px;
+      position: relative;
+      box-shadow: $shadow-sm;
+      transition: all $transition-normal;
+
+      .cat-card-header {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 16px;
+        padding-bottom: 12px;
+        border-bottom: 1px solid $border-rule;
+
+        .cat-icon-wrap {
+          width: 36px;
+          height: 36px;
+          border-radius: 8px;
+          background: $palette-lime;
+          border: 1px solid rgba(72, 85, 80, 0.15);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: $palette-slate;
+          font-size: 16px;
+        }
+
+        .cat-title {
+          font-family: $font-serif;
+          font-size: 18px;
+          font-weight: 700;
+          color: $palette-slate;
+          margin: 0;
+          flex-grow: 1;
+        }
+
+        .cat-crosshair {
+          font-size: 10px;
+          color: $palette-slate;
+          opacity: 0.5;
+        }
+      }
+
+      .cat-skills-pills {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+
+        .skill-item {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          font-size: 13.5px;
+          color: $text-secondary;
+          padding: 5px 10px;
+          border-radius: 6px;
+          background: rgba(72, 85, 80, 0.03);
+          border: 1px solid rgba(72, 85, 80, 0.06);
+          transition: all $transition-fast;
+
+          .dot {
+            color: $palette-slate;
+            font-size: 16px;
+            line-height: 1;
+          }
+
+          .name {
+            font-weight: 500;
+          }
+
+          &:hover {
+            color: $palette-slate;
+            background: rgba(192, 235, 106, 0.3);
+            border-color: rgba(72, 85, 80, 0.2);
+          }
+        }
+      }
+
+      &:hover {
+        transform: translateY(-2px);
+        border-color: rgba(72, 85, 80, 0.25);
+        box-shadow: $shadow-md;
+      }
+    }
+
+    .language-proficiency-card {
+      grid-column: 1 / -1;
+      background: $palette-white;
+      border: 1px solid rgba(72, 85, 80, 0.15);
+      border-radius: $radius-md;
+      padding: 20px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      box-shadow: $shadow-sm;
+
+      .lang-header {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+
+        .spark {
+          color: $palette-slate;
+          font-size: 12px;
+        }
+
+        h4 {
+          font-family: $font-mono;
+          font-size: 12px;
+          font-weight: 700;
+          color: $palette-slate;
+          text-transform: uppercase;
+          letter-spacing: 0.06em;
+          margin: 0;
+        }
+      }
+
+      .lang-items {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+
+        @include mobile {
+          grid-template-columns: 1fr;
+        }
+
+        .lang-box {
+          background: rgba(244, 246, 240, 0.85);
+          border: 1px solid $border-rule;
+          border-radius: 8px;
+          padding: 12px 16px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+
+          .lang-name {
+            font-family: $font-serif;
+            font-size: 16px;
+            font-weight: 700;
+            color: $palette-slate;
+          }
+
+          .lang-level {
+            font-family: $font-mono;
+            font-size: 11.5px;
+            color: $text-secondary;
+            font-weight: 600;
+          }
+        }
+      }
+    }
+  }
+
+  // ── VIEW 3: CERTIFICATIONS ──
+  .certifications-deck {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 22px;
+
+    @include mobile {
+      grid-template-columns: 1fr;
+    }
+
+    .cert-card {
+      background: $palette-white;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid $border-rule;
+      border-radius: $radius-md;
+      padding: 24px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      box-shadow: $shadow-sm;
+      transition: all $transition-normal;
+
+      .cert-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 12px;
+
+        .cert-badge {
+          font-family: $font-mono;
+          font-size: 10px;
+          font-weight: 700;
+          color: $palette-slate;
+          background: $palette-lime;
+          border: 1px solid rgba(72, 85, 80, 0.15);
+          padding: 3px 10px;
+          border-radius: $radius-pill;
+          text-transform: uppercase;
+          letter-spacing: 0.04em;
+        }
+
+        .cert-date {
+          font-family: $font-mono;
+          font-size: 11.5px;
+          color: $text-muted;
+        }
+      }
+
+      .cert-title {
+        font-family: $font-serif;
+        font-size: 20px;
+        font-weight: 700;
+        color: $palette-slate;
+        margin: 0 0 4px;
+        letter-spacing: -0.01em;
+      }
+
+      .cert-issuer {
+        font-family: $font-mono;
+        font-size: 12px;
+        color: $text-secondary;
+        font-weight: 600;
+        margin: 0 0 14px;
+      }
+
+      .cert-desc {
+        font-size: 13.5px;
+        line-height: 1.55;
+        color: $text-secondary;
+        margin: 0 0 20px;
+        flex-grow: 1;
+      }
+
+      .cert-footer {
+        padding-top: 14px;
+        border-top: 1px solid $border-rule;
+
+        .cert-verify-link {
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+          color: $palette-slate;
+          background: $palette-lime;
+          padding: 5px 12px;
+          border-radius: 6px;
+          font-family: $font-mono;
+          font-size: 11.5px;
+          font-weight: 700;
+          text-decoration: none;
+          letter-spacing: 0.04em;
+          text-transform: uppercase;
+          transition: all $transition-fast;
+
+          &:hover {
+            background: $palette-slate;
+            color: $palette-lime;
+            transform: translateX(2px);
+          }
+        }
+
+        .cert-verified-tag {
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+          font-family: $font-mono;
+          font-size: 11.5px;
+          color: $text-muted;
+
+          .icon {
+            color: $palette-slate;
+            font-size: 13px;
+          }
+        }
+      }
+
+      .cert-crosshair {
+        position: absolute;
+        top: 10px;
+        right: 12px;
+        font-size: 9px;
+        color: $palette-slate;
+        opacity: 0.5;
+      }
+
+      &:hover {
+        transform: translateY(-3px);
+        border-color: rgba(72, 85, 80, 0.25);
+        box-shadow: $shadow-md;
       }
     }
   }

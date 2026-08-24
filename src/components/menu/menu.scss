@@ -3,7 +3,7 @@
 .menu-backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(72, 85, 80, 0.4);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   z-index: 95;
@@ -21,7 +21,7 @@
   width: 320px;
   max-width: 85vw;
   height: 100vh;
-  background: rgba(11, 10, 9, 0.96);
+  background: $palette-white;
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
   border-left: 1px solid $border-rule;
@@ -34,7 +34,7 @@
   justify-content: space-between;
   padding: 80px 28px 40px;
   transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: $shadow-lg;
+  box-shadow: -10px 0 40px rgba(72, 85, 80, 0.12);
 
   &.active {
     right: 0;
@@ -52,7 +52,10 @@
       font-weight: 700;
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: $accent-gold;
+      color: $palette-slate;
+      background: $palette-lime;
+      padding: 2px 7px;
+      border-radius: 4px;
       font-family: $font-mono;
     }
 
@@ -69,7 +72,7 @@
     list-style: none;
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 12px;
 
     li {
       display: flex;
@@ -101,34 +104,34 @@
       }
 
       .active-spark {
-        color: $accent-gold;
+        color: $palette-slate;
         font-size: 11px;
       }
 
       &:hover {
-        background: rgba(235, 235, 235, 0.03);
-        border-color: $border-rule;
+        background: rgba(192, 235, 106, 0.2);
+        border-color: rgba(72, 85, 80, 0.1);
         transform: translateX(4px);
 
         .num {
-          color: $accent-gold;
+          color: $palette-slate;
         }
 
         .label {
-          color: $text-ivory;
+          color: $palette-slate;
         }
       }
 
       &.active {
-        background: rgba(212, 175, 55, 0.08);
-        border-color: rgba(212, 175, 55, 0.3);
+        background: $palette-lime;
+        border-color: rgba(72, 85, 80, 0.15);
 
         .num {
-          color: $accent-gold-bright;
+          color: $palette-slate;
         }
 
         .label {
-          color: #ffffff;
+          color: $palette-slate;
           font-weight: 700;
         }
       }
@@ -141,7 +144,7 @@
 
     .footer-label {
       font-size: 10px;
-      color: $text-dark;
+      color: $text-muted;
       font-family: $font-mono;
       letter-spacing: 0.08em;
       margin-bottom: 12px;
@@ -155,25 +158,23 @@
         width: 36px;
         height: 36px;
         border-radius: 50%;
-        background: rgba(235, 235, 235, 0.03);
+        background: rgba(72, 85, 80, 0.05);
         border: 1px solid $border-rule;
         display: flex;
         align-items: center;
         justify-content: center;
-        color: $text-muted;
+        color: $palette-slate;
         font-size: 15px;
         text-decoration: none;
         transition: all $transition-fast;
 
         &:hover {
-          color: $accent-gold-bright;
-          border-color: $accent-gold;
-          background: rgba(212, 175, 55, 0.15);
+          color: $palette-slate;
+          border-color: rgba(72, 85, 80, 0.25);
+          background: $palette-lime;
           transform: translateY(-2px);
         }
       }
     }
   }
 }
-
-

@@ -5,9 +5,9 @@ import { FaLinkedin } from "react-icons/fa";
 import { AiFillGithub } from "react-icons/ai";
 import { FiArrowRight } from "react-icons/fi";
 
-export default function Topbar({ menuOpen, setMenuOpen, currentSlide, goToSlide, chapters }) {
+export default function Topbar({ menuOpen, setMenuOpen, currentSlide, goToSlide, chapters, isScrolled }) {
   return (
-    <header className={"topbar " + (menuOpen ? "active" : "")}>
+    <header className={`topbar ${isScrolled ? "scrolled" : "at-top"} ${menuOpen ? "active" : ""}`}>
       <div className="wrapper">
         <div className="left">
           <button 
@@ -21,13 +21,13 @@ export default function Topbar({ menuOpen, setMenuOpen, currentSlide, goToSlide,
 
           <div className="status-badge">
             <span className="status-spark">✦</span>
-            <span className="status-text">Available Worldwide</span>
+            <span className="status-text">Senior Frontend Dev &bull; Riyadh</span>
           </div>
 
           <div className="contact-items">
-            <a href="tel:+201099348209" className="item-pill" title="Call Omar">
+            <a href="tel:+966502397466" className="item-pill" title="Call Omar Salem">
               <BsFillPersonFill className="icon" />
-              <span>+20 109 934 8209</span>
+              <span>+966 50 239 7466</span>
             </a>
             
             <div className="social-links">
@@ -106,5 +106,3 @@ export default function Topbar({ menuOpen, setMenuOpen, currentSlide, goToSlide,
     </header>
   );
 }
-
-

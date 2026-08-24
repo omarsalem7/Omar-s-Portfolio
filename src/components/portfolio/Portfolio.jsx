@@ -1,21 +1,19 @@
 import { useState, useEffect } from "react";
 import PortfolioList from "../portfolioList/PortfolioList";
-import { FiExternalLink, FiGithub, FiLayers } from "react-icons/fi";
+import { FiExternalLink, FiGithub, FiLayers, FiLock } from "react-icons/fi";
 import "./portfolio.scss";
 import {
   featuredPortfolio,
-  htmlPortfolio,
-  jsPortfolio,
+  enterprisePortfolio,
+  angularPortfolio,
   reactPortfolio,
-  railsPortfolio,
 } from "../../data";
 
 const CATEGORIES = [
-  { id: "featured", title: "All Works", count: featuredPortfolio.length },
-  { id: "react", title: "React & Redux", count: reactPortfolio.length },
-  { id: "rails", title: "Ruby on Rails", count: railsPortfolio.length },
-  { id: "js", title: "JavaScript ES6+", count: jsPortfolio.length },
-  { id: "html", title: "HTML & CSS", count: htmlPortfolio.length },
+  { id: "featured", title: "Featured Works", count: featuredPortfolio.length },
+  { id: "enterprise", title: "Gov & Enterprise", count: enterprisePortfolio.length },
+  { id: "angular", title: "Angular & Esri GIS", count: angularPortfolio.length },
+  { id: "react", title: "React & Next.js", count: reactPortfolio.length },
 ];
 
 export default function Portfolio() {
@@ -27,35 +25,19 @@ export default function Portfolio() {
       case "featured":
         setData(featuredPortfolio);
         break;
+      case "enterprise":
+        setData(enterprisePortfolio);
+        break;
+      case "angular":
+        setData(angularPortfolio);
+        break;
       case "react":
         setData(reactPortfolio);
-        break;
-      case "rails":
-        setData(railsPortfolio);
-        break;
-      case "js":
-        setData(jsPortfolio);
-        break;
-      case "html":
-        setData(htmlPortfolio);
         break;
       default:
         setData(featuredPortfolio);
     }
   }, [selected]);
-
-  const getTechTags = (item, cat) => {
-    if (cat === "react" || item.title.includes("React") || item.title.includes("Stock") || item.title.includes("Book") || item.title.includes("Space")) {
-      return ["React", "Redux", "REST API"];
-    }
-    if (cat === "rails" || item.title.includes("Budget") || item.title.includes("Recipe") || item.title.includes("Blog") || item.title.includes("Catalog")) {
-      return ["Ruby on Rails", "PostgreSQL", "MVC"];
-    }
-    if (cat === "js" || item.title.includes("Pig") || item.title.includes("Todo") || item.title.includes("Leaderboard") || item.title.includes("Food")) {
-      return ["JavaScript", "Webpack", "ES6+"];
-    }
-    return ["HTML5", "Sass", "Responsive"];
-  };
 
   return (
     <div className="portfolio-section" id="portfolio">
@@ -67,11 +49,11 @@ export default function Portfolio() {
         </div>
         <h2 className="section-title">Architected for Speed &amp; Scale</h2>
         <p className="section-desc">
-          A curation of production systems, full-stack web applications, 
-          and developer tools engineered with precision.
+          High-impact government platforms, international conference management systems, 
+          geospatial applications, and performance-tuned web software.
         </p>
 
-        {/* Pear Pill Filter Tabs */}
+        {/* Pill Filter Tabs */}
         <div className="filter-deck" role="tablist">
           {CATEGORIES.map((cat) => (
             <PortfolioList
@@ -89,7 +71,6 @@ export default function Portfolio() {
       {/* Projects Grid Container */}
       <div className="projects-grid anim-fade-up d-2">
         {data.map((item, idx) => {
-          const tags = getTechTags(item, selected);
           const liveUrl = item.demo || item.link;
 
           return (
@@ -98,7 +79,7 @@ export default function Portfolio() {
                 <img 
                   src={item.img} 
                   alt={item.title} 
-                  className="card-img"
+                  className={`card-img ${item.isLogo ? "contain-logo" : ""}`}
                   loading="lazy"
                   onError={(e) => {
                     e.target.onerror = null;
@@ -106,17 +87,29 @@ export default function Portfolio() {
                   }} 
                 />
                 <span className="card-idx">0{idx + 1}</span>
+                {item.clientBadge && (
+                  <span className="card-client-tag">
+                    <span className="spark">✦</span> {item.clientBadge}
+                  </span>
+                )}
                 <span className="card-crosshair">✦</span>
               </div>
 
               <div className="card-body">
+                <div className="card-meta-top">
+                  <h3 className="card-title">{item.title}</h3>
+                  {item.subtitle && <span className="card-subtitle">{item.subtitle}</span>}
+                </div>
+
+                {item.desc && (
+                  <p className="card-description">{item.desc}</p>
+                )}
+
                 <div className="tech-tags">
-                  {tags.map((tag, tIdx) => (
+                  {item.tags?.map((tag, tIdx) => (
                     <span className="tag-pill" key={tIdx}>{tag}</span>
                   ))}
                 </div>
-
-                <h3 className="card-title">{item.title}</h3>
 
                 <div className="card-footer-links">
                   {liveUrl ? (
@@ -126,12 +119,18 @@ export default function Portfolio() {
                       rel="noreferrer"
                       className="link-live"
                     >
-                      <span>Live Demo</span>
+                      <span>Live Platform</span>
                       <FiExternalLink className="icon" />
                     </a>
+                  ) : item.isInternal ? (
+                    <span className="link-internal" title="Government / Enterprise Internal Platform">
+                      <FiLock className="icon" />
+                      <span>Enterprise Internal</span>
+                    </span>
                   ) : (
-                    <span className="link-disabled">Demo in Repo</span>
+                    <span className="link-disabled">Repository Only</span>
                   )}
+
                   {item.github && (
                     <a
                       href={item.github}
@@ -141,7 +140,7 @@ export default function Portfolio() {
                       title="View GitHub Repository"
                     >
                       <FiGithub className="icon" />
-                      <span>Code</span>
+                      <span>Source</span>
                     </a>
                   )}
                 </div>
@@ -153,5 +152,3 @@ export default function Portfolio() {
     </div>
   );
 }
-
-

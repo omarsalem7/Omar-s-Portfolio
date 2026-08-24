@@ -5,7 +5,7 @@
   align-items: center;
   gap: 8px;
   padding: 6px 14px;
-  background: rgba(235, 235, 235, 0.03);
+  background: $palette-white;
   border: 1px solid $border-rule;
   border-radius: $radius-pill;
   color: $text-muted;
@@ -15,6 +15,7 @@
   letter-spacing: 0.04em;
   text-transform: uppercase;
   cursor: pointer;
+  box-shadow: $shadow-sm;
   transition: all $transition-fast;
 
   .pill-title {
@@ -24,42 +25,40 @@
   .pill-count {
     font-family: $font-mono;
     font-size: 10px;
-    background: rgba(235, 235, 235, 0.06);
-    color: $text-dark;
+    background: rgba(72, 85, 80, 0.08);
+    color: $text-secondary;
     padding: 1px 6px;
     border-radius: 10px;
     transition: all $transition-fast;
   }
 
   &:hover {
-    color: $text-ivory;
-    background: rgba(212, 175, 55, 0.06);
-    border-color: rgba(212, 175, 55, 0.35);
+    color: $palette-slate;
+    background: rgba(192, 235, 106, 0.25);
+    border-color: rgba(72, 85, 80, 0.2);
     transform: translateY(-1px);
 
     .pill-count {
-      color: $accent-gold;
-      background: rgba(212, 175, 55, 0.15);
+      color: $palette-slate;
+      background: $palette-lime;
     }
   }
 
   &.active {
-    background: rgba(212, 175, 55, 0.12);
-    border-color: $accent-gold;
-    color: $accent-gold-bright;
-    box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
+    background: $palette-lime;
+    border-color: rgba(72, 85, 80, 0.2);
+    color: $palette-slate;
+    box-shadow: 0 2px 10px rgba(192, 235, 106, 0.5);
 
     .pill-title {
-      color: #ffffff;
+      color: $palette-slate;
       font-weight: 700;
     }
 
     .pill-count {
-      background: $accent-gold;
-      color: #0b0a09;
+      background: $palette-slate;
+      color: $palette-lime;
       font-weight: 700;
     }
   }
 }
-
-

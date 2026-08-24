@@ -23,10 +23,10 @@
       align-items: center;
       gap: 6px;
       padding: 5px 12px;
-      background: rgba(212, 175, 55, 0.08);
-      border: 1px solid rgba(212, 175, 55, 0.25);
+      background: rgba(192, 235, 106, 0.35);
+      border: 1px solid rgba(72, 85, 80, 0.15);
       border-radius: $radius-pill;
-      color: $accent-gold-bright;
+      color: $palette-slate;
       font-size: 11px;
       font-weight: 700;
       font-family: $font-mono;
@@ -36,7 +36,7 @@
 
       .badge-icon {
         font-size: 13px;
-        color: $accent-gold;
+        color: $palette-slate;
       }
     }
 
@@ -46,7 +46,7 @@
       font-weight: 800;
       letter-spacing: -0.02em;
       margin-bottom: 8px;
-      color: $text-ivory;
+      color: $palette-slate;
 
       @include mobile {
         font-size: 26px;
@@ -55,8 +55,8 @@
 
     .section-desc {
       font-size: 14.5px;
-      color: $text-muted;
-      max-width: 560px;
+      color: $text-secondary;
+      max-width: 620px;
       line-height: 1.5;
       margin-bottom: 18px;
 
@@ -64,12 +64,20 @@
         font-size: 13px;
       }
     }
+
+    .filter-deck {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+      margin-top: 4px;
+    }
   }
 
   .projects-grid {
     width: 100%;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
     gap: 22px;
 
     @include mobile {
@@ -78,7 +86,7 @@
     }
 
     .project-card {
-      background: rgba(18, 17, 15, 0.7);
+      background: $palette-white;
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
       border: 1px solid $border-rule;
@@ -93,26 +101,37 @@
       .card-thumb-container {
         position: relative;
         width: 100%;
-        height: 180px;
+        height: 195px;
         overflow: hidden;
-        background: #000000;
+        background: #e2e6de;
+        display: flex;
+        align-items: center;
+        justify-content: center;
 
         .card-img {
           width: 100%;
           height: 100%;
           object-fit: cover;
           transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+
+          &.contain-logo {
+            object-fit: contain;
+            width: 72%;
+            height: 72%;
+            margin: auto;
+            filter: drop-shadow(0 2px 8px rgba(72, 85, 80, 0.08));
+          }
         }
 
         .card-idx {
           position: absolute;
           top: 10px;
           left: 12px;
-          background: rgba(11, 10, 9, 0.85);
+          background: rgba(244, 246, 240, 0.95);
           backdrop-filter: blur(8px);
           -webkit-backdrop-filter: blur(8px);
           border: 1px solid $border-rule;
-          color: $accent-gold-bright;
+          color: $palette-slate;
           font-family: $font-mono;
           font-size: 11px;
           font-weight: 700;
@@ -121,12 +140,38 @@
           z-index: 2;
         }
 
+        .card-client-tag {
+          position: absolute;
+          bottom: 10px;
+          left: 12px;
+          background: $palette-lime;
+          backdrop-filter: blur(8px);
+          -webkit-backdrop-filter: blur(8px);
+          border: 1px solid rgba(72, 85, 80, 0.15);
+          color: $palette-slate;
+          font-family: $font-mono;
+          font-size: 10.5px;
+          font-weight: 700;
+          padding: 3px 10px;
+          border-radius: $radius-pill;
+          z-index: 2;
+          display: flex;
+          align-items: center;
+          gap: 5px;
+          box-shadow: 0 2px 8px rgba(72, 85, 80, 0.15);
+
+          .spark {
+            font-size: 9px;
+            color: $palette-slate;
+          }
+        }
+
         .card-crosshair {
           position: absolute;
           top: 10px;
           right: 12px;
           font-size: 9px;
-          color: $accent-gold;
+          color: $palette-slate;
           opacity: 0.6;
           z-index: 2;
           transition: opacity $transition-fast;
@@ -134,38 +179,58 @@
       }
 
       .card-body {
-        padding: 16px 18px;
+        padding: 18px 20px 20px;
         display: flex;
         flex-direction: column;
         flex: 1;
+
+        .card-meta-top {
+          margin-bottom: 8px;
+
+          .card-title {
+            font-family: $font-serif;
+            font-size: 19px;
+            font-weight: 700;
+            color: $palette-slate;
+            letter-spacing: -0.01em;
+            margin: 0 0 4px;
+            line-height: 1.3;
+          }
+
+          .card-subtitle {
+            font-family: $font-mono;
+            font-size: 11.5px;
+            color: $text-secondary;
+            display: block;
+            font-weight: 500;
+          }
+        }
+
+        .card-description {
+          font-size: 13px;
+          line-height: 1.55;
+          color: $text-secondary;
+          margin: 0 0 14px;
+          flex-grow: 1;
+        }
 
         .tech-tags {
           display: flex;
           flex-wrap: wrap;
           gap: 6px;
-          margin-bottom: 8px;
+          margin-bottom: 14px;
 
           .tag-pill {
             font-family: $font-mono;
-            font-size: 10.5px;
-            color: $text-dark;
-            background: rgba(235, 235, 235, 0.03);
+            font-size: 10px;
+            color: $palette-slate;
+            font-weight: 600;
+            background: rgba(72, 85, 80, 0.05);
             border: 1px solid $border-rule;
             padding: 2px 8px;
             border-radius: 4px;
-            letter-spacing: 0.03em;
-            text-transform: uppercase;
+            letter-spacing: 0.02em;
           }
-        }
-
-        .card-title {
-          font-family: $font-serif;
-          font-size: 18px;
-          font-weight: 700;
-          color: $text-ivory;
-          letter-spacing: -0.01em;
-          margin-bottom: 14px;
-          line-height: 1.3;
         }
 
         .card-footer-links {
@@ -173,20 +238,24 @@
           display: flex;
           align-items: center;
           justify-content: space-between;
-          padding-top: 12px;
+          padding-top: 14px;
           border-top: 1px solid $border-rule;
 
           .link-live {
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            color: $accent-gold-bright;
+            color: $palette-slate;
             text-decoration: none;
             font-family: $font-mono;
             font-size: 11.5px;
             font-weight: 700;
             letter-spacing: 0.04em;
             text-transform: uppercase;
+            padding: 4px 10px;
+            background: $palette-lime;
+            border-radius: 6px;
+            border: 1px solid rgba(72, 85, 80, 0.15);
             transition: all $transition-fast;
 
             .icon {
@@ -195,11 +264,30 @@
             }
 
             &:hover {
-              color: #ffffff;
+              background: $palette-slate;
+              color: $palette-lime;
 
               .icon {
                 transform: translateX(2px) translateY(-2px);
               }
+            }
+          }
+
+          .link-internal {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-family: $font-mono;
+            font-size: 11px;
+            color: $text-muted;
+            background: rgba(72, 85, 80, 0.04);
+            padding: 4px 8px;
+            border-radius: 4px;
+            border: 1px dashed $border-rule;
+
+            .icon {
+              font-size: 11px;
+              color: $palette-slate;
             }
           }
 
@@ -214,13 +302,13 @@
             display: inline-flex;
             align-items: center;
             gap: 5px;
-            color: $text-muted;
+            color: $palette-slate;
             text-decoration: none;
             font-family: $font-mono;
             font-size: 11px;
             font-weight: 600;
             padding: 4px 10px;
-            background: rgba(235, 235, 235, 0.03);
+            background: rgba(72, 85, 80, 0.05);
             border: 1px solid $border-rule;
             border-radius: 6px;
             transition: all $transition-fast;
@@ -230,9 +318,9 @@
             }
 
             &:hover {
-              color: $text-ivory;
-              border-color: rgba(212, 175, 55, 0.35);
-              background: rgba(212, 175, 55, 0.08);
+              color: $palette-slate;
+              border-color: rgba(72, 85, 80, 0.3);
+              background: $palette-lime;
             }
           }
         }
@@ -240,18 +328,17 @@
 
       &:hover {
         transform: translateY(-3px);
-        border-color: rgba(212, 175, 55, 0.4);
-        background: rgba(26, 24, 21, 0.85);
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+        border-color: rgba(72, 85, 80, 0.25);
+        box-shadow: $shadow-md;
 
         .card-thumb-container {
           .card-img {
-            transform: scale(1.05);
+            transform: scale(1.04);
           }
 
           .card-crosshair {
             opacity: 1;
-            color: $accent-gold-bright;
+            color: $palette-slate;
           }
         }
       }

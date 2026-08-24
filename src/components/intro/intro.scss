@@ -13,188 +13,199 @@
   .intro-container {
     width: 100%;
     display: grid;
-    grid-template-columns: 1.15fr 0.85fr;
-    gap: 48px;
+    grid-template-columns: 1.15fr 1fr;
+    gap: 44px;
     align-items: center;
 
     @include tablet {
       grid-template-columns: 1fr;
       gap: 36px;
-      text-align: center;
     }
 
-    // ── Left Column: Editorial Manifesto ──
+    // ── Left Column: Editorial Identity & Manifesto ──
     .intro-text-col {
       display: flex;
       flex-direction: column;
-      gap: 18px;
-
-      @include tablet {
-        align-items: center;
-      }
+      gap: 20px;
 
       .chapter-tag {
         display: inline-flex;
         align-items: center;
         gap: 6px;
-        background: rgba(212, 175, 55, 0.08);
-        border: 1px solid rgba(212, 175, 55, 0.25);
+        background: rgba(192, 235, 106, 0.35);
+        border: 1px solid rgba(72, 85, 80, 0.15);
         padding: 5px 12px;
         border-radius: $radius-pill;
         width: fit-content;
 
         .tag-spark {
-          color: $accent-gold;
+          color: $palette-slate;
           font-size: 11px;
         }
 
         .tag-text {
           font-size: 11px;
           font-weight: 700;
-          color: $accent-gold-bright;
+          color: $palette-slate;
           font-family: $font-mono;
           letter-spacing: 0.08em;
           text-transform: uppercase;
         }
       }
 
-      .editorial-title {
+      .hero-identity-block {
         display: flex;
         flex-direction: column;
-        font-family: $font-serif;
-        font-size: 46px;
-        font-weight: 800;
-        line-height: 1.12;
-        letter-spacing: -0.02em;
-        color: $text-ivory;
+        gap: 6px;
 
-        @include tablet {
-          font-size: 34px;
+        .hero-name {
+          font-family: $font-serif;
+          font-size: 54px;
+          font-weight: 800;
+          letter-spacing: -0.03em;
+          line-height: 1.05;
+          color: $palette-slate;
+          margin: 0;
+          text-transform: uppercase;
+
+          @include tablet {
+            font-size: 42px;
+          }
+
+          @include mobile {
+            font-size: 34px;
+          }
         }
 
-        @include mobile {
-          font-size: 27px;
+        .hero-role {
+          font-family: $font-mono;
+          font-size: 18px;
+          font-weight: 700;
+          color: $text-secondary;
+          letter-spacing: 0.04em;
+          margin: 0;
+          text-transform: uppercase;
+
+          @include mobile {
+            font-size: 15px;
+          }
         }
 
-        .title-line {
-          display: block;
+        .hero-stack-pill {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          margin-top: 4px;
+          font-family: $font-mono;
+          font-size: 12px;
+          color: $palette-slate;
+          font-weight: 600;
+          background: $palette-white;
+          border: 1px solid $border-rule;
+          padding: 4px 14px;
+          border-radius: $radius-pill;
+          width: fit-content;
+          box-shadow: $shadow-sm;
 
-          &.italic-gold {
-            font-style: italic;
-            font-weight: 400;
-            background: linear-gradient(135deg, #ffffff 10%, #e5c158 60%, #d4af37 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+          .sep {
+            color: $palette-slate;
+            font-size: 14px;
           }
         }
       }
 
-      .typing-subhead {
-        display: flex;
-        align-items: baseline;
-        gap: 8px;
-        font-family: $font-mono;
-        font-size: 14px;
-        color: $text-sand;
-
-        .subhead-prefix {
-          color: $text-dark;
-          font-size: 12px;
-          text-transform: uppercase;
-          letter-spacing: 0.05em;
-        }
-
-        .typing-text {
-          color: $accent-gold-bright;
-          font-weight: 600;
-        }
-
-        .ityped-cursor {
-          font-size: 16px;
-          color: $accent-gold;
-          animation: blink 1s infinite;
-        }
-      }
-
-      .manifesto-paragraph {
-        font-size: 15px;
-        line-height: 1.65;
-        color: $text-muted;
-        max-width: 560px;
+      .hero-manifesto {
+        font-family: $font-serif;
+        font-style: italic;
+        font-size: 24px;
+        font-weight: 500;
+        line-height: 1.35;
+        color: $palette-slate;
+        margin: 4px 0 6px;
+        letter-spacing: -0.01em;
 
         @include mobile {
-          font-size: 13.5px;
+          font-size: 19px;
         }
       }
 
-      // ── Architectural Metric Cards ──
-      .metrics-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 12px;
-        max-width: 520px;
-        margin-top: 6px;
+      // ── Micro-Metadata Information Grid ──
+      .hero-meta-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        max-width: 480px;
 
-        @include small-mobile {
-          grid-template-columns: 1fr;
-          width: 100%;
-        }
-
-        .metric-box {
-          background: rgba(235, 235, 235, 0.02);
+        .meta-card {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          padding: 8px 14px;
+          background: $palette-white;
           border: 1px solid $border-rule;
           border-radius: $radius-sm;
-          padding: 12px 14px;
-          position: relative;
-          display: flex;
-          flex-direction: column;
-          gap: 3px;
+          box-shadow: $shadow-sm;
           transition: all $transition-fast;
 
-          .metric-crosshair {
-            position: absolute;
-            top: 6px;
-            right: 8px;
-            font-size: 8px;
-            color: $accent-gold;
-            opacity: 0.5;
+          .meta-icon-wrap {
+            width: 28px;
+            height: 28px;
+            border-radius: 6px;
+            background: rgba(192, 235, 106, 0.3);
+            border: 1px solid rgba(72, 85, 80, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: $palette-slate;
+            font-size: 13px;
+            flex-shrink: 0;
+
+            &.active {
+              background: $palette-lime;
+              border-color: rgba(72, 85, 80, 0.25);
+              color: $palette-slate;
+            }
           }
 
-          .metric-value {
-            font-family: $font-serif;
-            font-size: 24px;
-            font-weight: 700;
-            color: #ffffff;
-            line-height: 1;
-          }
+          .meta-text {
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+            flex-wrap: wrap;
 
-          .metric-label {
-            font-family: $font-mono;
-            font-size: 10px;
-            color: $text-muted;
-            letter-spacing: 0.04em;
-            text-transform: uppercase;
+            .meta-title {
+              font-family: $font-sans;
+              font-size: 13px;
+              font-weight: 600;
+              color: $palette-slate;
+            }
+
+            .meta-sub {
+              font-family: $font-mono;
+              font-size: 11px;
+              color: $text-muted;
+            }
           }
 
           &:hover {
-            border-color: rgba(212, 175, 55, 0.35);
-            background: rgba(212, 175, 55, 0.05);
-            transform: translateY(-2px);
+            border-color: rgba(72, 85, 80, 0.25);
+            transform: translateX(3px);
+            box-shadow: $shadow-md;
+          }
 
-            .metric-crosshair {
-              opacity: 1;
-              color: $accent-gold-bright;
-            }
+          &.highlight {
+            border-color: rgba(192, 235, 106, 0.6);
+            background: rgba(255, 255, 255, 0.95);
           }
         }
       }
 
-      // ── Pear Editorial CTAs ──
+      // ── CTAs ──
       .cta-row {
         display: flex;
         align-items: center;
         gap: 14px;
-        margin-top: 8px;
+        margin-top: 6px;
 
         @include small-mobile {
           flex-direction: column;
@@ -202,8 +213,8 @@
         }
 
         .pear-primary-cta {
-          background: $accent-gold;
-          color: #0b0a09;
+          background: $palette-lime;
+          color: $palette-slate;
           font-family: $font-mono;
           font-size: 12px;
           font-weight: 700;
@@ -211,12 +222,13 @@
           text-transform: uppercase;
           padding: 12px 22px;
           border-radius: $radius-pill;
-          border: 1px solid $accent-gold-bright;
+          border: 1px solid rgba(72, 85, 80, 0.15);
           cursor: pointer;
           display: flex;
           align-items: center;
           gap: 8px;
           transition: all $transition-fast;
+          box-shadow: 0 2px 8px rgba(192, 235, 106, 0.4);
 
           .arw {
             font-size: 15px;
@@ -224,13 +236,14 @@
           }
 
           &:hover {
-            background: #ffffff;
-            border-color: #ffffff;
-            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+            background: $palette-slate;
+            color: $palette-lime;
+            border-color: $palette-slate;
+            box-shadow: 0 6px 20px rgba(72, 85, 80, 0.25);
             transform: translateY(-2px);
 
             .arw {
-              transform: translateX(4px);
+              transform: translateY(3px);
             }
           }
 
@@ -241,8 +254,8 @@
         }
 
         .pear-secondary-cta {
-          background: transparent;
-          color: $text-secondary;
+          background: $palette-white;
+          color: $palette-slate;
           font-family: $font-mono;
           font-size: 12px;
           font-weight: 600;
@@ -263,13 +276,13 @@
           }
 
           &:hover {
-            color: $text-ivory;
-            border-color: $accent-gold;
-            background: rgba(212, 175, 55, 0.08);
+            color: $palette-slate;
+            border-color: $palette-slate;
+            background: rgba(192, 235, 106, 0.25);
             transform: translateY(-2px);
 
             .arw {
-              transform: translateY(2px);
+              transform: translateX(3px);
             }
           }
 
@@ -281,147 +294,12 @@
       }
     }
 
-    // ── Right Column: Architectural Stage & Portrait ──
+    // ── Right Column: 3D System Container ──
     .intro-visual-col {
       display: flex;
       justify-content: center;
       align-items: center;
-
-      .portrait-architectural-stage {
-        position: relative;
-        width: 340px;
-        height: 380px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        @include mobile {
-          width: 270px;
-          height: 300px;
-        }
-
-        .stage-rim {
-          position: absolute;
-          border-radius: 20px;
-          pointer-events: none;
-
-          &-outer {
-            inset: 0;
-            border: 1px solid $border-rule;
-            background: rgba(19, 18, 16, 0.4);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-          }
-
-          &-inner {
-            inset: 12px;
-            border: 1px dashed rgba(212, 175, 55, 0.25);
-          }
-        }
-
-        .corner-node {
-          position: absolute;
-          font-size: 10px;
-          color: $accent-gold;
-          line-height: 1;
-
-          &.c-tl { top: -5px; left: -5px; }
-          &.c-tr { top: -5px; right: -5px; }
-          &.c-bl { bottom: -5px; left: -5px; }
-          &.c-br { bottom: -5px; right: -5px; }
-        }
-
-        .img-frame {
-          width: 250px;
-          height: 290px;
-          border-radius: 14px;
-          overflow: hidden;
-          background: #000000;
-          border: 1px solid rgba(212, 175, 55, 0.3);
-          box-shadow: $shadow-gold;
-          position: relative;
-          z-index: 2;
-
-          @include mobile {
-            width: 200px;
-            height: 230px;
-          }
-
-          img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            filter: contrast(1.05);
-            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-
-            &:hover {
-              transform: scale(1.04);
-            }
-          }
-        }
-
-        // Floating Architectural Tech Badges
-        .tech-badge {
-          position: absolute;
-          z-index: 10;
-          background: rgba(11, 10, 9, 0.88);
-          backdrop-filter: blur(16px);
-          -webkit-backdrop-filter: blur(16px);
-          border: 1px solid rgba(212, 175, 55, 0.3);
-          border-radius: $radius-pill;
-          padding: 6px 14px;
-          display: flex;
-          align-items: center;
-          gap: 8px;
-          font-family: $font-mono;
-          font-size: 11px;
-          font-weight: 600;
-          color: $text-ivory;
-          box-shadow: $shadow-md;
-          animation: floatSlow 6s infinite alternate ease-in-out;
-
-          .badge-icon {
-            font-size: 14px;
-
-            &.react { color: #61dafb; }
-            &.rails { color: #cc0000; }
-            &.js { color: #f7df1e; }
-          }
-
-          &.badge-top {
-            top: 20px;
-            right: -25px;
-            animation-delay: -1s;
-            @include mobile { right: -10px; }
-          }
-
-          &.badge-bottom {
-            bottom: 24px;
-            left: -25px;
-            animation-delay: -3s;
-            @include mobile { left: -10px; }
-          }
-
-          &.badge-left {
-            top: 50%;
-            left: -35px;
-            transform: translateY(-50%);
-            animation-delay: -4.5s;
-            @include mobile { display: none; }
-          }
-        }
-      }
+      width: 100%;
     }
   }
 }
-
-@keyframes floatSlow {
-  0% { transform: translateY(0); }
-  100% { transform: translateY(-8px); }
-}
-
-@keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
-}
-
