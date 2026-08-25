@@ -6,6 +6,9 @@ import { AiFillGithub } from "react-icons/ai";
 import { FiArrowRight } from "react-icons/fi";
 
 export default function Topbar({ menuOpen, setMenuOpen, currentSlide, goToSlide, chapters, isScrolled }) {
+  // Center navigation items (excluding contact chapter, which is represented by the right CTA button)
+  const navChapters = chapters ? chapters.filter((ch) => ch.id !== "contact") : [];
+
   return (
     <header className={`topbar ${isScrolled ? "scrolled" : "at-top"} ${menuOpen ? "active" : ""}`}>
       <div className="wrapper">
@@ -16,7 +19,7 @@ export default function Topbar({ menuOpen, setMenuOpen, currentSlide, goToSlide,
             aria-label="Omar Salem Home"
           >
             <span className="logo-spark">✦</span>
-            <span className="logo-name">O.Salem</span>
+            <span className="logo-name">{isScrolled ? "Omar Salem" : "O.Salem"}</span>
           </button>
 
           <div className="status-badge">
@@ -67,27 +70,29 @@ export default function Topbar({ menuOpen, setMenuOpen, currentSlide, goToSlide,
 
         {/* Center Chapter Navigation */}
         <nav className="center-nav" aria-label="Chapter Navigation">
-          {chapters && chapters.map((ch, idx) => (
+          {navChapters.map((ch, idx) => (
             <button
               key={ch.id}
               className={`nav-link ${currentSlide === idx ? "active" : ""}`}
               onClick={() => goToSlide(idx)}
             >
               <span className="nav-num">{ch.chapter}</span>
-              <span className="nav-text">{ch.label}</span>
+              <span className="nav-text">{isScrolled ? (ch.shortLabel || ch.label) : ch.label}</span>
               {currentSlide === idx && <span className="active-line" />}
             </button>
           ))}
         </nav>
 
-        {/* Right: Pear Flood-Fill CTA Button */}
+        {/* Right: Pill CTA Button & Mobile Hamburger */}
         <div className="right">
           <button 
             className="pear-cta-btn"
             onClick={() => goToSlide(4)}
+            aria-label="Contact Omar Salem"
           >
             <span className="btn-face">
-              Inquire <FiArrowRight className="arw" />
+              <span className="btn-label">{isScrolled ? "Contact" : "Inquire"}</span>
+              {!isScrolled && <FiArrowRight className="arw" />}
             </span>
           </button>
           

@@ -10,11 +10,11 @@ import { FiArrowUp } from "react-icons/fi";
 import "./app.scss";
 
 const CHAPTERS = [
-  { id: "intro", label: "The Discipline", chapter: "Ch. 1" },
-  { id: "portfolio", label: "Selected Works", chapter: "Ch. 2" },
-  { id: "works", label: "The Journey", chapter: "Ch. 3" },
-  { id: "testimonials", label: "The Word", chapter: "Ch. 4" },
-  { id: "contact", label: "Inquiry", chapter: "Ch. 5" },
+  { id: "intro", label: "The Discipline", shortLabel: "Home", chapter: "Ch. 1" },
+  { id: "portfolio", label: "Selected Works", shortLabel: "Projects", chapter: "Ch. 2" },
+  { id: "works", label: "The Journey", shortLabel: "Journey", chapter: "Ch. 3" },
+  { id: "testimonials", label: "The Word", shortLabel: "Testimonials", chapter: "Ch. 4" },
+  { id: "contact", label: "Inquiry", shortLabel: "Contact", chapter: "Ch. 5" },
 ];
 
 function App() {
@@ -50,7 +50,7 @@ function App() {
     const handleScroll = () => {
       const scrollY = window.scrollY;
       // Sticky navbar appearance trigger
-      setIsScrolled(scrollY > 20);
+      setIsScrolled(scrollY > 45);
 
       // Show scroll-to-top button after scrolling past 280px
       if (scrollY > 280) {

@@ -1,58 +1,56 @@
 @import "../../global.scss";
 
 .topbar {
-  width: 100%;
-  height: 72px;
   position: fixed;
   top: 0;
-  left: 0;
-  z-index: 100;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  height: 64px;
+  z-index: 1000;
   background: transparent;
   backdrop-filter: none;
   -webkit-backdrop-filter: none;
   border-bottom: 1px solid transparent;
+  border-radius: 0;
   box-shadow: none;
-  transition: background-color 0.3s cubic-bezier(0.16, 1, 0.3, 1),
-              border-color 0.3s cubic-bezier(0.16, 1, 0.3, 1),
-              box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1),
-              backdrop-filter 0.3s cubic-bezier(0.16, 1, 0.3, 1),
-              -webkit-backdrop-filter 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  // Refined, subtle, low-intensity transition
+  transition: width 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+              top 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+              height 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+              background-color 0.2s ease,
+              border-radius 0.2s ease,
+              border-color 0.2s ease,
+              box-shadow 0.2s ease,
+              backdrop-filter 0.2s ease,
+              -webkit-backdrop-filter 0.2s ease;
 
-  &.scrolled {
-    background: rgba(244, 246, 240, 0.92);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border-bottom: 1px solid $border-rule;
-    box-shadow: 0 4px 20px rgba(72, 85, 80, 0.05);
-  }
-
-  &.active {
-    background: rgba(244, 246, 240, 0.98);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border-bottom: 1px solid $border-rule;
-  }
-
-  @include mobile {
-    height: 64px;
-  }
-
-  .wrapper {
+  // ──────────────────────────────────────────
+  // AT-TOP FULL-WIDTH EDITORIAL MODE
+  // ──────────────────────────────────────────
+  &.at-top {
     width: 100%;
-    height: 100%;
-    padding: 0 5%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    top: 0;
+    height: 64px;
+    border-radius: 0;
 
-    @include tablet {
-      padding: 0 16px;
+    .wrapper {
+      width: 100%;
+      height: 100%;
+      padding: 0 4%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      @include tablet {
+        padding: 0 16px;
+      }
     }
 
     .left {
       display: flex;
       align-items: center;
-      gap: 20px;
+      gap: 16px;
 
       .logo-btn {
         background: transparent;
@@ -60,18 +58,18 @@
         cursor: pointer;
         display: flex;
         align-items: center;
-        gap: 8px;
+        gap: 6px;
         padding: 0;
         color: $palette-slate;
         font-family: $font-serif;
-        font-size: 20px;
+        font-size: 18px;
         font-weight: 700;
         letter-spacing: -0.01em;
         transition: transform $transition-fast;
 
         .logo-spark {
           color: $palette-slate;
-          font-size: 13px;
+          font-size: 12px;
         }
 
         .logo-name {
@@ -87,11 +85,13 @@
       .status-badge {
         display: flex;
         align-items: center;
-        gap: 6px;
+        gap: 5px;
         background: rgba(192, 235, 106, 0.35);
         border: 1px solid rgba(72, 85, 80, 0.15);
-        padding: 4px 10px;
+        padding: 3px 9px;
         border-radius: $radius-pill;
+        opacity: 1;
+        transition: opacity 0.18s ease;
 
         @include mobile {
           display: none;
@@ -99,11 +99,11 @@
 
         .status-spark {
           color: $palette-slate;
-          font-size: 10px;
+          font-size: 9px;
         }
 
         .status-text {
-          font-size: 11px;
+          font-size: 10.5px;
           font-weight: 700;
           color: $palette-slate;
           font-family: $font-mono;
@@ -115,7 +115,9 @@
       .contact-items {
         display: flex;
         align-items: center;
-        gap: 12px;
+        gap: 10px;
+        opacity: 1;
+        transition: opacity 0.18s ease;
 
         @include tablet {
           display: none;
@@ -124,12 +126,12 @@
         .item-pill {
           display: flex;
           align-items: center;
-          gap: 6px;
+          gap: 5px;
           color: $text-secondary;
           text-decoration: none;
-          font-size: 12px;
+          font-size: 11.5px;
           font-family: $font-mono;
-          padding: 5px 12px;
+          padding: 4px 10px;
           border-radius: $radius-pill;
           background: rgba(255, 255, 255, 0.7);
           border: 1px solid $border-rule;
@@ -137,7 +139,7 @@
 
           .icon {
             color: $palette-slate;
-            font-size: 13px;
+            font-size: 12px;
           }
 
           &:hover {
@@ -150,11 +152,11 @@
         .social-links {
           display: flex;
           align-items: center;
-          gap: 8px;
+          gap: 6px;
 
           .social-icon {
-            width: 30px;
-            height: 30px;
+            width: 28px;
+            height: 28px;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -163,7 +165,7 @@
             background: rgba(255, 255, 255, 0.7);
             border: 1px solid $border-rule;
             text-decoration: none;
-            font-size: 13px;
+            font-size: 12px;
             transition: all $transition-fast;
 
             &:hover {
@@ -180,7 +182,7 @@
     .center-nav {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
 
       @include tablet {
         display: none;
@@ -192,16 +194,16 @@
         border: none;
         color: $text-muted;
         font-family: $font-mono;
-        font-size: 12px;
-        padding: 6px 14px;
+        font-size: 11.5px;
+        padding: 5px 12px;
         cursor: pointer;
         display: flex;
         align-items: baseline;
-        gap: 6px;
+        gap: 5px;
         transition: all $transition-fast;
 
         .nav-num {
-          font-size: 10px;
+          font-size: 9.5px;
           font-weight: 700;
           letter-spacing: 0.08em;
           text-transform: uppercase;
@@ -210,7 +212,7 @@
         .nav-text {
           font-family: $font-serif;
           font-style: italic;
-          font-size: 13px;
+          font-size: 12.5px;
         }
 
         &:hover {
@@ -228,9 +230,9 @@
           .active-line {
             position: absolute;
             bottom: -2px;
-            left: 14px;
-            right: 14px;
-            height: 3px;
+            left: 12px;
+            right: 12px;
+            height: 2.5px;
             border-radius: 2px;
             background: $palette-lime;
             box-shadow: 0 0 8px rgba(192, 235, 106, 0.8);
@@ -242,17 +244,17 @@
     .right {
       display: flex;
       align-items: center;
-      gap: 14px;
+      gap: 12px;
 
       .pear-cta-btn {
         background: $palette-lime;
         color: $palette-slate;
         font-family: $font-mono;
-        font-size: 12px;
+        font-size: 11.5px;
         font-weight: 700;
         letter-spacing: 0.05em;
         text-transform: uppercase;
-        padding: 8px 18px;
+        padding: 7px 16px;
         border-radius: $radius-pill;
         border: 1px solid rgba(72, 85, 80, 0.15);
         cursor: pointer;
@@ -264,10 +266,10 @@
         .btn-face {
           display: flex;
           align-items: center;
-          gap: 6px;
+          gap: 5px;
 
           .arw {
-            font-size: 14px;
+            font-size: 13px;
             transition: transform $transition-fast;
           }
         }
@@ -290,8 +292,8 @@
       }
 
       .hamburger {
-        width: 36px;
-        height: 36px;
+        width: 34px;
+        height: 34px;
         background: rgba(255, 255, 255, 0.8);
         border: 1px solid $border-rule;
         border-radius: 6px;
@@ -299,9 +301,9 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        gap: 5px;
+        gap: 4px;
         cursor: pointer;
-        padding: 8px;
+        padding: 6px;
         transition: all $transition-fast;
 
         @include tablet {
@@ -309,10 +311,10 @@
         }
 
         .line {
-          width: 18px;
+          width: 16px;
           height: 1.5px;
           background-color: $palette-slate;
-          transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+          transition: all 0.2s ease;
         }
 
         &.open {
@@ -320,14 +322,266 @@
           background: $palette-lime;
 
           .line1 {
-            transform: translateY(6.5px) rotate(45deg);
+            transform: translateY(5.5px) rotate(45deg);
             background-color: $palette-slate;
           }
           .line2 {
             opacity: 0;
           }
           .line3 {
-            transform: translateY(-6.5px) rotate(-45deg);
+            transform: translateY(-5.5px) rotate(-45deg);
+            background-color: $palette-slate;
+          }
+        }
+      }
+    }
+  }
+
+  // ──────────────────────────────────────────
+  // SCROLLED FLOATING PILL (LOW / SUBTLE ANIMATION)
+  // ──────────────────────────────────────────
+  &.scrolled {
+    top: 8px;
+    width: min(90%, 900px);
+    height: 48px;
+    background: rgba(244, 246, 240, 0.94);
+    border-radius: $radius-pill;
+    border: 1px solid rgba(72, 85, 80, 0.16);
+    box-shadow: 0 4px 20px rgba(72, 85, 80, 0.07), 0 1px 3px rgba(72, 85, 80, 0.03);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+
+    @include tablet {
+      width: min(92%, 680px);
+      top: 8px;
+    }
+
+    @include mobile {
+      width: calc(100% - 20px);
+      height: 46px;
+      top: 6px;
+    }
+
+    .wrapper {
+      width: 100%;
+      height: 100%;
+      padding: 0 6px 0 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      @include mobile {
+        padding: 0 5px 0 14px;
+      }
+    }
+
+    .left {
+      display: flex;
+      align-items: center;
+
+      .logo-btn {
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        color: $palette-slate;
+        font-family: $font-serif;
+        font-size: 16px;
+        font-weight: 700;
+        letter-spacing: -0.01em;
+        transition: color $transition-fast;
+
+        .logo-spark {
+          color: $palette-lime;
+          font-size: 11px;
+        }
+
+        .logo-name {
+          color: $palette-slate;
+
+          @include mobile {
+            font-size: 14px;
+          }
+        }
+
+        &:hover {
+          color: #28322e;
+        }
+      }
+
+      .status-badge,
+      .contact-items {
+        display: none !important;
+      }
+    }
+
+    .center-nav {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+
+      @include tablet {
+        display: none;
+      }
+
+      .nav-link {
+        position: relative;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        padding: 3px 2px;
+        display: flex;
+        align-items: baseline;
+        gap: 5px;
+        color: $text-muted;
+        transition: color 0.15s ease;
+
+        .nav-num {
+          font-family: $font-mono;
+          font-size: 9.5px;
+          font-weight: 700;
+          letter-spacing: 0.05em;
+          text-transform: uppercase;
+          color: $text-muted;
+        }
+
+        .nav-text {
+          font-family: $font-serif;
+          font-style: italic;
+          font-size: 13px;
+          color: $text-muted;
+          transition: color 0.15s ease;
+        }
+
+        &:hover {
+          .nav-num,
+          .nav-text {
+            color: $palette-slate;
+          }
+        }
+
+        &.active {
+          .nav-num {
+            color: $palette-slate;
+          }
+
+          .nav-text {
+            color: #28322e;
+            font-weight: 700;
+          }
+
+          .active-line {
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            border-radius: 2px;
+            background: $palette-lime;
+            box-shadow: 0 0 6px rgba(192, 235, 106, 0.8);
+          }
+        }
+      }
+    }
+
+    .right {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+
+      .pear-cta-btn {
+        background: $palette-lime;
+        color: $palette-slate;
+        font-family: $font-mono;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        padding: 6px 15px;
+        border-radius: $radius-pill;
+        border: 1px solid rgba(72, 85, 80, 0.16);
+        box-shadow: 0 2px 6px rgba(192, 235, 106, 0.35);
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.15s ease;
+
+        @include mobile {
+          padding: 4px 10px;
+          font-size: 10px;
+        }
+
+        .btn-face {
+          display: flex;
+          align-items: center;
+          gap: 4px;
+
+          .btn-label {
+            font-weight: 700;
+          }
+
+          .arw {
+            font-size: 12px;
+            transition: transform 0.15s ease;
+          }
+        }
+
+        &:hover {
+          background: $palette-slate;
+          color: $palette-lime;
+          border-color: $palette-slate;
+          box-shadow: 0 3px 10px rgba(72, 85, 80, 0.2);
+
+          .arw {
+            transform: translateX(2px);
+          }
+        }
+      }
+
+      .hamburger {
+        width: 32px;
+        height: 32px;
+        background: rgba(255, 255, 255, 0.7);
+        border: 1px solid $border-rule;
+        border-radius: $radius-pill;
+        display: none;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 3.5px;
+        cursor: pointer;
+        padding: 5px;
+        transition: all 0.15s ease;
+
+        @include tablet {
+          display: flex;
+        }
+
+        .line {
+          width: 14px;
+          height: 1.5px;
+          background-color: $palette-slate;
+          transition: all 0.2s ease;
+        }
+
+        &.open {
+          border-color: rgba(72, 85, 80, 0.2);
+          background: $palette-lime;
+
+          .line1 {
+            transform: translateY(5px) rotate(45deg);
+            background-color: $palette-slate;
+          }
+          .line2 {
+            opacity: 0;
+          }
+          .line3 {
+            transform: translateY(-5px) rotate(-45deg);
             background-color: $palette-slate;
           }
         }
