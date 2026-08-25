@@ -9,6 +9,14 @@
   font-family: $font-sans;
   color: $text-primary;
 
+  @media (hover: hover) and (pointer: fine) {
+    cursor: none;
+
+    a, button, input, textarea, select, [role="button"], .ledger-item, .pear-primary-cta, .pear-secondary-cta {
+      cursor: none;
+    }
+  }
+
   // ── Architectural Background Grid Lines & Crosshairs ──
   .architectural-grid {
     position: fixed;

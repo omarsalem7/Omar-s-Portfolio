@@ -6,6 +6,7 @@ import Works from "./components/works/Works";
 import Testimonials from "./components/testimonials/Testimonials";
 import Contact from "./components/contact/Contact";
 import Menu from "./components/menu/Menu";
+import CustomCursor from "./components/cursor/CustomCursor";
 import { FiArrowUp } from "react-icons/fi";
 import "./app.scss";
 
@@ -84,6 +85,9 @@ function App() {
 
   return (
     <div className="app pear-theme">
+      {/* Precision Fluid Architectural Cursor */}
+      <CustomCursor />
+
       {/* Architectural Background Grid */}
       <div className="architectural-grid">
         <div className="grid-line line-v line-v-left"></div>

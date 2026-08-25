@@ -15,11 +15,13 @@ export default function Intro({ goToSlide }) {
 
           <div className="hero-identity-block anim-fade-up d-2">
             <h1 className="hero-name">Omar Salem</h1>
-            <h2 className="hero-role">Frontend Engineer</h2>
+            <h2 className="hero-role">Senior Frontend Developer</h2>
             <div className="hero-stack-pill">
               <span>Angular</span>
               <span className="sep">&bull;</span>
-              <span>React</span>
+              <span>React &amp; Next.js</span>
+              <span className="sep">&bull;</span>
+              <span>Esri GIS</span>
               <span className="sep">&bull;</span>
               <span>TypeScript</span>
             </div>
