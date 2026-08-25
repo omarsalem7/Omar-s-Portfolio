@@ -130,6 +130,11 @@
 
       .vertical-timeline-element-content-arrow {
         border-right-color: $palette-white !important;
+
+        &:nth-child(odd) {
+          transform: rotate(180deg);
+
+        }
       }
 
       @media only screen and (min-width: 1170px) {

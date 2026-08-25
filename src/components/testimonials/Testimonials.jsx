@@ -9,7 +9,7 @@ export default function Testimonials() {
       name: "Mostafa Ahangarha",
       title: "Full-Stack Developer",
       company: "Microverse Mentee",
-      img: "https://iili.io/S7S1Mx.jpg",
+      img: "https://media.licdn.com/dms/image/v2/D4E03AQFxspX0VQnXvA/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1675802198591?e=1788998400&v=beta&t=O68z2mjoOxTngadM2KlGpzukBXtOFyTO5wmdwDoPYTY",
       linkedin: "https://www.linkedin.com/in/omarsalem7/",
       desc: "Omar was an exceptional mentor for me during our time at Microverse. He provided clear, actionable support, listened carefully to issues, and guided me with the right technical resources. He is a truly valuable asset to any engineering team.",
     },
@@ -18,7 +18,7 @@ export default function Testimonials() {
       name: "Jos Kalenda",
       title: "Full-Stack Software Engineer",
       company: "Peer Collaborator",
-      img: "https://iili.io/S7SQVf.jpg",
+      img: "https://media.licdn.com/dms/image/v2/C4D03AQFYCEt8_7PLZA/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1642715749703?e=1788998400&v=beta&t=P_oFBhTHQ7RIcxLfe5cCGJ4W_jWjGxLkA1e0cSaAZEc",
       linkedin: "https://www.linkedin.com/in/omarsalem7/",
       desc: "Omar is exactly the sort of software developer any tech company would love. His collaboration skills and detail-oriented approach make him a pleasure to work with. He definitely knows his way around JavaScript, React, and Rails, and is always willing to help.",
     },
@@ -27,7 +27,7 @@ export default function Testimonials() {
       name: "Selma Belhadj",
       title: "Software Engineer",
       company: "Team Colleague",
-      img: "https://media-exp2.licdn.com/dms/image/C5603AQG5UzwuR0-F2A/profile-displayphoto-shrink_100_100/0/1657899989102?e=1663804800&v=beta&t=0i-KVBgHu5QkHl73t3mXgY8Qvt2welRVX0nzVyLvUDo",
+      img: "https://media.licdn.com/dms/image/v2/D4E03AQGuwTvgek3jxg/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1671391262730?e=1788998400&v=beta&t=1ZNFWejbdJYYZmF4DO9vJCvIQagm-r9a2r7xP4fYFpU",
       linkedin: "https://www.linkedin.com/in/omarsalem7/",
       desc: "Omar is such a great team player who elevates everyone around him. He is highly technically skilled, possesses strong critical thinking, and is dedicated to engineering excellence. Any company would be lucky to have him.",
     },
@@ -41,10 +41,12 @@ export default function Testimonials() {
           <FiMessageSquare className="badge-icon" />
           <span>Ch. 4 // The Word</span>
         </div>
-        <h2 className="section-title">Peer Recommendations &amp; Endorsements</h2>
+        <h2 className="section-title">
+          Peer Recommendations &amp; Endorsements
+        </h2>
         <p className="section-desc">
-          Unfiltered feedback from fellow engineers, mentees, and technical collaborators 
-          on code quality, velocity, and leadership.
+          Unfiltered feedback from fellow engineers, mentees, and technical
+          collaborators on code quality, velocity, and leadership.
         </p>
       </div>
 
@@ -61,9 +63,7 @@ export default function Testimonials() {
               <FaQuoteLeft className="quote-watermark" />
             </div>
 
-            <p className="quote-text">
-              &ldquo;{d.desc}&rdquo;
-            </p>
+            <p className="quote-text">&ldquo;{d.desc}&rdquo;</p>
 
             <div className="author-row">
               <div className="avatar-wrap">
@@ -79,7 +79,9 @@ export default function Testimonials() {
 
               <div className="author-meta">
                 <h4 className="author-name">{d.name}</h4>
-                <span className="author-title">{d.title} &bull; {d.company}</span>
+                <span className="author-title">
+                  {d.title} &bull; {d.company}
+                </span>
               </div>
 
               {d.linkedin && (
@@ -105,5 +107,3 @@ export default function Testimonials() {
     </div>
   );
 }
-
-
