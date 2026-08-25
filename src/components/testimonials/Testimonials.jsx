@@ -69,7 +69,10 @@ export default function Testimonials() {
               <div className="avatar-wrap">
                 <img
                   src={d.img}
-                  alt={d.name}
+                  alt={`${d.name} — ${d.title}`}
+                  loading="lazy"
+                  width="52"
+                  height="52"
                   onError={(e) => {
                     e.target.onerror = null;
                     e.target.src = "assets/man.png";

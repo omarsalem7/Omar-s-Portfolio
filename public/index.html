@@ -1,48 +1,121 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="image" property="og:image" content="./assets/portfolio0.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="Omar Salem — Senior Frontend Developer with 4+ years of experience delivering high-impact web applications using Angular, React, Next.js, and Esri Geospatial SDK." />
-    <meta name="theme-color" content="#F4F6F0" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.png" />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css"
-    />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=JetBrains+Mono:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400;1,600;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <title>Omar Salem — Senior Frontend Developer | Angular, React & Next.js</title>
-    <style>
-      *, *::before, *::after {
-        box-sizing: border-box;
-      }
-      html {
-        scroll-behavior: smooth;
-      }
-      body {
-        margin: 0;
-        padding: 0;
-        background-color: #F4F6F0;
-        color: #485550;
-        font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-        overflow-x: hidden;
-        overflow-y: auto;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-      }
-    </style>
-  </head>
 
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-  <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
-  </body>
+  <!-- Primary SEO Meta Tags -->
+  <title>Omar Salem — Senior Frontend Developer | Angular, React & Next.js</title>
+  <meta name="title" content="Omar Salem — Senior Frontend Developer | Angular, React & Next.js" />
+  <meta name="description"
+    content="Omar Salem is a Senior Frontend Developer with 4+ years experience architecting enterprise platforms for the Saudi Ministry of Energy, United Nations COP16, and GEOSA using Angular, React, Next.js, and Esri GIS." />
+  <meta name="keywords"
+    content="Omar Salem, Senior Frontend Developer, Frontend Architect, Angular Developer, React Developer, Next.js, ABP Framework, Esri GIS, TypeScript, JavaScript, Web Developer Saudi Arabia, Riyadh, Egypt" />
+  <meta name="author" content="Omar Salem" />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+  <link rel="canonical" href="https://omarsalem.me/" />
+
+  <!-- Theme Color & Mobile Settings -->
+  <meta name="theme-color" content="#F4F6F0" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="Omar Salem Portfolio" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="profile" />
+  <meta property="og:url" content="https://omarsalem.me/" />
+  <meta property="og:title" content="Omar Salem — Senior Frontend Developer | Angular, React & Next.js" />
+  <meta property="og:description"
+    content="Interactive portfolio showcasing high-impact government platforms, international conference portals, and enterprise geospatial applications." />
+  <meta property="og:image" content="https://omarsalem.me/assets/portfolio0.png" />
+  <meta property="og:image:alt" content="Omar Salem — Senior Frontend Developer Portfolio Preview" />
+  <meta property="og:site_name" content="Omar Salem Portfolio" />
+  <meta property="og:locale" content="en_US" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:url" content="https://omarsalem.me/" />
+  <meta name="twitter:title" content="Omar Salem — Senior Frontend Developer | Angular, React & Next.js" />
+  <meta name="twitter:description"
+    content="Interactive portfolio showcasing enterprise systems built with Angular, React, Next.js, and Esri GIS." />
+  <meta name="twitter:image" content="https://omarsalem.me/assets/portfolio0.png" />
+  <meta name="twitter:creator" content="@omarsalem" />
+
+  <!-- Favicons & Icons -->
+  <link rel="icon" type="image/svg+xml" href="%PUBLIC_URL%/favicon.svg" />
+  <link rel="alternate icon" type="image/png" href="%PUBLIC_URL%/favicon.png" />
+  <link rel="apple-touch-icon" href="%PUBLIC_URL%/favicon.svg" />
+  <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+
+  <!-- Fonts & Styles -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=JetBrains+Mono:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400;1,600;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet" />
+
+  <!-- Structured Data / JSON-LD Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Omar Salem",
+    "jobTitle": "Senior Frontend Developer",
+    "url": "https://omarsalem.me/",
+    "image": "https://omarsalem.me/assets/man0.png",
+    "sameAs": [
+      "https://www.linkedin.com/in/omar-salem-166299238/",
+      "https://github.com/omarsalem7"
+    ],
+    "knowsAbout": [
+      "Angular",
+      "ABP Framework",
+      "React.js",
+      "Next.js",
+      "TypeScript",
+      "JavaScript",
+      "Esri GIS JS SDK",
+      "Tailwind CSS",
+      "PrimeNG",
+      "SCSS",
+      "REST APIs",
+      "Frontend Architecture",
+      "Web Performance Optimization"
+    ],
+    "description": "Senior Frontend Developer with 4+ years of engineering experience delivering enterprise web platforms for Saudi Ministry of Energy, UN COP16, and GEOSA Authority."
+  }
+  </script>
+
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #F4F6F0;
+      color: #485550;
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      overflow-x: hidden;
+      overflow-y: auto;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+  </style>
+</head>
+
+<body>
+  <noscript>You need to enable JavaScript to run this app.</noscript>
+  <div id="root"></div>
+</body>
+
 </html>
-
