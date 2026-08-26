@@ -9,6 +9,13 @@
   flex-direction: column;
   align-items: center;
   padding: 10px 24px 40px;
+  position: relative;
+
+  .testimonials-header,
+  .testimonials-grid {
+    position: relative;
+    z-index: 2;
+  }
 
   .testimonials-header {
     display: flex;
@@ -76,6 +83,11 @@
       gap: 16px;
     }
 
+    .testimonial-tilt-wrap {
+      border-radius: $radius-md;
+      height: 100%;
+    }
+
     .testimonial-card {
       background: $palette-white;
       backdrop-filter: blur(16px);
@@ -87,6 +99,7 @@
       flex-direction: column;
       justify-content: space-between;
       position: relative;
+      height: 100%;
       box-shadow: $shadow-sm;
       transition: all $transition-normal;
 

@@ -79,11 +79,11 @@ export default function SystemCanvas() {
     const dotGeometry = new THREE.BufferGeometry();
     dotGeometry.setAttribute(
       "position",
-      new THREE.Float32BufferAttribute(dotPositions, 3)
+      new THREE.Float32BufferAttribute(dotPositions, 3),
     );
     dotGeometry.setAttribute(
       "color",
-      new THREE.Float32BufferAttribute(dotColors, 3)
+      new THREE.Float32BufferAttribute(dotColors, 3),
     );
 
     const dotMaterial = new THREE.PointsMaterial({
@@ -105,12 +105,16 @@ export default function SystemCanvas() {
 
     // Equator and Latitude lines
     [-2.8, -1.4, 0, 1.4, 2.8].forEach((latY) => {
-      const ringRad = Math.sqrt(Math.max(0, sphereRadius * sphereRadius - latY * latY));
+      const ringRad = Math.sqrt(
+        Math.max(0, sphereRadius * sphereRadius - latY * latY),
+      );
       const ringGeo = new THREE.BufferGeometry();
       const ringPts = [];
       for (let j = 0; j <= 64; j++) {
         const a = (j / 64) * Math.PI * 2;
-        ringPts.push(new THREE.Vector3(Math.cos(a) * ringRad, latY, Math.sin(a) * ringRad));
+        ringPts.push(
+          new THREE.Vector3(Math.cos(a) * ringRad, latY, Math.sin(a) * ringRad),
+        );
       }
       ringGeo.setFromPoints(ringPts);
       const ring = new THREE.Line(ringGeo, latLineMat);
@@ -127,8 +131,8 @@ export default function SystemCanvas() {
           new THREE.Vector3(
             Math.sin(a) * sphereRadius,
             Math.cos(a) * sphereRadius,
-            0
-          )
+            0,
+          ),
         );
       }
       merGeo.setFromPoints(merPts);
@@ -138,7 +142,11 @@ export default function SystemCanvas() {
     });
 
     // 3c. Equatorial Tech Halo Ring
-    const haloGeo = new THREE.RingGeometry(sphereRadius + 0.9, sphereRadius + 1.15, 64);
+    const haloGeo = new THREE.RingGeometry(
+      sphereRadius + 0.9,
+      sphereRadius + 1.15,
+      64,
+    );
     haloGeo.rotateX(Math.PI / 2.3);
     const haloMat = new THREE.MeshBasicMaterial({
       color: 0xc0eb6a,
@@ -158,7 +166,9 @@ export default function SystemCanvas() {
 
       // Draw modern pill container
       const isLime = skill.color === "#C0EB6A";
-      ctx.fillStyle = isLime ? "rgba(192, 235, 106, 0.95)" : "rgba(72, 85, 80, 0.92)";
+      ctx.fillStyle = isLime
+        ? "rgba(192, 235, 106, 0.95)"
+        : "rgba(72, 85, 80, 0.92)";
       ctx.strokeStyle = "rgba(72, 85, 80, 0.25)";
       ctx.lineWidth = 4;
 
@@ -213,8 +223,13 @@ export default function SystemCanvas() {
       sprite.userData = { ...skill, basePos: new THREE.Vector3(x, y, z) };
 
       // Add a connecting line from the earth surface to the skill badge
-      const surfPoint = new THREE.Vector3(x, y, z).normalize().multiplyScalar(sphereRadius);
-      const lineGeo = new THREE.BufferGeometry().setFromPoints([surfPoint, new THREE.Vector3(x, y, z)]);
+      const surfPoint = new THREE.Vector3(x, y, z)
+        .normalize()
+        .multiplyScalar(sphereRadius);
+      const lineGeo = new THREE.BufferGeometry().setFromPoints([
+        surfPoint,
+        new THREE.Vector3(x, y, z),
+      ]);
       const lineMat = new THREE.LineBasicMaterial({
         color: skill.color === "#C0EB6A" ? 0xc0eb6a : 0x485550,
         transparent: true,
@@ -227,10 +242,39 @@ export default function SystemCanvas() {
       skillSprites.push(sprite);
     });
 
-    // ── 5. Mouse Drag & Pointer Interaction Setup ──
+    // ── 5. Mouse Drag & Global Parallax Tracking ──
     let isDragging = false;
     let previousMousePosition = { x: 0, y: 0 };
     const rotationVelocity = { x: 0.003, y: 0.005 };
+
+    // Global mouse & scroll parallax targets
+    let targetMouse = { x: 0, y: 0 };
+    let currentMouse = { x: 0, y: 0 };
+    let targetScroll = window.scrollY || 0;
+    let currentScroll = window.scrollY || 0;
+    let lastScroll = window.scrollY || 0;
+    let scrollDelta = 0;
+
+    const handleWindowMouseMove = (e) => {
+      const nx = (e.clientX / window.innerWidth) * 2 - 1;
+      const ny = (e.clientY / window.innerHeight) * 2 - 1;
+      targetMouse.x = nx;
+      targetMouse.y = ny;
+    };
+
+    const handleWindowScroll = () => {
+      const sy = window.scrollY;
+      targetScroll = sy;
+      scrollDelta = sy - lastScroll;
+      lastScroll = sy;
+    };
+
+    window.addEventListener("mousemove", handleWindowMouseMove, {
+      passive: true,
+    });
+    window.addEventListener("scroll", handleWindowScroll, {
+      passive: true,
+    });
 
     const handlePointerDown = (e) => {
       isDragging = true;
@@ -265,8 +309,12 @@ export default function SystemCanvas() {
     container.addEventListener("mousemove", handlePointerMove);
     window.addEventListener("mouseup", handlePointerUp);
 
-    container.addEventListener("touchstart", handlePointerDown, { passive: true });
-    container.addEventListener("touchmove", handlePointerMove, { passive: true });
+    container.addEventListener("touchstart", handlePointerDown, {
+      passive: true,
+    });
+    container.addEventListener("touchmove", handlePointerMove, {
+      passive: true,
+    });
     window.addEventListener("touchend", handlePointerUp);
 
     // ── 6. Resize & Intersection Observers ──
@@ -287,7 +335,7 @@ export default function SystemCanvas() {
       (entries) => {
         isVisible = entries[0].isIntersecting;
       },
-      { threshold: 0.1 }
+      { threshold: 0.1 },
     );
     intersectionObserver.observe(container);
 
@@ -300,14 +348,26 @@ export default function SystemCanvas() {
 
       const delta = clock.getDelta();
 
-      if (!isDragging) {
-        // Smooth continuous Earth rotation
-        globeGroup.rotation.y += 0.007 + rotationVelocity.y;
-        globeGroup.rotation.x += rotationVelocity.x;
+      // Smooth mouse & scroll parallax camera offset
+      currentMouse.x += (targetMouse.x - currentMouse.x) * 0.06;
+      currentMouse.y += (targetMouse.y - currentMouse.y) * 0.06;
+      currentScroll += (targetScroll - currentScroll) * 0.08;
 
-        // Dampen manual drag velocity
+      // Camera parallax: subtle tilt and vertical glide on scroll
+      camera.position.x = currentMouse.x * 2.2;
+      camera.position.y = -currentMouse.y * 1.6 + (currentScroll * 0.0035);
+      camera.position.z = 16 + (currentScroll * 0.004);
+      camera.lookAt(0, 0, 0);
+
+      if (!isDragging) {
+        // Smooth continuous Earth rotation + scroll rotation impulse
+        globeGroup.rotation.y += 0.007 + rotationVelocity.y + (scrollDelta * 0.002);
+        globeGroup.rotation.x = (currentScroll * 0.0008) + rotationVelocity.x;
+
+        // Dampen manual drag & scroll impulse velocity
         rotationVelocity.x *= 0.94;
         rotationVelocity.y *= 0.94;
+        scrollDelta *= 0.88;
       }
 
       // Rotate equatorial ring slowly on separate axis for dynamic motion
@@ -339,6 +399,8 @@ export default function SystemCanvas() {
       cancelAnimationFrame(animationFrameId);
       resizeObserver.disconnect();
       intersectionObserver.disconnect();
+      window.removeEventListener("mousemove", handleWindowMouseMove);
+      window.removeEventListener("scroll", handleWindowScroll);
       container.removeEventListener("mousedown", handlePointerDown);
       container.removeEventListener("mousemove", handlePointerMove);
       window.removeEventListener("mouseup", handlePointerUp);
@@ -358,7 +420,5 @@ export default function SystemCanvas() {
     };
   }, []);
 
-  return (
-    <div className="system-canvas-wrapper earth-pure" ref={mountRef} />
-  );
+  return <div className="system-canvas-wrapper earth-pure" ref={mountRef} />;
 }

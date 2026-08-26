@@ -9,6 +9,13 @@
   flex-direction: column;
   align-items: center;
   padding: 10px 24px 60px;
+  position: relative;
+
+  .portfolio-header,
+  .split-showcase-container {
+    position: relative;
+    z-index: 2;
+  }
 
   @include tablet {
     padding: 10px 16px 40px;

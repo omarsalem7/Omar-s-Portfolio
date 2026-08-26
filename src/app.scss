@@ -12,7 +12,15 @@
   @media (hover: hover) and (pointer: fine) {
     cursor: none;
 
-    a, button, input, textarea, select, [role="button"], .ledger-item, .pear-primary-cta, .pear-secondary-cta {
+    a,
+    button,
+    input,
+    textarea,
+    select,
+    [role="button"],
+    .ledger-item,
+    .pear-primary-cta,
+    .pear-secondary-cta {
       cursor: none;
     }
   }
@@ -35,12 +43,18 @@
 
         &-left {
           left: 5%;
-          @include tablet { left: 16px; }
+
+          @include tablet {
+            left: 16px;
+          }
         }
 
         &-right {
           right: 5%;
-          @include tablet { right: 16px; }
+
+          @include tablet {
+            right: 16px;
+          }
         }
       }
     }
@@ -164,9 +178,17 @@
 
 // ── Keyframe Animations ──
 @keyframes ambientDrift {
-  0% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(60px, 30px) scale(1.15); }
-  100% { transform: translate(-40px, -20px) scale(0.9); }
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate(60px, 30px) scale(1.15);
+  }
+
+  100% {
+    transform: translate(-40px, -20px) scale(0.9);
+  }
 }
 
 .anim-fade-up {

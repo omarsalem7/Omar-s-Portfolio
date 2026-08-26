@@ -7,14 +7,35 @@ import Testimonials from "./components/testimonials/Testimonials";
 import Contact from "./components/contact/Contact";
 import Menu from "./components/menu/Menu";
 import CustomCursor from "./components/cursor/CustomCursor";
+import FloatingDecorations from "./components/parallax/FloatingDecorations";
 import { FiArrowUp } from "react-icons/fi";
 import "./app.scss";
 
 const CHAPTERS = [
-  { id: "intro", label: "The Discipline", shortLabel: "Home", chapter: "Ch. 1" },
-  { id: "portfolio", label: "Selected Works", shortLabel: "Projects", chapter: "Ch. 2" },
-  { id: "works", label: "The Journey", shortLabel: "Journey", chapter: "Ch. 3" },
-  { id: "testimonials", label: "The Word", shortLabel: "Testimonials", chapter: "Ch. 4" },
+  {
+    id: "intro",
+    label: "The Discipline",
+    shortLabel: "Home",
+    chapter: "Ch. 1",
+  },
+  {
+    id: "portfolio",
+    label: "Selected Works",
+    shortLabel: "Projects",
+    chapter: "Ch. 2",
+  },
+  {
+    id: "works",
+    label: "The Journey",
+    shortLabel: "Journey",
+    chapter: "Ch. 3",
+  },
+  {
+    id: "testimonials",
+    label: "The Word",
+    shortLabel: "Testimonials",
+    chapter: "Ch. 4",
+  },
   { id: "contact", label: "Inquiry", shortLabel: "Contact", chapter: "Ch. 5" },
 ];
 
@@ -36,7 +57,8 @@ function App() {
     const element = document.getElementById(targetId);
     if (element) {
       const yOffset = -70;
-      const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      const y =
+        element.getBoundingClientRect().top + window.pageYOffset + yOffset;
       window.scrollTo({ top: y, behavior: "smooth" });
     }
     setCurrentSlide(targetIndex);
@@ -49,19 +71,19 @@ function App() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const scrollY = window.scrollY;
+      const currentScroll = window.scrollY;
       // Sticky navbar appearance trigger
-      setIsScrolled(scrollY > 45);
+      setIsScrolled(currentScroll > 45);
 
       // Show scroll-to-top button after scrolling past 280px
-      if (scrollY > 280) {
+      if (currentScroll > 280) {
         setShowScrollTop(true);
       } else {
         setShowScrollTop(false);
       }
 
       // Track active section for Topbar and Menu
-      const scrollPosition = scrollY + 160;
+      const scrollPosition = currentScroll + 160;
       const sectionElements = CHAPTERS.map((ch) =>
         document.getElementById(ch.id)
       );
@@ -87,6 +109,9 @@ function App() {
     <div className="app pear-theme">
       {/* Precision Fluid Architectural Cursor */}
       <CustomCursor />
+
+      {/* Floating Parallax Architectural Tokens */}
+      <FloatingDecorations />
 
       {/* Architectural Background Grid */}
       <div className="architectural-grid">

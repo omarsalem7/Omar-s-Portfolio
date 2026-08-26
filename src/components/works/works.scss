@@ -9,6 +9,15 @@
   flex-direction: column;
   align-items: center;
   padding: 10px 24px 40px;
+  position: relative;
+
+  .journey-header,
+  .timeline-container,
+  .skills-matrix-deck,
+  .certifications-deck {
+    position: relative;
+    z-index: 2;
+  }
 
   .journey-header {
     display: flex;
@@ -133,6 +142,10 @@
 
         &:nth-child(odd) {
           transform: rotate(180deg);
+
+          @include mobile {
+            transform: rotate(0deg);
+          }
 
         }
       }
@@ -314,6 +327,11 @@
       gap: 14px;
     }
 
+    .skill-cat-tilt-wrap {
+      border-radius: $radius-md;
+      height: 100%;
+    }
+
     .skill-category-card {
       background: $palette-white;
       backdrop-filter: blur(16px);
@@ -323,6 +341,7 @@
       padding: 22px 24px;
       position: relative;
       box-shadow: $shadow-sm;
+      height: 100%;
       transition: all $transition-normal;
 
       .cat-card-header {
@@ -483,6 +502,11 @@
       grid-template-columns: 1fr;
     }
 
+    .cert-card-tilt-wrap {
+      border-radius: $radius-md;
+      height: 100%;
+    }
+
     .cert-card {
       background: $palette-white;
       backdrop-filter: blur(16px);
@@ -493,6 +517,7 @@
       position: relative;
       display: flex;
       flex-direction: column;
+      height: 100%;
       box-shadow: $shadow-sm;
       transition: all $transition-normal;
 

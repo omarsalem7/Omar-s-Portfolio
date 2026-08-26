@@ -1,5 +1,6 @@
 import { FaLinkedin, FaStar, FaQuoteLeft } from "react-icons/fa";
 import { FiMessageSquare } from "react-icons/fi";
+import TiltCard from "../parallax/TiltCard";
 import "./testimonials.scss";
 
 export default function Testimonials() {
@@ -53,58 +54,66 @@ export default function Testimonials() {
       {/* Pear Style 3D Testimonials Grid */}
       <div className="testimonials-grid anim-fade-up d-2">
         {testimonials.map((d) => (
-          <div className="testimonial-card" key={d.id}>
-            <div className="card-top">
-              <div className="rating-stars">
-                {[...Array(5)].map((_, i) => (
-                  <FaStar key={i} className="star-icon" />
-                ))}
+          <TiltCard
+            maxTilt={7}
+            scale={1.02}
+            glare={true}
+            className="testimonial-tilt-wrap"
+            key={d.id}
+          >
+            <div className="testimonial-card">
+              <div className="card-top">
+                <div className="rating-stars">
+                  {[...Array(5)].map((_, i) => (
+                    <FaStar key={i} className="star-icon" />
+                  ))}
+                </div>
+                <FaQuoteLeft className="quote-watermark" />
               </div>
-              <FaQuoteLeft className="quote-watermark" />
+
+              <p className="quote-text">&ldquo;{d.desc}&rdquo;</p>
+
+              <div className="author-row">
+                <div className="avatar-wrap">
+                  <img
+                    src={d.img}
+                    alt={`${d.name} — ${d.title}`}
+                    loading="lazy"
+                    width="52"
+                    height="52"
+                    onError={(e) => {
+                      e.target.onerror = null;
+                      e.target.src = "assets/man.png";
+                    }}
+                  />
+                </div>
+
+                <div className="author-meta">
+                  <h4 className="author-name">{d.name}</h4>
+                  <span className="author-title">
+                    {d.title} &bull; {d.company}
+                  </span>
+                </div>
+
+                {d.linkedin && (
+                  <a
+                    href={d.linkedin}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="linkedin-badge"
+                    title="Verified Recommendation on LinkedIn"
+                    aria-label="Verified LinkedIn Profile"
+                  >
+                    <FaLinkedin />
+                    <span className="verified-spark">✦</span>
+                  </a>
+                )}
+              </div>
+
+              {/* Corner Crosshair */}
+              <span className="card-crosshair">✦</span>
             </div>
-
-            <p className="quote-text">&ldquo;{d.desc}&rdquo;</p>
-
-            <div className="author-row">
-              <div className="avatar-wrap">
-                <img
-                  src={d.img}
-                  alt={`${d.name} — ${d.title}`}
-                  loading="lazy"
-                  width="52"
-                  height="52"
-                  onError={(e) => {
-                    e.target.onerror = null;
-                    e.target.src = "assets/man.png";
-                  }}
-                />
-              </div>
-
-              <div className="author-meta">
-                <h4 className="author-name">{d.name}</h4>
-                <span className="author-title">
-                  {d.title} &bull; {d.company}
-                </span>
-              </div>
-
-              {d.linkedin && (
-                <a
-                  href={d.linkedin}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="linkedin-badge"
-                  title="Verified Recommendation on LinkedIn"
-                  aria-label="Verified LinkedIn Profile"
-                >
-                  <FaLinkedin />
-                  <span className="verified-spark">✦</span>
-                </a>
-              )}
-            </div>
-
-            {/* Corner Crosshair */}
-            <span className="card-crosshair">✦</span>
-          </div>
+          </TiltCard>
         ))}
       </div>
     </div>

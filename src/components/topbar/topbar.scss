@@ -16,14 +16,14 @@
   box-shadow: none;
   // Refined, subtle, low-intensity transition
   transition: width 0.22s cubic-bezier(0.16, 1, 0.3, 1),
-              top 0.22s cubic-bezier(0.16, 1, 0.3, 1),
-              height 0.22s cubic-bezier(0.16, 1, 0.3, 1),
-              background-color 0.2s ease,
-              border-radius 0.2s ease,
-              border-color 0.2s ease,
-              box-shadow 0.2s ease,
-              backdrop-filter 0.2s ease,
-              -webkit-backdrop-filter 0.2s ease;
+    top 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+    height 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+    background-color 0.2s ease,
+    border-radius 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    backdrop-filter 0.2s ease,
+    -webkit-backdrop-filter 0.2s ease;
 
   // ──────────────────────────────────────────
   // AT-TOP FULL-WIDTH EDITORIAL MODE
@@ -51,6 +51,7 @@
       display: flex;
       align-items: center;
       gap: 16px;
+      transition: opacity 0.2s ease;
 
       .logo-btn {
         background: transparent;
@@ -325,9 +326,11 @@
             transform: translateY(5.5px) rotate(45deg);
             background-color: $palette-slate;
           }
+
           .line2 {
             opacity: 0;
           }
+
           .line3 {
             transform: translateY(-5.5px) rotate(-45deg);
             background-color: $palette-slate;
@@ -378,6 +381,7 @@
     .left {
       display: flex;
       align-items: center;
+      transition: opacity 0.2s ease;
 
       .logo-btn {
         background: transparent;
@@ -458,6 +462,7 @@
         }
 
         &:hover {
+
           .nav-num,
           .nav-text {
             color: $palette-slate;
@@ -577,14 +582,29 @@
             transform: translateY(5px) rotate(45deg);
             background-color: $palette-slate;
           }
+
           .line2 {
             opacity: 0;
           }
+
           .line3 {
             transform: translateY(-5px) rotate(-45deg);
             background-color: $palette-slate;
           }
         }
+      }
+    }
+  }
+
+  // ──────────────────────────────────────────
+  // WHEN MENU IS OPEN ON MOBILE: FADE OUT LEFT LOGO/NAME
+  // ──────────────────────────────────────────
+  &.active {
+    .left {
+      @include mobile {
+        opacity: 0;
+        pointer-events: none;
+        visibility: hidden;
       }
     }
   }

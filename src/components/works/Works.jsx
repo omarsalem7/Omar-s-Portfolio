@@ -4,20 +4,27 @@ import {
   VerticalTimelineElement,
 } from "react-vertical-timeline-component";
 import "react-vertical-timeline-component/style.min.css";
-import { 
-  FaUserGraduate, 
-  FaBriefcase, 
-  FaLaptopCode, 
-  FaAward, 
-  FaCode, 
+import {
+  FaUserGraduate,
+  FaBriefcase,
+  FaLaptopCode,
+  FaAward,
+  FaCode,
   FaLayerGroup,
   FaBolt,
   FaGlobeAmericas,
   FaServer,
-  FaTools
+  FaTools,
 } from "react-icons/fa";
-import { FiCheckCircle, FiCompass, FiExternalLink, FiCpu, FiShield } from "react-icons/fi";
+import {
+  FiCheckCircle,
+  FiCompass,
+  FiExternalLink,
+  FiCpu,
+  FiShield,
+} from "react-icons/fi";
 import { skillsCategories, certificationsData } from "../../data";
+import TiltCard from "../parallax/TiltCard";
 import "./works.scss";
 
 export default function Works() {
@@ -25,13 +32,20 @@ export default function Works() {
 
   const getSkillIcon = (iconName) => {
     switch (iconName) {
-      case "code": return <FaCode />;
-      case "design": return <FaLayerGroup />;
-      case "speed": return <FaBolt />;
-      case "geo": return <FaGlobeAmericas />;
-      case "server": return <FaServer />;
-      case "tools": return <FaTools />;
-      default: return <FiCpu />;
+      case "code":
+        return <FaCode />;
+      case "design":
+        return <FaLayerGroup />;
+      case "speed":
+        return <FaBolt />;
+      case "geo":
+        return <FaGlobeAmericas />;
+      case "server":
+        return <FaServer />;
+      case "tools":
+        return <FaTools />;
+      default:
+        return <FiCpu />;
     }
   };
 
@@ -45,27 +59,28 @@ export default function Works() {
         </div>
         <h2 className="section-title">Experience, Skills &amp; Credentials</h2>
         <p className="section-desc">
-          4+ years delivering enterprise government and commercial software systems, 
-          leading frontend architecture, geospatial solutions, and mentoring engineers.
+          4+ years delivering enterprise government and commercial software
+          systems, leading frontend architecture, geospatial solutions, and
+          mentoring engineers.
         </p>
 
         {/* View Switcher Tabs */}
         <div className="journey-tabs-deck">
-          <button 
+          <button
             className={`journey-tab-btn ${activeTab === "timeline" ? "active" : ""}`}
             onClick={() => setActiveTab("timeline")}
           >
             <FaBriefcase className="tab-icon" />
             <span>Career Timeline</span>
           </button>
-          <button 
+          <button
             className={`journey-tab-btn ${activeTab === "skills" ? "active" : ""}`}
             onClick={() => setActiveTab("skills")}
           >
             <FiCpu className="tab-icon" />
             <span>Skills Matrix</span>
           </button>
-          <button 
+          <button
             className={`journey-tab-btn ${activeTab === "certifications" ? "active" : ""}`}
             onClick={() => setActiveTab("certifications")}
           >
@@ -79,7 +94,6 @@ export default function Works() {
       {activeTab === "timeline" && (
         <div className="timeline-container anim-fade-up d-2">
           <VerticalTimeline lineColor="rgba(72, 85, 80, 0.15)">
-            
             {/* 1. Tec Solution Group */}
             <VerticalTimelineElement
               className="vertical-timeline-element--work timeline-card"
@@ -106,7 +120,9 @@ export default function Works() {
             >
               <div className="timeline-card-header">
                 <div className="header-meta-row">
-                  <span className="role-chip active-role">Current Position</span>
+                  <span className="role-chip active-role">
+                    Current Position
+                  </span>
                   <span className="location-chip">Riyadh, Saudi Arabia</span>
                 </div>
                 <h3 className="timeline-title">Senior Frontend Developer</h3>
@@ -116,19 +132,36 @@ export default function Works() {
               <ul className="timeline-points">
                 <li>
                   <FiCheckCircle className="point-icon" />
-                  <span>Developed scalable Angular applications using the Angular ABP Framework for high-profile clients including the <strong>Ministry of Energy</strong>, <strong>GEOSA</strong>, and <strong>NCVC</strong>.</span>
+                  <span>
+                    Developed scalable Angular applications using the Angular
+                    ABP Framework for high-profile clients including the{" "}
+                    <strong>Ministry of Energy</strong>, <strong>GEOSA</strong>,
+                    and <strong>NCVC</strong>.
+                  </span>
                 </li>
                 <li>
                   <FiCheckCircle className="point-icon" />
-                  <span>Integrated <strong>Esri JavaScript SDK</strong> to implement advanced geospatial tracking and mapping solutions, improving data visualization and strategic decision-making.</span>
+                  <span>
+                    Integrated <strong>Esri JavaScript SDK</strong> to implement
+                    advanced geospatial tracking and mapping solutions,
+                    improving data visualization and strategic decision-making.
+                  </span>
                 </li>
                 <li>
                   <FiCheckCircle className="point-icon" />
-                  <span>Optimized application performance, <strong>reducing load time by 30%</strong> through lazy loading, modular architecture, and code splitting.</span>
+                  <span>
+                    Optimized application performance,{" "}
+                    <strong>reducing load time by 30%</strong> through lazy
+                    loading, modular architecture, and code splitting.
+                  </span>
                 </li>
                 <li>
                   <FiCheckCircle className="point-icon" />
-                  <span>Worked closely with cross-functional teams to design and implement inclusive, responsive interfaces, improving accessibility compliance and user engagement metrics.</span>
+                  <span>
+                    Worked closely with cross-functional teams to design and
+                    implement inclusive, responsive interfaces, improving
+                    accessibility compliance and user engagement metrics.
+                  </span>
                 </li>
               </ul>
 
@@ -180,19 +213,34 @@ export default function Works() {
               <ul className="timeline-points">
                 <li>
                   <FiCheckCircle className="point-icon" />
-                  <span>Developed scalable React applications using Redux, Tailwind CSS, and Material UI, boosting maintainability and user experience.</span>
+                  <span>
+                    Developed scalable React applications using Redux, Tailwind
+                    CSS, and Material UI, boosting maintainability and user
+                    experience.
+                  </span>
                 </li>
                 <li>
                   <FiCheckCircle className="point-icon" />
-                  <span>Optimized application performance, <strong>reducing load times by 20%</strong> through code optimization, lazy loading, and rigorous Jest testing suites.</span>
+                  <span>
+                    Optimized application performance,{" "}
+                    <strong>reducing load times by 20%</strong> through code
+                    optimization, lazy loading, and rigorous Jest testing
+                    suites.
+                  </span>
                 </li>
                 <li>
                   <FiCheckCircle className="point-icon" />
-                  <span>Implemented CI/CD pipelines with GitHub Actions and enforced code quality via automated testing and linting.</span>
+                  <span>
+                    Implemented CI/CD pipelines with GitHub Actions and enforced
+                    code quality via automated testing and linting.
+                  </span>
                 </li>
                 <li>
                   <FiCheckCircle className="point-icon" />
-                  <span>Collaborated with designers and backend engineers to deliver responsive, accessible, and high-quality front-end features.</span>
+                  <span>
+                    Collaborated with designers and backend engineers to deliver
+                    responsive, accessible, and high-quality front-end features.
+                  </span>
                 </li>
               </ul>
 
@@ -236,26 +284,42 @@ export default function Works() {
                   <span className="role-chip">Mentorship &amp; QA</span>
                   <span className="location-chip">Remotely &bull; US</span>
                 </div>
-                <h3 className="timeline-title">Frontend Developer &amp; Mentor</h3>
+                <h3 className="timeline-title">
+                  Frontend Developer &amp; Mentor
+                </h3>
                 <h4 className="timeline-org">Microverse</h4>
               </div>
 
               <ul className="timeline-points">
                 <li>
                   <FiCheckCircle className="point-icon" />
-                  <span>Reviewed <strong>200+ student projects</strong> in React, HTML, Ruby, and Rails, providing actionable feedback to improve code quality and maintainability.</span>
+                  <span>
+                    Reviewed <strong>200+ student projects</strong> in React,
+                    HTML, Ruby, and Rails, providing actionable feedback to
+                    improve code quality and maintainability.
+                  </span>
                 </li>
                 <li>
                   <FiCheckCircle className="point-icon" />
-                  <span>Mentored developers on debugging, optimization, and clean code principles, accelerating skill development.</span>
+                  <span>
+                    Mentored developers on debugging, optimization, and clean
+                    code principles, accelerating skill development.
+                  </span>
                 </li>
                 <li>
                   <FiCheckCircle className="point-icon" />
-                  <span>Prototyped in Figma, ran quick user checks, and tightened copy/states to reduce friction in user journeys.</span>
+                  <span>
+                    Prototyped in Figma, ran quick user checks, and tightened
+                    copy/states to reduce friction in user journeys.
+                  </span>
                 </li>
                 <li>
                   <FiCheckCircle className="point-icon" />
-                  <span>Enforced industry standards and robustness, helping developers deliver scalable and production-ready applications.</span>
+                  <span>
+                    Enforced industry standards and robustness, helping
+                    developers deliver scalable and production-ready
+                    applications.
+                  </span>
                 </li>
               </ul>
 
@@ -304,15 +368,24 @@ export default function Works() {
               <ul className="timeline-points">
                 <li>
                   <FiCheckCircle className="point-icon" />
-                  <span>Collaborated in a cross-functional Agile team to design, develop, and ship a production MVP product.</span>
+                  <span>
+                    Collaborated in a cross-functional Agile team to design,
+                    develop, and ship a production MVP product.
+                  </span>
                 </li>
                 <li>
                   <FiCheckCircle className="point-icon" />
-                  <span>Participated in code reviews, testing, and iterative improvements in production-level workflows.</span>
+                  <span>
+                    Participated in code reviews, testing, and iterative
+                    improvements in production-level workflows.
+                  </span>
                 </li>
                 <li>
                   <FiCheckCircle className="point-icon" />
-                  <span>Implemented user-facing features using modern frontend frameworks, ensuring clean, reusable, and efficient code.</span>
+                  <span>
+                    Implemented user-facing features using modern frontend
+                    frameworks, ensuring clean, reusable, and efficient code.
+                  </span>
                 </li>
               </ul>
 
@@ -353,13 +426,17 @@ export default function Works() {
                   <span className="role-chip">Professional Program</span>
                   <span className="location-chip">Remotely &bull; US</span>
                 </div>
-                <h3 className="timeline-title">Full Stack Web Development Program</h3>
+                <h3 className="timeline-title">
+                  Full Stack Web Development Program
+                </h3>
                 <h4 className="timeline-org">Microverse</h4>
               </div>
 
               <p className="degree-desc">
-                Completed <strong>1300+ hours</strong> of full-stack engineering mastering React, Redux, Rails, and JavaScript. 
-                Gained deep hands-on expertise in remote pair programming, Git flow, and cross-cultural Agile teamwork.
+                Completed <strong>1300+ hours</strong> of full-stack engineering
+                mastering React, Redux, Rails, and JavaScript. Gained deep
+                hands-on expertise in remote pair programming, Git flow, and
+                cross-cultural Agile teamwork.
               </p>
 
               <div className="timeline-tech-stack">
@@ -398,22 +475,29 @@ export default function Works() {
               <div className="timeline-card-header">
                 <div className="header-meta-row">
                   <span className="role-chip">Engineering Foundation</span>
-                  <span className="location-chip">Cairo, Egypt &bull; GPA 3/4</span>
+                  <span className="location-chip">
+                    Cairo, Egypt &bull; GPA 3/4
+                  </span>
                 </div>
-                <h3 className="timeline-title">Bachelor of Engineering, Computer &amp; Systems</h3>
+                <h3 className="timeline-title">
+                  Bachelor of Engineering, Computer &amp; Systems
+                </h3>
                 <h4 className="timeline-org">Ain Shams University</h4>
               </div>
 
               <p className="degree-desc">
-                Graduated from a top-ranked engineering program with a strong focus on software engineering principles, 
-                systems architecture, and algorithmic design.
+                Graduated from a top-ranked engineering program with a strong
+                focus on software engineering principles, systems architecture,
+                and algorithmic design.
               </p>
 
               <div className="coursework-box">
                 <span className="cw-label">Key Coursework:</span>
                 <p className="cw-list">
-                  Data Structures, Algorithms, Object-Oriented Programming (OOP), Agile Software Development, 
-                  Software Project Management, Database Systems, Computer Networks, Security, and Systems Design.
+                  Data Structures, Algorithms, Object-Oriented Programming
+                  (OOP), Agile Software Development, Software Project
+                  Management, Database Systems, Computer Networks, Security, and
+                  Systems Design.
                 </p>
               </div>
 
@@ -425,7 +509,6 @@ export default function Works() {
                 <span className="tech-pill">Networking &amp; Security</span>
               </div>
             </VerticalTimelineElement>
-
           </VerticalTimeline>
         </div>
       )}
@@ -434,24 +517,30 @@ export default function Works() {
       {activeTab === "skills" && (
         <div className="skills-matrix-deck anim-fade-up d-2">
           {skillsCategories.map((cat, idx) => (
-            <div className="skill-category-card" key={idx}>
-              <div className="cat-card-header">
-                <div className="cat-icon-wrap">
-                  {getSkillIcon(cat.icon)}
+            <TiltCard
+              maxTilt={7}
+              scale={1.02}
+              glare={true}
+              className="skill-cat-tilt-wrap"
+              key={idx}
+            >
+              <div className="skill-category-card">
+                <div className="cat-card-header">
+                  <div className="cat-icon-wrap">{getSkillIcon(cat.icon)}</div>
+                  <h3 className="cat-title">{cat.category}</h3>
+                  <span className="cat-crosshair">✦</span>
                 </div>
-                <h3 className="cat-title">{cat.category}</h3>
-                <span className="cat-crosshair">✦</span>
-              </div>
 
-              <div className="cat-skills-pills">
-                {cat.skills.map((skill, sIdx) => (
-                  <div className="skill-item" key={sIdx}>
-                    <span className="dot">&bull;</span>
-                    <span className="name">{skill}</span>
-                  </div>
-                ))}
+                <div className="cat-skills-pills">
+                  {cat.skills.map((skill, sIdx) => (
+                    <div className="skill-item" key={sIdx}>
+                      <span className="dot">&bull;</span>
+                      <span className="name">{skill}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
-            </div>
+            </TiltCard>
           ))}
 
           {/* Language Proficiency Banner */}
@@ -463,11 +552,15 @@ export default function Works() {
             <div className="lang-items">
               <div className="lang-box">
                 <span className="lang-name">English</span>
-                <span className="lang-level">Full Professional Proficiency</span>
+                <span className="lang-level">
+                  Full Professional Proficiency
+                </span>
               </div>
               <div className="lang-box">
                 <span className="lang-name">Arabic</span>
-                <span className="lang-level">Native / Bilingual Proficiency</span>
+                <span className="lang-level">
+                  Native / Bilingual Proficiency
+                </span>
               </div>
             </div>
           </div>
@@ -478,41 +571,50 @@ export default function Works() {
       {activeTab === "certifications" && (
         <div className="certifications-deck anim-fade-up d-2">
           {certificationsData.map((cert) => (
-            <div className="cert-card" key={cert.id}>
-              <div className="cert-top">
-                <span className="cert-badge">{cert.badge}</span>
-                <span className="cert-date">{cert.date}</span>
+            <TiltCard
+              maxTilt={6}
+              scale={1.02}
+              glare={true}
+              className="cert-card-tilt-wrap"
+              key={cert.id}
+            >
+              <div className="cert-card">
+                <div className="cert-top">
+                  <span className="cert-badge">{cert.badge}</span>
+                  <span className="cert-date">{cert.date}</span>
+                </div>
+
+                <h3 className="cert-title">{cert.title}</h3>
+                <h4 className="cert-issuer">
+                  {cert.issuer} &bull; {cert.hours}
+                </h4>
+
+                <p className="cert-desc">{cert.desc}</p>
+
+                <div className="cert-footer">
+                  {cert.link ? (
+                    <a
+                      href={cert.link}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="cert-verify-link"
+                    >
+                      <span>Verify Credential</span>
+                      <FiExternalLink />
+                    </a>
+                  ) : (
+                    <span className="cert-verified-tag">
+                      <FiCheckCircle className="icon" /> Verified Completion
+                    </span>
+                  )}
+                </div>
+
+                <span className="cert-crosshair">✦</span>
               </div>
-
-              <h3 className="cert-title">{cert.title}</h3>
-              <h4 className="cert-issuer">{cert.issuer} &bull; {cert.hours}</h4>
-
-              <p className="cert-desc">{cert.desc}</p>
-
-              <div className="cert-footer">
-                {cert.link ? (
-                  <a 
-                    href={cert.link} 
-                    target="_blank" 
-                    rel="noreferrer" 
-                    className="cert-verify-link"
-                  >
-                    <span>Verify Credential</span>
-                    <FiExternalLink />
-                  </a>
-                ) : (
-                  <span className="cert-verified-tag">
-                    <FiCheckCircle className="icon" /> Verified Completion
-                  </span>
-                )}
-              </div>
-
-              <span className="cert-crosshair">✦</span>
-            </div>
+            </TiltCard>
           ))}
         </div>
       )}
-
     </div>
   );
 }

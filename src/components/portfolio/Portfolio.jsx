@@ -7,6 +7,7 @@ import {
   FiChevronLeft,
   FiArrowUpRight,
 } from "react-icons/fi";
+import TiltCard from "../parallax/TiltCard";
 import "./portfolio.scss";
 import { featuredPortfolio } from "../../data";
 
@@ -24,7 +25,7 @@ export default function Portfolio() {
 
   const handlePrev = () => {
     setActiveIdx(
-      (prev) => (prev - 1 + ALL_PROJECTS.length) % ALL_PROJECTS.length
+      (prev) => (prev - 1 + ALL_PROJECTS.length) % ALL_PROJECTS.length,
     );
   };
 
@@ -40,8 +41,9 @@ export default function Portfolio() {
         </div>
         <h2 className="section-title">Architected for Speed &amp; Scale</h2>
         <p className="section-desc">
-          Interactive showcase of high-impact government platforms, international
-          conference portals, and enterprise geospatial applications.
+          Interactive showcase of high-impact government platforms,
+          international conference portals, and enterprise geospatial
+          applications.
         </p>
       </div>
 
@@ -99,184 +101,193 @@ export default function Portfolio() {
           </div>
         </aside>
 
-        {/* Right Column: Dynamic Stage Canvas */}
+        {/* Right Column: Dynamic Stage Canvas with 3D Tilt */}
         <main className="showcase-stage">
-          <article className="stage-card">
-            {/* Mockup Browser Window Chrome */}
-            <div className="stage-chrome">
-              <div className="traffic-dots">
-                <span className="dot red" />
-                <span className="dot yellow" />
-                <span className="dot green" />
+          <TiltCard
+            maxTilt={1.3}
+            scale={1.01}
+            glare={true}
+            className="stage-card-tilt-wrap"
+          >
+            <article className="stage-card">
+              {/* Mockup Browser Window Chrome */}
+              <div className="stage-chrome">
+                <div className="traffic-dots">
+                  <span className="dot red" />
+                  <span className="dot yellow" />
+                  <span className="dot green" />
+                </div>
+
+                <div className="omnibar">
+                  <FiLock className="lock-icon" />
+                  <span className="domain-text">
+                    {activeProject.domain || "internal.gov.sa"}
+                  </span>
+                </div>
+
+                <div className="stage-progress">
+                  <span>
+                    0{safeIdx + 1} / 0{ALL_PROJECTS.length}
+                  </span>
+                </div>
               </div>
 
-              <div className="omnibar">
-                <FiLock className="lock-icon" />
-                <span className="domain-text">
-                  {activeProject.domain || "internal.gov.sa"}
-                </span>
-              </div>
+              {/* Visual Preview Frame */}
+              <div
+                className={`stage-visual ${
+                  activeProject.isLogo ? "blueprint-mode" : "screenshot-mode"
+                }`}
+              >
+                {activeProject.isLogo ? (
+                  <div className="blueprint-canvas">
+                    <div className="blueprint-grid-lines" />
+                    <div className="corner-tag tl">✦ SYSTEM ARCHITECTURE</div>
+                    <div className="corner-tag br">SECURE GOV PORTAL</div>
 
-              <div className="stage-progress">
-                <span>
-                  0{safeIdx + 1} / 0{ALL_PROJECTS.length}
-                </span>
-              </div>
-            </div>
+                    <div
+                      className={`logo-halo-wrap ${
+                        activeProject.logoBg === "light"
+                          ? "light-halo"
+                          : "dark-halo"
+                      }`}
+                    >
+                      <img
+                        src={activeProject.img}
+                        alt={activeProject.title}
+                        className="blueprint-logo"
+                        loading="lazy"
+                        onError={(e) => {
+                          e.target.onerror = null;
+                          e.target.src = "assets/portfolio0.png";
+                        }}
+                      />
+                    </div>
 
-            {/* Visual Preview Frame */}
-            <div
-              className={`stage-visual ${
-                activeProject.isLogo ? "blueprint-mode" : "screenshot-mode"
-              }`}
-            >
-              {activeProject.isLogo ? (
-                <div className="blueprint-canvas">
-                  <div className="blueprint-grid-lines" />
-                  <div className="corner-tag tl">✦ SYSTEM ARCHITECTURE</div>
-                  <div className="corner-tag br">SECURE GOV PORTAL</div>
-
-                  <div
-                    className={`logo-halo-wrap ${
-                      activeProject.logoBg === "light"
-                        ? "light-halo"
-                        : "dark-halo"
-                    }`}
-                  >
+                    <div className="blueprint-watermark">
+                      <span>ENTERPRISE TELEMETRY &bull; RIYADH</span>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="screenshot-canvas">
                     <img
                       src={activeProject.img}
                       alt={activeProject.title}
-                      className="blueprint-logo"
+                      className="screenshot-img"
                       loading="lazy"
                       onError={(e) => {
                         e.target.onerror = null;
                         e.target.src = "assets/portfolio0.png";
                       }}
                     />
+                    <div className="screenshot-overlay-glow" />
                   </div>
+                )}
 
-                  <div className="blueprint-watermark">
-                    <span>ENTERPRISE TELEMETRY &bull; RIYADH</span>
-                  </div>
-                </div>
-              ) : (
-                <div className="screenshot-canvas">
-                  <img
-                    src={activeProject.img}
-                    alt={activeProject.title}
-                    className="screenshot-img"
-                    loading="lazy"
-                    onError={(e) => {
-                      e.target.onerror = null;
-                      e.target.src = "assets/portfolio0.png";
-                    }}
-                  />
-                  <div className="screenshot-overlay-glow" />
-                </div>
-              )}
-
-              {/* Floating Badges over Media */}
-              <div className="media-badges">
-                <span className="role-pill">
-                  <span className="spark">✦</span> {activeProject.role}
-                </span>
-                <span className="status-pill">
-                  {activeProject.isInternal ? "Internal Platform" : "Live in Production"}
-                </span>
-              </div>
-            </div>
-
-            {/* Stage Body Content */}
-            <div className="stage-body">
-              <div className="stage-meta">
-                <span className="client-subtitle">
-                  {activeProject.subtitle}
-                </span>
-                <h3 className="stage-title">{activeProject.title}</h3>
-                <p className="stage-desc">{activeProject.desc}</p>
-              </div>
-
-              {/* Key Architectural Highlights */}
-              {activeProject.highlights && (
-                <div className="stage-highlights">
-                  <div className="hl-header">
-                    <span>KEY ARCHITECTURAL DELIVERABLES</span>
-                  </div>
-                  <ul className="hl-list">
-                    {activeProject.highlights.map((hl, hIdx) => (
-                      <li className="hl-item" key={hIdx}>
-                        <span className="hl-spark">✦</span>
-                        <span className="hl-text">{hl}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-
-              {/* Tech Stack Pills */}
-              <div className="stage-tech-tags">
-                {activeProject.tags?.map((tag, tIdx) => (
-                  <span className="tech-pill" key={tIdx}>
-                    {tag}
+                {/* Floating Badges over Media */}
+                <div className="media-badges">
+                  <span className="role-pill">
+                    <span className="spark">✦</span> {activeProject.role}
                   </span>
-                ))}
+                  <span className="status-pill">
+                    {activeProject.isInternal
+                      ? "Internal Platform"
+                      : "Live in Production"}
+                  </span>
+                </div>
               </div>
 
-              {/* Footer Actions & Stage Navigator */}
-              <div className="stage-footer">
-                <div className="action-links">
-                  {liveUrl ? (
-                    <a
-                      href={liveUrl}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="btn-launch-live"
-                    >
-                      <span>Open Live Platform</span>
-                      <FiArrowUpRight className="icon" />
-                    </a>
-                  ) : activeProject.isInternal ? (
-                    <div className="badge-internal-gov">
-                      <FiLock className="icon" />
-                      <span>Government Internal System</span>
+              {/* Stage Body Content */}
+              <div className="stage-body">
+                <div className="stage-meta">
+                  <span className="client-subtitle">
+                    {activeProject.subtitle}
+                  </span>
+                  <h3 className="stage-title">{activeProject.title}</h3>
+                  <p className="stage-desc">{activeProject.desc}</p>
+                </div>
+
+                {/* Key Architectural Highlights */}
+                {activeProject.highlights && (
+                  <div className="stage-highlights">
+                    <div className="hl-header">
+                      <span>KEY ARCHITECTURAL DELIVERABLES</span>
                     </div>
-                  ) : null}
+                    <ul className="hl-list">
+                      {activeProject.highlights.map((hl, hIdx) => (
+                        <li className="hl-item" key={hIdx}>
+                          <span className="hl-spark">✦</span>
+                          <span className="hl-text">{hl}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
 
-                  {activeProject.github && (
-                    <a
-                      href={activeProject.github}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="btn-repo"
-                      title="View GitHub Repository"
-                    >
-                      <FiGithub className="icon" />
-                      <span>Source</span>
-                    </a>
-                  )}
+                {/* Tech Stack Pills */}
+                <div className="stage-tech-tags">
+                  {activeProject.tags?.map((tag, tIdx) => (
+                    <span className="tech-pill" key={tIdx}>
+                      {tag}
+                    </span>
+                  ))}
                 </div>
 
-                <div className="stage-nav-controls">
-                  <button
-                    className="stage-btn prev"
-                    onClick={handlePrev}
-                    aria-label="Previous Project"
-                    title="Previous Project"
-                  >
-                    <FiChevronLeft />
-                  </button>
-                  <button
-                    className="stage-btn next"
-                    onClick={handleNext}
-                    aria-label="Next Project"
-                    title="Next Project"
-                  >
-                    <FiChevronRight />
-                  </button>
+                {/* Footer Actions & Stage Navigator */}
+                <div className="stage-footer">
+                  <div className="action-links">
+                    {liveUrl ? (
+                      <a
+                        href={liveUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="btn-launch-live"
+                      >
+                        <span>Open Live Platform</span>
+                        <FiArrowUpRight className="icon" />
+                      </a>
+                    ) : activeProject.isInternal ? (
+                      <div className="badge-internal-gov">
+                        <FiLock className="icon" />
+                        <span>Government Internal System</span>
+                      </div>
+                    ) : null}
+
+                    {activeProject.github && (
+                      <a
+                        href={activeProject.github}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="btn-repo"
+                        title="View GitHub Repository"
+                      >
+                        <FiGithub className="icon" />
+                        <span>Source</span>
+                      </a>
+                    )}
+                  </div>
+
+                  <div className="stage-nav-controls">
+                    <button
+                      className="stage-btn prev"
+                      onClick={handlePrev}
+                      aria-label="Previous Project"
+                      title="Previous Project"
+                    >
+                      <FiChevronLeft />
+                    </button>
+                    <button
+                      className="stage-btn next"
+                      onClick={handleNext}
+                      aria-label="Next Project"
+                      title="Next Project"
+                    >
+                      <FiChevronRight />
+                    </button>
+                  </div>
                 </div>
               </div>
-            </div>
-          </article>
+            </article>
+          </TiltCard>
         </main>
       </div>
     </div>

@@ -1,0 +1,79 @@
+@import "../../global.scss";
+
+.floating-decorations-layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+
+  .decor-cluster {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    will-change: transform;
+    transition: transform 0.1s linear;
+  }
+
+  .decor-pill {
+    position: absolute;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px;
+    background: rgba(255, 255, 255, 0.45);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(72, 85, 80, 0.08);
+    border-radius: $radius-pill;
+    font-family: $font-mono;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    color: rgba(72, 85, 80, 0.6);
+    box-shadow: 0 4px 14px rgba(72, 85, 80, 0.03);
+
+    .spark {
+      color: $palette-lime;
+      font-size: 10px;
+    }
+  }
+
+  .decor-1 {
+    top: 18%;
+    right: 6%;
+    animation: decorFloat 8s ease-in-out infinite alternate;
+  }
+
+  .decor-2 {
+    top: 52%;
+    left: 4%;
+    animation: decorFloat 10s ease-in-out infinite alternate-reverse;
+  }
+
+  .decor-3 {
+    top: 74%;
+    right: 5%;
+    animation: decorFloat 9s ease-in-out infinite alternate;
+  }
+
+  .decor-4 {
+    top: 38%;
+    left: 6%;
+    animation: decorFloat 11s ease-in-out infinite alternate-reverse;
+  }
+
+  @include mobile {
+    display: none;
+  }
+}
+
+@keyframes decorFloat {
+  0% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-8px) rotate(0.5deg); }
+  100% { transform: translateY(6px) rotate(-0.5deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .floating-decorations-layer {
+    display: none !important;
+  }
+}
