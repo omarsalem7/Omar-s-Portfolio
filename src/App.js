@@ -7,7 +7,7 @@ import Testimonials from "./components/testimonials/Testimonials";
 import Contact from "./components/contact/Contact";
 import Menu from "./components/menu/Menu";
 import CustomCursor from "./components/cursor/CustomCursor";
-import FloatingDecorations from "./components/parallax/FloatingDecorations";
+// import FloatingDecorations from "./components/parallax/FloatingDecorations";
 import { FiArrowUp } from "react-icons/fi";
 import "./app.scss";
 
@@ -85,7 +85,7 @@ function App() {
       // Track active section for Topbar and Menu
       const scrollPosition = currentScroll + 160;
       const sectionElements = CHAPTERS.map((ch) =>
-        document.getElementById(ch.id)
+        document.getElementById(ch.id),
       );
 
       for (let i = sectionElements.length - 1; i >= 0; i--) {
@@ -111,7 +111,7 @@ function App() {
       <CustomCursor />
 
       {/* Floating Parallax Architectural Tokens */}
-      <FloatingDecorations />
+      {/* <FloatingDecorations /> */}
 
       {/* Architectural Background Grid */}
       <div className="architectural-grid">
